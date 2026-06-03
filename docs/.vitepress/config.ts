@@ -43,6 +43,7 @@ export default defineConfig({
           { text: "Dropdown", link: "/components/dropdown" },
           { text: "Field", link: "/components/field" },
           { text: "Input", link: "/components/input" },
+          { text: "Modal", link: "/components/modal" },
         ]
       }
     ],
