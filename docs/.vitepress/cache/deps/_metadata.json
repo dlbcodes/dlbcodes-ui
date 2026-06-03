@@ -2,42 +2,42 @@
   "hash": "5ff6afae",
   "configHash": "c939db3b",
   "lockfileHash": "51641f03",
-  "browserHash": "b9f98ab7",
+  "browserHash": "e9ee137b",
   "optimized": {
     "vue": {
       "src": "../../../../node_modules/vue/dist/vue.runtime.esm-bundler.js",
       "file": "vue.js",
-      "fileHash": "da9d7ed7",
+      "fileHash": "95986728",
       "needsInterop": false
     },
     "vitepress > @vue/devtools-api": {
       "src": "../../../../node_modules/vitepress/node_modules/@vue/devtools-api/dist/index.js",
       "file": "vitepress___@vue_devtools-api.js",
-      "fileHash": "1015cbbf",
+      "fileHash": "9761db24",
       "needsInterop": false
     },
     "vitepress > @vueuse/core": {
       "src": "../../../../node_modules/vitepress/node_modules/@vueuse/core/index.mjs",
       "file": "vitepress___@vueuse_core.js",
-      "fileHash": "994d07d4",
+      "fileHash": "993733ab",
       "needsInterop": false
     },
     "@vitepress-demo-preview/component": {
       "src": "../../../../node_modules/@vitepress-demo-preview/component/dist/preview-component.js",
       "file": "@vitepress-demo-preview_component.js",
-      "fileHash": "a0c8d297",
+      "fileHash": "19bdbbdf",
       "needsInterop": false
     },
     "vue-router": {
       "src": "../../../../node_modules/vue-router/dist/vue-router.js",
       "file": "vue-router.js",
-      "fileHash": "d0e93c8c",
+      "fileHash": "94d9edfd",
       "needsInterop": false
     },
     "class-variance-authority": {
       "src": "../../../../node_modules/class-variance-authority/dist/index.mjs",
       "file": "class-variance-authority.js",
-      "fileHash": "1ec218c9",
+      "fileHash": "48ef3d9b",
       "needsInterop": false
     },
     "tailwind-merge": {
@@ -49,19 +49,25 @@
     "clsx": {
       "src": "../../../../node_modules/clsx/dist/clsx.mjs",
       "file": "clsx.js",
-      "fileHash": "3352b346",
+      "fileHash": "b08cce1b",
       "needsInterop": false
     },
     "@headlessui/vue": {
       "src": "../../../../node_modules/@headlessui/vue/dist/headlessui.esm.js",
       "file": "@headlessui_vue.js",
-      "fileHash": "ab9f2b39",
+      "fileHash": "c0a6470c",
       "needsInterop": false
     },
     "@headlessui-float/vue": {
       "src": "../../../../node_modules/@headlessui-float/vue/dist/headlessui-float.mjs",
       "file": "@headlessui-float_vue.js",
-      "fileHash": "e882dca8",
+      "fileHash": "00dd8986",
+      "needsInterop": false
+    },
+    "@phosphor-icons/vue": {
+      "src": "../../../../node_modules/@phosphor-icons/vue/dist/index.mjs",
+      "file": "@phosphor-icons_vue.js",
+      "fileHash": "4e53af8f",
       "needsInterop": false
     }
   },

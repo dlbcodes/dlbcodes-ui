@@ -41,6 +41,8 @@ export default defineConfig({
           { text: "Switch", link: "/components/switch" },
           { text: "Popover", link: "/components/popover" },
           { text: "Dropdown", link: "/components/dropdown" },
+          { text: "Field", link: "/components/field" },
+          { text: "Input", link: "/components/input" },
         ]
       }
     ],

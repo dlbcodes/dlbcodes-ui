@@ -11,7 +11,7 @@ import Button from "../../../lib/components/primitives/Button.vue";
         <DropdownTrigger>
             <Button variant="outline">Options</Button>
         </DropdownTrigger>
-        <DropdownContent size="sm">
+        <DropdownContent size="full">
             <DropdownItem @select="() => {}">Profile</DropdownItem>
             <DropdownItem @select="() => {}">Settings</DropdownItem>
             <DropdownItem @select="() => {}">Sign out</DropdownItem>
