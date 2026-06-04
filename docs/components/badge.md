@@ -29,5 +29,3 @@ Each variant maps to a semantic color for a different kind of status.
 - A badge is decorative/labeling by default. If it conveys status that isn't
   obvious from its text alone (e.g. color-only meaning), ensure the meaning is
   also available in text for screen-reader and color-blind users.
-
-<div class="border-info-border bg-info-surface text-info-text">info test</div>

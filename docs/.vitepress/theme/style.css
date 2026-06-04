@@ -1,3 +1,5 @@
+/* ── Tailwind (preflight skipped — re-applied scoped to demos in
+   demo-preview.css — so it doesn't reset VitePress's chrome) ── */
 @import "tailwindcss/theme.css" layer(theme);
 @import "tailwindcss/utilities.css";
 @import "../../../lib/styles/tokens.css";
@@ -5,9 +7,9 @@
 @source "../../../lib/**/*.vue";
 @source "../../../lib/**/*.ts";
 
-/* Map VitePress's theme variables onto your design tokens. */
+/* ── Map VitePress theme variables onto design tokens ── */
 :root {
-    /* Brand / accent — used on links, active nav, buttons */
+    /* Brand / accent */
     --vp-c-brand-1: var(--color-brand-200);
     --vp-c-brand-2: var(--color-brand-100);
     --vp-c-brand-3: var(--color-brand-200);
@@ -16,7 +18,6 @@
     /* Backgrounds */
     --vp-c-bg: var(--color-bg-base);
     --vp-c-bg-alt: var(--color-bg-base);
-    /* --vp-c-bg-alt: var(--color-bg-surface); */
     --vp-c-bg-soft: var(--color-bg-surface);
 
     /* Text */
@@ -29,9 +30,8 @@
     --vp-c-border: var(--color-bg-400);
 }
 
-/* ── Polished doc-content styling (applies to all markdown pages) ── */
+/* ── Polished doc-content styling (all markdown pages) ── */
 
-/* Page heading rhythm */
 .vp-doc h1 {
     font-size: 1.875rem;
     font-weight: 600;
@@ -57,7 +57,6 @@
     color: var(--color-text-primary);
 }
 
-/* Body copy */
 .vp-doc p {
     color: var(--color-text-secondary);
     line-height: 1.7;
@@ -73,7 +72,7 @@
     font-weight: 500;
 }
 
-/* Tables → clean, bordered, token-styled */
+/* ── Tables ── */
 .vp-doc table {
     display: table;
     width: 100%;
@@ -104,46 +103,6 @@
     border-bottom: 0;
 }
 
-/* VitePress adds zebra striping by default — remove for a cleaner look */
 .vp-doc tr:nth-child(2n) {
     background-color: transparent;
-}
-
-.vitepress-demo-preview__ant-design__container {
-    background-color: white;
-    border-radius: 12px;
-}
-
-.content-body {
-    @apply backdrop-blur-2xl bg-bg-base/70;
-}
-
-/* Reset VitePress doc styles within demo previews */
-.vp-doc .vitepress-demo-preview__ant-design__container :where(p) {
-    margin: 0;
-    line-height: inherit;
-    color: inherit;
-}
-
-.vp-doc .vitepress-demo-preview__ant-design__container :where(a) {
-    color: inherit;
-    text-decoration: inherit;
-    font-weight: inherit;
-}
-
-.vp-doc
-    .vitepress-demo-preview__ant-design__container
-    :where(h1, h2, h3, h4, h5, h6) {
-    margin: 0;
-    border: 0;
-    padding: 0;
-    font-size: inherit;
-    font-weight: inherit;
-    line-height: inherit;
-}
-
-.vp-doc .vitepress-demo-preview__ant-design__container :where(ul, ol) {
-    margin: 0;
-    padding: 0;
-    list-style: revert;
 }

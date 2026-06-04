@@ -35,6 +35,7 @@ import {
   withKeys,
   withScopeId
 } from "./chunk-6OATIWET.js";
+import "./chunk-3F74YA3Z.js";
 
 // node_modules/@vitepress-demo-preview/component/dist/preview-component.js
 var Qo = Object.defineProperty;

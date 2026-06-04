@@ -1,6 +1,7 @@
 import {
   createHooks
 } from "./chunk-IIQZHHRC.js";
+import "./chunk-3F74YA3Z.js";
 
 // node_modules/vitepress/node_modules/@vue/devtools-shared/dist/index.js
 var __create = Object.create;

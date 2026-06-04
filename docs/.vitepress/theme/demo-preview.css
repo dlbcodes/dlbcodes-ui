@@ -1,0 +1,84 @@
+@reference "tailwindcss";
+/* Tailwind-preflight-equivalent reset, scoped to the demo so components render
+   as they would in a real Tailwind app (preflight is globally disabled to
+   protect VitePress's chrome, so we re-apply it here, scoped). */
+.vp-doc .ds-preview__demo {
+    line-height: 1.5;
+    color: var(--color-text-primary);
+}
+
+.vp-doc .ds-preview__demo :where(*, ::before, ::after) {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0 solid;
+}
+
+.vp-doc .ds-preview__demo :where(h1, h2, h3, h4, h5, h6) {
+    font-size: inherit;
+    font-weight: inherit;
+    margin: 0;
+    border: 0;
+    padding: 0;
+}
+
+.vp-doc .ds-preview__demo :where(p) {
+    margin: 0;
+    line-height: inherit;
+    color: inherit;
+}
+
+.vp-doc .ds-preview__demo :where(a) {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+.vp-doc .ds-preview__demo :where(ul, ol) {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.vp-doc .ds-preview__demo :where(button, input, textarea, select) {
+    font: inherit;
+    color: inherit;
+    line-height: inherit;
+}
+
+.ds-preview__code .shiki {
+    @apply m-0 overflow-x-auto rounded-b-xl py-3.5 text-[0.8125rem];
+    line-height: 1;
+    max-height: 24rem; /* cap height (~tune to taste) */
+    overflow-y: auto; /* was hidden — now scrolls vertically */
+}
+
+.ds-preview__code .shiki code {
+    counter-reset: step;
+    counter-increment: step 0;
+    display: inline-block;
+    min-width: 100%;
+}
+
+.ds-preview__code .shiki .line {
+    display: block;
+    line-height: 1; /* ensure each line uses the same line-height */
+}
+
+.ds-preview__code .shiki .line::before {
+    content: counter(step);
+    counter-increment: step;
+    position: sticky;
+    left: 0;
+    display: inline-block;
+    width: 1.25rem;
+    /* breathing room on the RIGHT of the number, before the code */
+    margin-right: 1rem;
+    padding-left: 1rem;
+    padding-right: 0.75rem; /* ← right breathing room you asked for */
+    text-align: right;
+    color: rgba(255, 255, 255, 0.25);
+    background: var(--shiki-dark-bg, #24292e);
+    /* keep the number from inflating line height */
+    line-height: 1;
+    vertical-align: top;
+}
