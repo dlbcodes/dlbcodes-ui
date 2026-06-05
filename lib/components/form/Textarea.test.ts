@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import { mount } from "@vue/test-utils";
 import { defineComponent, h, computed, provide } from "vue";
 import Textarea from "./Textarea.vue";
-import { FieldKey } from "../../core/field-context";
+import { FieldKey } from "../../core/field-context.ts";
 
 describe("Textarea", () => {
 	it("renders a textarea element", () => {

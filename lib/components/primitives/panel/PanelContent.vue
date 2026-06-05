@@ -14,7 +14,7 @@ const props = defineProps<Props>();
     <div
         :class="
             cn(
-                'h-full overflow-hidden p-2 bg-bg-base shadow-xs rounded-[20px]',
+                'h-full overflow-hidden p-2 bg-bg-raised shadow-xs rounded-[20px]',
                 props.class,
             )
         "

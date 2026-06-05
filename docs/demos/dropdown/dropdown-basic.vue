@@ -1,8 +1,10 @@
 <script setup lang="ts">
-import Dropdown from "../../../lib/components/form/dropdown/Dropdown.vue";
-import DropdownTrigger from "../../../lib/components/form/dropdown/DropdownTrigger.vue";
-import DropdownContent from "../../../lib/components/form/dropdown/DropdownContent.vue";
-import DropdownItem from "../../../lib/components/form/dropdown/DropdownItem.vue";
+import {
+    Dropdown,
+    DropdownTrigger,
+    DropdownContent,
+    DropdownItem,
+} from "../../../lib/components/form/dropdown";
 import Button from "../../../lib/components/primitives/Button.vue";
 </script>
 
