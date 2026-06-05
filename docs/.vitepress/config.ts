@@ -48,6 +48,8 @@ export default defineConfig({
           { text: "Textarea", link: "/components/textarea" },
           { text: "Select", link: "/components/select" },
           { text: "Tabs", link: "/components/tabs" },
+          { text: "Disclosure", link: "/components/disclosure" },
+          { text: "Separator", link: "/components/separator" },
         ]
       }
     ],

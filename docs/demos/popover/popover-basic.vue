@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import Popover from "../../../lib/components/form/popover/Popover.vue";
-import PopoverTrigger from "../../../lib/components/form/popover/PopoverTrigger.vue";
-import PopoverContent from "../../../lib/components/form/popover/PopoverContent.vue";
+import Popover from "../../../lib/components/overlays/popover/Popover.vue";
+import PopoverTrigger from "../../../lib/components/overlays/popover/PopoverTrigger.vue";
+import PopoverContent from "../../../lib/components/overlays/popover/PopoverContent.vue";
 import Button from "../../../lib/components/primitives/Button.vue";
 </script>
 
