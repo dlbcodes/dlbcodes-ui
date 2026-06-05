@@ -50,6 +50,7 @@ export default defineConfig({
           { text: "Tabs", link: "/components/tabs" },
           { text: "Disclosure", link: "/components/disclosure" },
           { text: "Separator", link: "/components/separator" },
+          { text: "Skeleton", link: "/components/skeleton" },
         ]
       }
     ],
