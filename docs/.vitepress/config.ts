@@ -1,16 +1,18 @@
 import { defineConfig } from 'vitepress'
 import tailwindcss from "@tailwindcss/vite";
 import { containerPreview, componentPreview } from "@vitepress-demo-preview/plugin";
+import { PluginOption } from 'vite';
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "My Design System",
   description: "A Vue 3 component library",
+  appearance: false,
   vite: {
-    plugins: [tailwindcss()],
+    plugins: [tailwindcss() as any],
     server: {
       fs: {
-        allow: [".."],  // allow access to the repo root (parent of docs/)
+        allow: [".."],
       },
     },
   },
@@ -23,8 +25,8 @@ export default defineConfig({
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
-      { text: 'Home', link: '/' },
-      { text: 'Examples', link: '/markdown-examples' }
+      { text: "Guide", link: "/guide/getting-started" },
+      { text: "Components", link: "/components/button" },
     ],
 
     sidebar: [
@@ -58,7 +60,7 @@ export default defineConfig({
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
+      { icon: 'github', link: 'https://github.com/dlbcodes/my-design-system' }
     ]
   }
 })
