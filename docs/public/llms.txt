@@ -1,0 +1,58 @@
+# @dlbcodes/my-design-system
+
+> An accessible, tokenized Vue 3 component library built on Tailwind CSS v4,
+> class-variance-authority, and Headless UI. Components are compound and
+> composable (Trigger/Content patterns), themed entirely through semantic
+> design tokens. Published on npm as @dlbcodes/my-design-system.
+
+## Getting Started
+
+- [Getting Started](https://YOUR_DOCS_URL/guide/getting-started): Install, Tailwind v4 setup, and first usage.
+
+## Installation
+
+Install: `npm install @dlbcodes/my-design-system`
+Peer deps: `npm install vue vue-router`
+
+Tailwind v4 setup (in your main CSS):
+@import "tailwindcss";
+@import "@dlbcodes/my-design-system/tokens.css";
+@source "../node_modules/@dlbcodes/my-design-system/dist";
+
+## Components
+
+### Primitives
+- Button: Button with variants (primary, neutral, success, pending, destructive) and sizes.
+- Badge: Status/label badge with variants.
+- Avatar: User avatar with name/src, sizes sm/base/lg.
+- Spinner: Loading spinner.
+- Kbd / KbdGroup: Keyboard shortcut display.
+- Label: Form label.
+- Separator: Visual divider.
+- Skeleton: Loading placeholder.
+- Progress: Progress bar.
+- Alert (Alert, AlertTitle, AlertDescription): Message/notification callout.
+- Panel (Panel, PanelHeader, PanelContent, PanelFooter): Content container.
+- Tabs (Tabs, TabsList, TabsTrigger, TabsPanels, TabsContent): Tabbed interface (Headless UI, position-paired).
+- Disclosure (Disclosure, DisclosureTrigger, DisclosureContent): Collapsible section.
+
+### Form
+- Field (Field, FieldLabel, FieldContent, FieldDescription, FieldError): Wires label/description/error and ARIA for a control.
+- Input: Text input.
+- Textarea: Multi-line text input (autosize).
+- Checkbox: Checkbox input.
+- Switch: Toggle switch.
+- Select (Select, SelectTrigger, SelectContent, SelectSearch, SelectItem): Single-select dropdown with slot-content items.
+- MultiSelect (MultiSelect, MultiSelectTrigger, MultiSelectContent, MultiSelectItem, MultiSelectSearch): Multi-select with summary.
+- Dropdown (Dropdown, DropdownTrigger, DropdownContent, DropdownItem): Action menu.
+
+### Overlays
+- Modal (Modal, ModalHeader, ModalTitle, ModalDescription, ModalContent, ModalFooter, ModalClose): Dialog, v-model open state.
+- Popover (Popover, PopoverTrigger, PopoverContent): Floating panel.
+
+## Conventions
+
+- Compound components: compose parts (e.g. Field + FieldLabel + Input) rather than one prop-heavy component.
+- All styling via semantic CSS-variable tokens (see tokens.css) — override tokens to theme.
+- Light mode only (no dark mode).
+- Built on Headless UI for accessible overlays/menus/tabs/disclosure.

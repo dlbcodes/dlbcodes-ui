@@ -5,7 +5,7 @@ import { PluginOption } from 'vite';
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "My Design System",
+  title: "My Design System [WIP]",
   description: "A Vue 3 component library",
   appearance: false,
   vite: {
@@ -30,6 +30,14 @@ export default defineConfig({
     ],
 
     sidebar: [
+      {
+        text: "Guide",
+        items: [
+          { text: "Getting Started", link: "/guide/getting-started" },
+          { text: "For LLMs (llms.txt)", link: "/llms.txt" },
+          { text: "Theming", link: "/guide/theming" },
+        ],
+      },
       {
         text: 'Components',
         items: [

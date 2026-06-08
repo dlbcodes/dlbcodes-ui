@@ -22,7 +22,7 @@ const required = computed(() => field?.required.value ?? false);
             cn(
                 'w-fit text-sm font-medium text-text-secondary',
                 required &&
-                    `after:ml-0.5 after:text-danger-100 after:content-['*']`,
+                    `after:ml-0.5 after:text-danger-text after:content-['*']`,
                 props.class,
             )
         "

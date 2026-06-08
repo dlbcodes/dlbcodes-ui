@@ -43,7 +43,7 @@ const boxClass = computed(() =>
     cn(
         "flex size-4 shrink-0 items-center justify-center rounded border transition-colors",
         resolved.value.invalid
-            ? "border-danger-100 bg-danger-100/10"
+            ? "border-danger-text bg-danger-text/10"
             : props.modelValue
               ? "border-bg-inverse bg-bg-inverse"
               : "border-border-strong bg-bg-base",

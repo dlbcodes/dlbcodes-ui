@@ -32,7 +32,7 @@ export const buttonVariants = cva(baseStyles, {
 
 			// Destructive action.
 			destructive:
-				"border border-danger-100 bg-danger-100 text-text-inverse hover:opacity-90",
+				"border border-danger-text bg-danger-text text-text-inverse hover:opacity-90",
 
 			// Bordered, transparent fill.
 			outline:

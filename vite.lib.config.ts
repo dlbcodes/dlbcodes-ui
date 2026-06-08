@@ -10,7 +10,11 @@ export default defineConfig({
 	plugins: [
 		vue(),
 		tailwindcss(),
-		dts({ include: ["lib"], insertTypesEntry: true }),
+		dts({
+			include: ["lib"],
+			tsconfigPath: "./tsconfig.app.json",
+			entryRoot: "lib",
+		}),
 		viteStaticCopy({
 			targets: [
 				{
@@ -28,7 +32,6 @@ export default defineConfig({
 			formats: ["es"],
 		},
 		rollupOptions: {
-			// Don't bundle these — consumers provide them (see deps decision)
 			external: [
 				"vue",
 				"vue-router",

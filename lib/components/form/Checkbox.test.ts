@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { computed, ref } from "vue";
+import { computed } from "vue";
 import { mount } from "@vue/test-utils";
 import Checkbox from "./Checkbox.vue";
 import { FieldKey } from "../../core/field-context";

@@ -1,53 +1,59 @@
 @theme {
-    /* Accent */
-    --color-accent-brand: oklch(67.24% 0.1308 38.76);
-    --color-accent-100: oklch(50.94% 0.1385 252.48);
-    --color-accent-200: oklch(60.56% 0.1555 251.92);
-    --color-accent-300: oklch(91.43% 0.0324 249.63);
+    /* ═══════════════════════════════════════════════════════════════
+       1 · PRIMITIVES — the raw palette (internal)
+       Source colors. You normally DON'T override these; theme via the
+       semantic tokens in section 2. Override a primitive only to shift
+       every semantic token that references it at once.
+       ═══════════════════════════════════════════════════════════════ */
 
-    --color-accent-pro-100: oklch(38.23% 0.0961 289.8);
-    --color-accent-pro-200: oklch(45.78% 0.143 287.89);
-    --color-accent-pro-300: oklch(69.21% 0.1248 291.33);
-    --color-accent-pro-400: oklch(92.23% 0.0191 295.85);
-
-    /* Brand */
-    --color-brand-100: oklch(60.78% 0.1379 39.01);
-    --color-brand-200: oklch(67.24% 0.1308 38.76);
-
-    /* Text */
+    /* Neutrals — text ramp (light → dark) */
     --color-text-100: oklch(94.5% 0.009 96);
-    --color-text-200: oklch(91% 0.013 96);
     --color-text-300: oklch(87% 0.0155 96);
-    --color-text-400: oklch(82% 0.016 96.5);
     --color-text-500: oklch(76% 0.0155 97);
-    --color-text-600: oklch(68% 0.013 97.5);
     --color-text-700: oklch(55.11% 0.0092 99);
-    --color-text-800: oklch(35.9% 0.0051 106.7);
     --color-text-900: oklch(19.08% 0.002 106.6);
 
-    /* Background */
+    /* Neutrals — background ramp (light → dark) */
     --color-bg-0: oklch(100% 0 0);
     --color-bg-100: oklch(98.18% 0.0054 95.1);
     --color-bg-200: oklch(96.6% 0.0093 100);
     --color-bg-300: oklch(94.85% 0.0109 95.2);
     --color-bg-400: oklch(92.37% 0.0135 97.5);
-    --color-bg-500: oklch(89.2% 0.016 97);
     --color-bg-600: oklch(84.5% 0.018 97);
-    --color-bg-700: oklch(73% 0.018 97);
-    --color-bg-800: oklch(22% 0.008 97);
-    --color-bg-850: oklch(18% 0.008 97);
     --color-bg-900: oklch(0% 0 0);
 
-    /* Border */
-    --color-border-100: oklch(23.57% 0.0024 67.71);
+    /* Brand */
+    --color-brand-100: oklch(60.78% 0.1379 39.01);
+    --color-brand-200: oklch(67.24% 0.1308 38.76);
 
-    /* Status */
-    --color-danger-100: oklch(51.91% 0.1669 25.14);
-    --color-success-100: oklch(41.18% 0.1364 143.33);
-    --color-success-200: oklch(50.11% 0.147 138.94);
-    --color-success-300: oklch(94.45% 0.0322 126.26);
+    /* Accent */
+    --color-accent-pro-200: oklch(45.78% 0.143 287.89);
 
-    /* ─── Semantic tokens ────────────────────────────────────────── */
+    /* Status — success (green) */
+    --color-success-100: oklch(52% 0.13 152); /* text */
+    --color-success-200: oklch(90% 0.06 152); /* border */
+    --color-success-300: oklch(96.5% 0.03 152); /* surface */
+
+    /* Status — warning (amber) */
+    --color-warning-100: oklch(55% 0.12 75); /* text */
+    --color-warning-200: oklch(90% 0.08 85); /* border */
+    --color-warning-300: oklch(96.5% 0.04 85); /* surface */
+
+    /* Status — info (blue) */
+    --color-info-100: oklch(52% 0.15 250); /* text */
+    --color-info-200: oklch(90% 0.06 245); /* border */
+    --color-info-300: oklch(96.5% 0.03 245); /* surface */
+
+    /* Status — danger (red) */
+    --color-danger-100: oklch(52% 0.17 25); /* text */
+    --color-danger-200: oklch(90% 0.06 18); /* border */
+    --color-danger-300: oklch(96% 0.03 18); /* surface */
+
+    /* ═══════════════════════════════════════════════════════════════
+       2 · SEMANTIC TOKENS — the public theming API
+       Maps roles onto the primitives above. THIS is the layer to
+       override: set a semantic token to any value to retarget that role.
+       ═══════════════════════════════════════════════════════════════ */
 
     /* Text */
     --color-text-primary: var(--color-text-900); /* body copy, headings */
@@ -57,11 +63,9 @@
     --color-text-inverse: var(--color-text-100); /* text on dark surfaces */
 
     /* Background */
-    --color-bg-raised: var(
-        --color-bg-0
-    ); /* semantic: floating/selected surface */
     --color-bg-base: var(--color-bg-100); /* page background */
     --color-bg-surface: var(--color-bg-200); /* cards, panels */
+    --color-bg-raised: var(--color-bg-0); /* floating/selected surface */
     --color-bg-elevated: var(--color-bg-300); /* dropdowns, tooltips */
     --color-bg-subtle: var(--color-bg-400); /* hover states, tags */
     --color-bg-strong: var(--color-bg-600); /* separators, badges */
@@ -73,27 +77,30 @@
     --color-border-strong: var(--color-bg-600); /* focus, emphasis */
     --color-border-dark: var(--color-bg-900); /* strong outline */
 
-    /* Success (green) */
-    --color-success-surface: oklch(96.5% 0.03 152);
-    --color-success-border: oklch(90% 0.06 152);
-    --color-success-text: oklch(52% 0.13 152);
+    /* Status — success */
+    --color-success-surface: var(--color-success-300);
+    --color-success-border: var(--color-success-200);
+    --color-success-text: var(--color-success-100);
 
-    /* Warning (amber) — was "pending" in the badge */
-    --color-warning-surface: oklch(96.5% 0.04 85);
-    --color-warning-border: oklch(90% 0.08 85);
-    --color-warning-text: oklch(55% 0.12 75);
+    /* Status — warning */
+    --color-warning-surface: var(--color-warning-300);
+    --color-warning-border: var(--color-warning-200);
+    --color-warning-text: var(--color-warning-100);
 
-    /* Info (blue) */
-    --color-info-surface: oklch(96.5% 0.03 245);
-    --color-info-border: oklch(90% 0.06 245);
-    --color-info-text: oklch(52% 0.15 250);
+    /* Status — info */
+    --color-info-surface: var(--color-info-300);
+    --color-info-border: var(--color-info-200);
+    --color-info-text: var(--color-info-100);
 
-    /* Danger (red/rose) — you already have --color-danger-100; these add
-     the surface/border tints to complete the triplet. */
-    --color-danger-surface: oklch(96% 0.03 18);
-    --color-danger-border: oklch(90% 0.06 18);
-    --color-danger-text: oklch(52% 0.17 25);
+    /* Status — danger */
+    --color-danger-surface: var(--color-danger-300);
+    --color-danger-border: var(--color-danger-200);
+    --color-danger-text: var(--color-danger-100);
 }
+
+/* ═══════════════════════════════════════════════════════════════════
+   3 · UTILITIES
+   ═══════════════════════════════════════════════════════════════════ */
 
 @utility no-scrollbar {
     scrollbar-width: none;
