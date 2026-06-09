@@ -1,7 +1,11 @@
-import { defineConfig } from 'vitepress'
+import { defineConfig, loadEnv } from 'vitepress'
 import tailwindcss from "@tailwindcss/vite";
 import { containerPreview, componentPreview } from "@vitepress-demo-preview/plugin";
-import { PluginOption } from 'vite';
+
+const isProd = process.env.NODE_ENV === "production";
+const showcaseUrl = isProd
+  ? "https://your-scratch-test.vercel.app"
+  : "http://localhost:5174";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -27,6 +31,7 @@ export default defineConfig({
     nav: [
       { text: "Guide", link: "/guide/getting-started" },
       { text: "Components", link: "/components/button" },
+      { text: "Showcase", link: showcaseUrl },
     ],
 
     sidebar: [
@@ -63,6 +68,8 @@ export default defineConfig({
           { text: "Skeleton", link: "/components/skeleton" },
           { text: "Progress", link: "/components/progress" },
           { text: "Alert", link: "/components/alert" },
+          { text: "Empty", link: "/components/empty" },
+          { text: "Sidebar", link: "/components/sidebar" },
         ]
       }
     ],

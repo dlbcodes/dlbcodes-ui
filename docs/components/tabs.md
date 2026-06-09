@@ -11,13 +11,13 @@ and so on.
 
 ## Anatomy
 
-\```
+```
 Tabs ← the root; sets the default/selected tab
 ├── TabsList ← the pill bar containing the triggers
 │ └── TabsTrigger ← one per tab (its content is the label)
 └── TabsPanels ← wraps the panels
 └── TabsContent ← one per tab; shown when its tab is selected
-\```
+```
 
 Keep the triggers and panels in the **same order** — the Nth trigger pairs with
 the Nth panel.
