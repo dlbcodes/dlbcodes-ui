@@ -7,8 +7,8 @@
 
 ## Getting Started
 
-- [Getting Started](https://YOUR_DOCS_URL/guide/getting-started): Install, Tailwind v4 setup, and first usage.
-- [Theming](https://YOUR_DOCS_URL/guide/theming): Override semantic tokens to retheme the whole system.
+- [Getting Started](https://my-design-system-beta.vercel.app/guide/getting-started): Install, Tailwind v4 setup, and first usage.
+- [Theming](https://my-design-system-beta.vercel.app/guide/theming): Override semantic tokens to retheme the whole system.
 
 ## Installation
 
@@ -23,35 +23,37 @@ Tailwind v4 setup (in your main CSS):
 ## Components
 
 ### Primitives
-- Button: Button with variants (primary, neutral, success, pending, destructive) and sizes.
-- Badge: Status/label badge with variants.
-- Avatar: User avatar with name/src, sizes sm/base/lg.
-- Spinner: Loading spinner.
-- Kbd / KbdGroup: Keyboard shortcut display.
-- Label: Form label.
-- Separator: Visual divider.
-- Skeleton: Loading placeholder.
-- Progress: Progress bar.
-- Alert (Alert, AlertTitle, AlertDescription): Message/notification callout.
-- Panel (Panel, PanelHeader, PanelContent, PanelFooter): Content container.
-- Tabs (Tabs, TabsList, TabsTrigger, TabsPanels, TabsContent): Tabbed interface (Headless UI, position-paired).
-- Disclosure (Disclosure, DisclosureTrigger, DisclosureContent): Collapsible section.
-- Empty (Empty, EmptyHeader, EmptyMedia, EmptyTitle, EmptyDescription, EmptyContent): Empty-state placeholder for no-data scenarios. EmptyMedia has variant "default" | "icon".
-- Sidebar (SidebarProvider, Sidebar, SidebarTrigger, SidebarHeader, SidebarContent, SidebarFooter, SidebarGroup, SidebarItem): Responsive app navigation. Inline panel on desktop (collapsible to hidden via SidebarTrigger), overlay drawer on mobile (<768px). SidebarProvider is required and holds the state; useSidebar() exposes { collapsed, isMobile, open, close, toggle }. SidebarItem is framework-agnostic: it renders via an `as` prop ("a", RouterLink, NuxtLink, "button") with consumer-controlled `active`.
+
+- [Button](https://my-design-system-beta.vercel.app/components/button): Button with variants (primary, secondary, destructive, outline, ghost, link) and sizes (sm, base, lg, xl, icon, icon-sm). Supports loading, disabled, and rendering as a link via `to`/`as`.
+- [Badge](https://my-design-system-beta.vercel.app/components/badge): Status/label badge with variants.
+- [Avatar](https://my-design-system-beta.vercel.app/components/avatar): User avatar with name/src, sizes sm/base/lg.
+- [Spinner](https://my-design-system-beta.vercel.app/components/spinner): Loading spinner.
+- [Kbd](https://my-design-system-beta.vercel.app/components/kbd): Keyboard shortcut display (Kbd, KbdGroup).
+- [Label](https://my-design-system-beta.vercel.app/components/label): Form label.
+- [Separator](https://my-design-system-beta.vercel.app/components/separator): Visual divider.
+- [Skeleton](https://my-design-system-beta.vercel.app/components/skeleton): Loading placeholder.
+- [Progress](https://my-design-system-beta.vercel.app/components/progress): Progress bar.
+- [Alert](https://my-design-system-beta.vercel.app/components/alert): Message/notification callout (Alert, AlertTitle, AlertDescription).
+- [Tabs](https://my-design-system-beta.vercel.app/components/tabs): Tabbed interface (Tabs, TabsList, TabsTrigger, TabsPanels, TabsContent); Headless UI, position-paired.
+- [Disclosure](https://my-design-system-beta.vercel.app/components/disclosure): Collapsible section (Disclosure, DisclosureTrigger, DisclosureContent).
+- [Empty](https://my-design-system-beta.vercel.app/components/empty): Empty-state placeholder (Empty, EmptyHeader, EmptyMedia, EmptyTitle, EmptyDescription, EmptyContent). EmptyMedia has variant "default" | "icon".
+- [Sidebar](https://my-design-system-beta.vercel.app/components/sidebar): Responsive app navigation (SidebarProvider, Sidebar, SidebarTrigger, SidebarHeader, SidebarContent, SidebarFooter, SidebarGroup, SidebarItem). Inline panel on desktop (collapsible to hidden via SidebarTrigger), overlay drawer on mobile (<768px). SidebarProvider is required; useSidebar() exposes { collapsed, isMobile, open, close, toggle }. SidebarItem is framework-agnostic via an `as` prop ("a", RouterLink, NuxtLink, "button") with consumer-controlled `active`, and supports `disabled`.
 
 ### Form
-- Field (Field, FieldLabel, FieldContent, FieldDescription, FieldError): Wires label/description/error and ARIA for a control. Supports orientation="horizontal" for toggle rows.
-- Input: Text input.
-- Textarea: Multi-line text input (autosize).
-- Checkbox: Checkbox input.
-- Switch: Toggle switch.
-- Select (Select, SelectTrigger, SelectContent, SelectSearch, SelectItem): Single-select dropdown with slot-content items.
-- MultiSelect (MultiSelect, MultiSelectTrigger, MultiSelectContent, MultiSelectItem, MultiSelectSearch): Multi-select with summary.
-- Dropdown (Dropdown, DropdownTrigger, DropdownContent, DropdownItem): Action menu.
+
+- [Field](https://my-design-system-beta.vercel.app/components/field): Wires label/description/error and ARIA for a control (Field, FieldLabel, FieldContent, FieldDescription, FieldError). Generates a shared id and cascades disabled/required/invalid. Supports orientation="horizontal" for toggle rows.
+- [Input](https://my-design-system-beta.vercel.app/components/input): Text input. Variants primary | contrast.
+- [Textarea](https://my-design-system-beta.vercel.app/components/textarea): Multi-line text input (autosize).
+- [Checkbox](https://my-design-system-beta.vercel.app/components/checkbox): Checkbox input.
+- [Switch](https://my-design-system-beta.vercel.app/components/switch): Toggle switch.
+- [Select](https://my-design-system-beta.vercel.app/components/select): Single-select dropdown (Select, SelectTrigger, SelectContent, SelectSearch, SelectItem). Item label is slot content; optional `searchable`.
+- [MultiSelect](https://my-design-system-beta.vercel.app/components/multiselect): Multi-select with summary (MultiSelect, MultiSelectTrigger, MultiSelectContent, MultiSelectItem, MultiSelectSearch). Root exposes slot props (label, count, empty, allSelected, toggleAll, clear).
+- [Dropdown](https://my-design-system-beta.vercel.app/components/dropdown): Action menu (Dropdown, DropdownTrigger, DropdownContent, DropdownItem).
 
 ### Overlays
-- Modal (Modal, ModalHeader, ModalTitle, ModalDescription, ModalContent, ModalFooter, ModalClose): Dialog, v-model open state.
-- Popover (Popover, PopoverTrigger, PopoverContent): Floating panel; PopoverContent exposes a `close` via its default slot.
+
+- [Modal](https://my-design-system-beta.vercel.app/components/modal): Dialog with v-model open state (Modal, ModalHeader, ModalTitle, ModalDescription, ModalContent, ModalFooter, ModalClose). Teleports to body.
+- [Popover](https://my-design-system-beta.vercel.app/components/popover): Floating panel (Popover, PopoverTrigger, PopoverContent). PopoverContent exposes `close` via its default slot.
 
 ## Conventions
 
@@ -59,3 +61,8 @@ Tailwind v4 setup (in your main CSS):
 - All styling via semantic CSS-variable tokens (see tokens.css), which reference an internal primitive palette. Override the semantic tokens to retheme; a [data-theme] block of overrides can switch the whole look at runtime.
 - Light mode only (no dark mode).
 - Built on Headless UI for accessible overlays/menus/tabs/disclosure; Sidebar and Popover positioning use Headless UI Float.
+
+## Notes
+
+- Select and MultiSelect triggers integrate with Field: inside a `<Field>`, the trigger adopts the field's id, aria-describedby, and aria-invalid.
+- Panel (Panel, PanelHeader, PanelContent, PanelFooter) is a general content container used throughout the showcase.

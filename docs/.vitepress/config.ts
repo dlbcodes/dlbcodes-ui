@@ -1,11 +1,10 @@
 import { defineConfig, loadEnv } from 'vitepress'
 import tailwindcss from "@tailwindcss/vite";
 import { containerPreview, componentPreview } from "@vitepress-demo-preview/plugin";
-import container from "markdown-it-container";
 
 const isProd = process.env.NODE_ENV === "production";
 const showcaseUrl = isProd
-  ? "https://your-scratch-test.vercel.app"
+  ? "https://dlbcodes-ui-showcase.vercel.app/"
   : "http://localhost:5174";
 
 // https://vitepress.dev/reference/site-config

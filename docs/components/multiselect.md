@@ -10,8 +10,6 @@ items to taste.
 
 ## Anatomy
 
-::: anatomy
-
 ```
 MultiSelect ← root: holds options + v-model, exposes slot props
 ├── MultiSelectTrigger   ← the field-like button showing the summary
