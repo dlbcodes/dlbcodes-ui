@@ -4,14 +4,14 @@ import EmptyHeader from "../../../lib/components/primitives/empty/EmptyHeader.vu
 import EmptyMedia from "../../../lib/components/primitives/empty/EmptyMedia.vue";
 import EmptyTitle from "../../../lib/components/primitives/empty/EmptyTitle.vue";
 import EmptyDescription from "../../../lib/components/primitives/empty/EmptyDescription.vue";
-import { PhInbox } from "@phosphor-icons/vue";
+import { PhTray } from "@phosphor-icons/vue";
 </script>
 
 <template>
     <Empty>
         <EmptyHeader>
             <EmptyMedia>
-                <PhInbox class="size-10 text-text-tertiary" />
+                <PhTray class="size-10 text-text-tertiary" />
             </EmptyMedia>
             <EmptyTitle>Your inbox is empty</EmptyTitle>
             <EmptyDescription>
