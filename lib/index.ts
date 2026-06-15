@@ -6,6 +6,7 @@ export * from "./components/form/field";
 export * from "./components/form/select";
 export * from "./components/form/multiselect";
 export * from "./components/form/dropdown";
+export * from "./components/form/combobox";
 export { default as Input } from "./components/form/Input.vue";
 export { default as Textarea } from "./components/form/Textarea.vue";
 export { default as Checkbox } from "./components/form/Checkbox.vue";

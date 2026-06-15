@@ -8,7 +8,11 @@ import Avatar from "../../../lib/components/primitives/Avatar.vue";
         <div
             class="flex items-center gap-3 rounded-xl border border-border-subtle bg-bg-raised px-4 py-3"
         >
-            <Avatar name="Ana Silva" :src="null" size="sm" />
+            <Avatar
+                name="Ana Silva"
+                src="https://i.pravatar.cc/120?img=10"
+                size="sm"
+            />
             <div class="min-w-0 flex-1">
                 <div class="truncate text-sm font-medium text-text-primary">
                     Ana Silva
@@ -23,7 +27,11 @@ import Avatar from "../../../lib/components/primitives/Avatar.vue";
         <div
             class="flex items-center gap-3 rounded-xl border border-border-subtle bg-bg-raised px-4 py-3"
         >
-            <Avatar name="John Carter" :src="null" size="sm" />
+            <Avatar
+                name="John Carter"
+                src="https://i.pravatar.cc/120?img=3"
+                size="sm"
+            />
             <div class="min-w-0 flex-1">
                 <div class="min-w-0 flex-1">
                     <div class="truncate text-sm font-medium text-text-primary">

@@ -10,7 +10,6 @@ const props = defineProps<Props>();
 </script>
 
 <template>
-    <!-- rounded-[20px] = rounded-3xl (24px) − p-1 (4px) for concentric nesting inside Panel -->
     <div
         :class="
             cn(
