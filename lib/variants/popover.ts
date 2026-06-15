@@ -1,7 +1,7 @@
 import { cva, type VariantProps } from "class-variance-authority";
 
 export const popoverVariants = cva(
-	"max-h-80 overflow-y-auto rounded-2xl bg-bg-raised p-4 shadow-lg ring-1 ring-border-default focus-visible:outline-none",
+	"max-h-80 overflow-y-auto rounded-2xl bg-bg-raised p-2 shadow-lg ring-1 ring-border-default focus-visible:outline-none",
 	{
 		variants: {
 			size: {

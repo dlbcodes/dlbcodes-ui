@@ -1,10 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { mount } from "@vue/test-utils";
 import Input from "./Input.vue";
-// ⚠️ ADJUST to your real export — one of these is correct:
-// import { Field } from "./field";
 import Field from "./field/Field.vue";
-// import Field from "./field/FieldRoot.vue";
 
 describe("Input", () => {
 	describe("rendering & model", () => {
@@ -94,6 +91,85 @@ describe("Input", () => {
 				template: `<Field :disabled="true"><Input :disabled="false" /></Field>`,
 			});
 			expect((wrapper.find("input").element as HTMLInputElement).disabled).toBe(false);
+		});
+	});
+
+	describe("native attribute forwarding ($attrs → input)", () => {
+		it("forwards inputmode to the input element, not the wrapper", () => {
+			const wrapper = mount(Input, { attrs: { inputmode: "numeric" } });
+			const input = wrapper.find("input");
+			expect(input.attributes("inputmode")).toBe("numeric");
+			// and NOT on the wrapper div
+			expect(wrapper.element.getAttribute("inputmode")).toBeNull();
+		});
+
+		it("forwards arbitrary native attrs (name, maxlength, autocomplete) to the input", () => {
+			const wrapper = mount(Input, {
+				attrs: { name: "email", maxlength: "20", autocomplete: "email" },
+			});
+			const input = wrapper.find("input");
+			expect(input.attributes("name")).toBe("email");
+			expect(input.attributes("maxlength")).toBe("20");
+			expect(input.attributes("autocomplete")).toBe("email");
+		});
+
+		it("forwards enterkeyhint to the input", () => {
+			const wrapper = mount(Input, { attrs: { enterkeyhint: "next" } });
+			expect(wrapper.find("input").attributes("enterkeyhint")).toBe("next");
+		});
+
+		it("explicit prop bindings win over a colliding $attr (disabled)", () => {
+			// resolvedDisabled is bound AFTER v-bind="$attrs", so the prop wins.
+			const wrapper = mount(Input, {
+				props: { disabled: true },
+				attrs: { disabled: false },
+			});
+			expect((wrapper.find("input").element as HTMLInputElement).disabled).toBe(true);
+		});
+
+		it("Field's aria-describedby wins over a stray $attr", () => {
+			const wrapper = mount({
+				components: { Field, Input },
+				template: `
+					<Field :invalid="true">
+						<Input aria-describedby="stray-id" />
+					</Field>
+				`,
+			});
+			const describedBy = wrapper.find("input").attributes("aria-describedby");
+			// The Field-resolved describedById (bound after $attrs) should win,
+			// so it is NOT the stray value.
+			expect(describedBy).not.toBe("stray-id");
+		});
+	});
+
+	describe("slot-click focuses the input", () => {
+		it("focuses the input when the wrapper/slot area is clicked", async () => {
+			const wrapper = mount(Input, {
+				slots: { default: '<span class="prefix">€</span>' },
+				attachTo: document.body, // focus needs a real document
+			});
+			const input = wrapper.find("input").element as HTMLInputElement;
+			expect(document.activeElement).not.toBe(input);
+
+			await wrapper.find(".prefix").trigger("click");
+			expect(document.activeElement).toBe(input);
+
+			wrapper.unmount();
+		});
+
+		it("does NOT steal focus when an interactive slot element is clicked", async () => {
+			const wrapper = mount(Input, {
+				slots: { default: '<button class="clear">x</button>' },
+				attachTo: document.body,
+			});
+			const input = wrapper.find("input").element as HTMLInputElement;
+
+			await wrapper.find(".clear").trigger("click");
+			// the guard skips focus-forwarding for button/a/input/etc.
+			expect(document.activeElement).not.toBe(input);
+
+			wrapper.unmount();
 		});
 	});
 
