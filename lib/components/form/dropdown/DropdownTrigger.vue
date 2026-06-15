@@ -4,6 +4,7 @@ import { MenuButton } from "@headlessui/vue";
 import { cn } from "../../../utils/cn";
 
 interface Props {
+    asChild?: boolean;
     class?: HTMLAttributes["class"];
 }
 
@@ -12,12 +13,15 @@ const props = defineProps<Props>();
 
 <template>
     <MenuButton
+        :as="asChild ? 'template' : undefined"
         v-slot="{ open }"
         :class="
-            cn(
-                'cursor-pointer rounded-lg leading-none outline-none',
-                props.class,
-            )
+            asChild
+                ? undefined
+                : cn(
+                      'cursor-pointer rounded-lg leading-none outline-none',
+                      props.class,
+                  )
         "
     >
         <slot :open="open" />

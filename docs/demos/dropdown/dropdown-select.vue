@@ -5,24 +5,39 @@ import DropdownTrigger from "../../../lib/components/form/dropdown/DropdownTrigg
 import DropdownContent from "../../../lib/components/form/dropdown/DropdownContent.vue";
 import DropdownItem from "../../../lib/components/form/dropdown/DropdownItem.vue";
 import Button from "../../../lib/components/primitives/Button.vue";
+import { PhCaretDown, PhCheck } from "@phosphor-icons/vue";
 
-const chosen = ref("none");
+const options = ["Newest", "Oldest", "Most popular"] as const;
+const sort = ref<(typeof options)[number]>("Newest");
 </script>
 
 <template>
-    <div class="flex flex-col items-start gap-2">
+    <div class="flex flex-col items-start gap-3">
         <Dropdown>
-            <DropdownTrigger>
-                <Button variant="outline">Sort by…</Button>
+            <DropdownTrigger as-child>
+                <Button variant="outline">
+                    Sort: {{ sort }}
+                    <PhCaretDown class="size-4" />
+                </Button>
             </DropdownTrigger>
             <DropdownContent size="sm">
-                <DropdownItem @select="chosen = 'Newest'">Newest</DropdownItem>
-                <DropdownItem @select="chosen = 'Oldest'">Oldest</DropdownItem>
-                <DropdownItem @select="chosen = 'Popular'">
-                    Popular
+                <DropdownItem
+                    v-for="opt in options"
+                    :key="opt"
+                    @select="sort = opt"
+                >
+                    <PhCheck
+                        class="size-4"
+                        :class="opt === sort ? 'opacity-100' : 'opacity-0'"
+                    />
+                    {{ opt }}
                 </DropdownItem>
             </DropdownContent>
         </Dropdown>
-        <p class="text-sm text-text-secondary">Selected: {{ chosen }}</p>
+        <div class="text-sm text-text-tertiary">
+            Showing results sorted by
+            <span class="text-text-secondary">{{ sort }}</span
+            >.
+        </div>
     </div>
 </template>

@@ -10,12 +10,12 @@ import Avatar from "../../../lib/components/primitives/Avatar.vue";
         >
             <Avatar name="Ana Silva" :src="null" size="sm" />
             <div class="min-w-0 flex-1">
-                <p class="truncate text-sm font-medium text-text-primary">
+                <div class="truncate text-sm font-medium text-text-primary">
                     Ana Silva
-                </p>
-                <p class="truncate text-xs text-text-tertiary">
+                </div>
+                <div class="truncate text-xs text-text-tertiary">
                     ana@example.com
-                </p>
+                </div>
             </div>
             <Badge variant="success">Active</Badge>
         </div>
@@ -25,12 +25,14 @@ import Avatar from "../../../lib/components/primitives/Avatar.vue";
         >
             <Avatar name="John Carter" :src="null" size="sm" />
             <div class="min-w-0 flex-1">
-                <p class="truncate text-sm font-medium text-text-primary">
-                    John Carter
-                </p>
-                <p class="truncate text-xs text-text-tertiary">
-                    john@example.com
-                </p>
+                <div class="min-w-0 flex-1">
+                    <div class="truncate text-sm font-medium text-text-primary">
+                        John Carter
+                    </div>
+                    <div class="truncate text-xs text-text-tertiary">
+                        john@example.com
+                    </div>
+                </div>
             </div>
             <Badge variant="pending">Invited</Badge>
         </div>

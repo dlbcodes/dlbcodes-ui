@@ -8,7 +8,7 @@ import Button from "../../../lib/components/primitives/Button.vue";
 
 <template>
     <Dropdown>
-        <DropdownTrigger>
+        <DropdownTrigger as-child>
             <Button variant="outline">Actions</Button>
         </DropdownTrigger>
         <DropdownContent size="sm">

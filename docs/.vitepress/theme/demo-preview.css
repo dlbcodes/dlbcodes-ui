@@ -1,55 +1,19 @@
 @reference "tailwindcss";
-/* Tailwind-preflight-equivalent reset, scoped to the demo so components render
-   as they would in a real Tailwind app (preflight is globally disabled to
-   protect VitePress's chrome, so we re-apply it here, scoped). */
+
+/* Baseline for the demo area. We intentionally do NOT try to out-cascade
+   VitePress's .vp-doc element styles here — demos use <div>/<span> (not
+   <p>/<a>/<h*>), which VitePress doesn't target, so there's nothing to fight. */
 .vp-doc .ds-preview__demo {
-    line-height: 1.5;
     color: var(--color-text-primary);
+    line-height: 1.5;
 }
 
-.vp-doc .ds-preview__demo :where(*, ::before, ::after) {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    border: 0 solid;
-}
-
-.vp-doc .ds-preview__demo :where(h1, h2, h3, h4, h5, h6) {
-    font-size: inherit;
-    font-weight: inherit;
-    margin: 0;
-    border: 0;
-    padding: 0;
-}
-
-.vp-doc .ds-preview__demo :where(p) {
-    margin: 0;
-    line-height: inherit;
-    color: inherit;
-}
-
-.vp-doc .ds-preview__demo :where(a) {
-    color: inherit;
-    text-decoration: inherit;
-}
-
-.vp-doc .ds-preview__demo :where(ul, ol) {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-.vp-doc .ds-preview__demo :where(button, input, textarea, select) {
-    font: inherit;
-    color: inherit;
-    line-height: inherit;
-}
-
+/* Code panel (the "Show code" output). Dark, line-numbered. */
 .ds-preview__code .shiki {
     @apply m-0 overflow-x-auto rounded-b-xl py-3.5 text-[0.8125rem];
     line-height: 1;
-    max-height: 24rem; /* cap height (~tune to taste) */
-    overflow-y: auto; /* was hidden — now scrolls vertically */
+    max-height: 24rem;
+    overflow-y: auto;
 }
 
 .ds-preview__code .shiki code {
@@ -61,7 +25,7 @@
 
 .ds-preview__code .shiki .line {
     display: block;
-    line-height: 1; /* ensure each line uses the same line-height */
+    line-height: 1;
 }
 
 .ds-preview__code .shiki .line::before {
@@ -71,14 +35,12 @@
     left: 0;
     display: inline-block;
     width: 1.25rem;
-    /* breathing room on the RIGHT of the number, before the code */
     margin-right: 1rem;
     padding-left: 1rem;
-    padding-right: 0.75rem; /* ← right breathing room you asked for */
+    padding-right: 0.75rem;
     text-align: right;
     color: rgba(255, 255, 255, 0.25);
     background: var(--shiki-dark-bg, #24292e);
-    /* keep the number from inflating line height */
     line-height: 1;
     vertical-align: top;
 }

@@ -34,7 +34,7 @@ watch(showCode, async (open) => {
         try {
             highlighted.value = await codeToHtml(decodedCode.value, {
                 lang: lang.value,
-                theme: "github-dark", // dark theme
+                theme: "github-dark",
             });
         } catch {
             highlighted.value = "";
@@ -44,7 +44,6 @@ watch(showCode, async (open) => {
     }
 });
 
-// Copy-to-clipboard with a brief "copied" confirmation.
 const copied = ref(false);
 const copy = async (): Promise<void> => {
     try {
@@ -59,8 +58,9 @@ const copy = async (): Promise<void> => {
 
 <template>
     <div class="my-6 rounded-xl border border-border-subtle bg-bg-raised">
+        <!-- Demo area: the reset class scopes the VitePress wall to ONLY here. -->
         <div
-            class="relative flex min-h-72 w-full justify-center rounded-t-xl p-10"
+            class="ds-preview__demo relative flex min-h-72 w-full justify-center rounded-t-xl p-10"
         >
             <slot />
         </div>
@@ -88,7 +88,6 @@ const copy = async (): Promise<void> => {
             v-if="showCode"
             class="ds-preview__code relative rounded-b-xl border-t border-border-subtle bg-zinc-900"
         >
-            <!-- Copy button with a faint resting backdrop so it's legible over code. -->
             <button
                 type="button"
                 class="absolute right-2 top-2 z-10 inline-flex cursor-pointer items-center justify-center rounded-md bg-zinc-800/60 p-1.5 text-zinc-400 backdrop-blur transition-colors hover:bg-white/10 hover:text-zinc-100"

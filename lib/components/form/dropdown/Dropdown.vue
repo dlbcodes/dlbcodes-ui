@@ -25,7 +25,7 @@ const props = withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-    <Menu as="span" :class="cn('relative inline-flex text-left', props.class)">
+    <Menu as="div" :class="cn('relative inline-flex text-left', props.class)">
         <Float
             :placement="placement"
             :offset="offset"
