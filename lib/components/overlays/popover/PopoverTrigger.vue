@@ -5,6 +5,7 @@ import { FloatReference } from "@headlessui-float/vue";
 import { cn } from "../../../utils/cn";
 
 interface Props {
+    asChild?: boolean;
     class?: HTMLAttributes["class"];
 }
 
@@ -14,8 +15,9 @@ const props = defineProps<Props>();
 <template>
     <FloatReference>
         <PopoverButton
+            :as="asChild ? 'template' : undefined"
             v-slot="{ open }"
-            :class="cn('outline-none', props.class)"
+            :class="asChild ? undefined : cn('outline-none', props.class)"
         >
             <slot :open="open" />
         </PopoverButton>

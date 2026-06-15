@@ -3,25 +3,23 @@ import Popover from "../../../lib/components/overlays/popover/Popover.vue";
 import PopoverTrigger from "../../../lib/components/overlays/popover/PopoverTrigger.vue";
 import PopoverContent from "../../../lib/components/overlays/popover/PopoverContent.vue";
 import Button from "../../../lib/components/primitives/Button.vue";
+
+const placements = [
+    { p: "top", label: "Top" },
+    { p: "bottom", label: "Bottom" },
+] as const;
 </script>
 
 <template>
-    <div class="flex gap-3">
-        <Popover placement="top">
-            <PopoverTrigger
-                ><Button variant="outline">Top</Button></PopoverTrigger
-            >
+    <div class="flex flex-wrap gap-3">
+        <Popover v-for="{ p, label } in placements" :key="p" :placement="p">
+            <PopoverTrigger as-child>
+                <Button variant="outline">{{ label }}</Button>
+            </PopoverTrigger>
             <PopoverContent size="xs">
-                <p class="text-sm text-text-secondary">Opens above.</p>
-            </PopoverContent>
-        </Popover>
-
-        <Popover placement="bottom">
-            <PopoverTrigger
-                ><Button variant="outline">Bottom</Button></PopoverTrigger
-            >
-            <PopoverContent size="xs">
-                <p class="text-sm text-text-secondary">Opens below.</p>
+                <div class="text-sm text-text-secondary">
+                    Opens to the {{ label.toLowerCase() }}.
+                </div>
             </PopoverContent>
         </Popover>
     </div>

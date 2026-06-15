@@ -1,8 +1,13 @@
 <script setup lang="ts">
-import { computed, inject, type HTMLAttributes } from "vue";
+import { computed, inject, ref, type HTMLAttributes } from "vue";
 import { cn } from "../../utils/cn";
 import { FieldKey } from "../../core/field-context";
 import { inputVariants, type InputProps } from "../../variants/input";
+
+// $attrs (inputmode, autocomplete, name, maxlength, pattern, enterkeyhint, …)
+// must land on the inner <input>, not the wrapper <div>. Opt out of automatic
+// inheritance and bind them explicitly below.
+defineOptions({ inheritAttrs: false });
 
 interface Props {
     variant?: InputProps["variant"];
@@ -54,18 +59,36 @@ const wrapperClass = computed(() =>
     ),
 );
 
+const inputRef = ref<HTMLInputElement | null>(null);
+
+// Clicking anywhere in the wrapper (e.g. a slot icon or the padding) should
+// focus the input — but NOT when an interactive slot element was clicked.
+const focusInput = (event: MouseEvent): void => {
+    const target = event.target as HTMLElement;
+    if (target === inputRef.value) return;
+    if (target.closest("button, a, input, select, textarea, [tabindex]"))
+        return;
+    inputRef.value?.focus();
+};
+
 const onInput = (event: Event): void => {
     model.value = (event.target as HTMLInputElement).value;
 };
 </script>
 
 <template>
-    <div :class="wrapperClass" :data-invalid="resolvedInvalid || undefined">
+    <div
+        :class="wrapperClass"
+        :data-invalid="resolvedInvalid || undefined"
+        @click="focusInput"
+    >
         <span class="flex items-center gap-1 text-text-secondary">
             <slot />
         </span>
 
         <input
+            ref="inputRef"
+            v-bind="$attrs"
             :id="resolvedId"
             :type="type"
             :value="model ?? ''"

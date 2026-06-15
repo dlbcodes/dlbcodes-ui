@@ -26,9 +26,14 @@ import {
                 Updated 2 days ago
             </div>
         </div>
-        <Dropdown>
-            <DropdownTrigger as-child>
-                <Button variant="icon" size="icon" aria-label="Row actions">
+        <Dropdown placement="bottom-start">
+            <DropdownTrigger as-child v-slot="{ open }">
+                <Button
+                    variant="icon"
+                    size="icon"
+                    aria-label="Row actions"
+                    :class="open ? 'bg-bg-subtle' : ''"
+                >
                     <PhDotsThree class="size-5" weight="bold" />
                 </Button>
             </DropdownTrigger>

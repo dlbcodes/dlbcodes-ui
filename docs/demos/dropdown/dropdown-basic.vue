@@ -6,6 +6,7 @@ import {
     DropdownItem,
 } from "../../../lib/components/form/dropdown";
 import Avatar from "../../../lib/components/primitives/Avatar.vue";
+import Separator from "../../../lib/components/primitives/Separator.vue";
 import { PhUser, PhGear, PhCreditCard, PhSignOut } from "@phosphor-icons/vue";
 </script>
 
@@ -38,7 +39,7 @@ import { PhUser, PhGear, PhCreditCard, PhSignOut } from "@phosphor-icons/vue";
                         </div>
                     </div>
                 </div>
-                <div class="my-1 h-px bg-border-subtle" />
+                <Separator class="my-1" />
                 <DropdownItem @select="() => {}">
                     <PhUser class="size-4" /> Profile
                 </DropdownItem>
@@ -48,7 +49,7 @@ import { PhUser, PhGear, PhCreditCard, PhSignOut } from "@phosphor-icons/vue";
                 <DropdownItem @select="() => {}">
                     <PhCreditCard class="size-4" /> Billing
                 </DropdownItem>
-                <div class="my-1 h-px bg-border-subtle" />
+                <Separator class="my-1" />
                 <DropdownItem @select="() => {}">
                     <PhSignOut class="size-4" /> Sign out
                 </DropdownItem>
