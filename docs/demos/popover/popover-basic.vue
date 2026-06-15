@@ -22,7 +22,7 @@ import { PhInfo } from "@phosphor-icons/vue";
                     <PhInfo class="size-4" />
                 </Button>
             </PopoverTrigger>
-            <PopoverContent size="sm">
+            <PopoverContent size="sm" class="p-4">
                 <div class="text-sm text-text-secondary">
                     The most this workspace can be charged in a billing period.
                     Requests beyond the limit are paused until the next cycle.

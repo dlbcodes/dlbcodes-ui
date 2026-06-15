@@ -38,6 +38,7 @@ Tailwind v4 setup (in your main CSS):
 - [Disclosure](https://my-design-system-beta.vercel.app/components/disclosure): Collapsible section (Disclosure, DisclosureTrigger, DisclosureContent).
 - [Empty](https://my-design-system-beta.vercel.app/components/empty): Empty-state placeholder (Empty, EmptyHeader, EmptyMedia, EmptyTitle, EmptyDescription, EmptyContent). EmptyMedia has variant "default" | "icon".
 - [Sidebar](https://my-design-system-beta.vercel.app/components/sidebar): Responsive app navigation (SidebarProvider, Sidebar, SidebarTrigger, SidebarHeader, SidebarContent, SidebarFooter, SidebarGroup, SidebarItem). Inline panel on desktop (collapsible to hidden via SidebarTrigger), overlay drawer on mobile (<768px). SidebarProvider is required; useSidebar() exposes { collapsed, isMobile, open, close, toggle }. SidebarItem is framework-agnostic via an `as` prop ("a", RouterLink, NuxtLink, "button") with consumer-controlled `active`, and supports `disabled`.
+- [Panel](https://my-design-system-beta.vercel.app/components/panel): Surface container for grouping content (cards, sidebars, sections); compound parts PanelHeader, PanelContent, PanelFooter with concentric corner radii.
 
 ### Form
 

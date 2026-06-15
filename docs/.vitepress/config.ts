@@ -62,6 +62,7 @@ export default defineConfig({
           { text: "Input", link: "/components/input" },
           { text: "Modal", link: "/components/modal" },
           { text: "MultiSelect", link: "/components/multiselect" },
+          { text: "Panel", link: "/components/panel" },
           { text: "Textarea", link: "/components/textarea" },
           { text: "Select", link: "/components/select" },
           { text: "Tabs", link: "/components/tabs" },

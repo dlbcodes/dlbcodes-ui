@@ -13,50 +13,30 @@ const baseStyles = [
 	"focus-within:border-border-dark",
 	"focus-within:ring-1",
 	"focus-within:ring-border-dark",
+	// disabled: no pointer events (cursor falls through). Dimmed to signal state.
 	"disabled:pointer-events-none",
-	"disabled:cursor-not-allowed",
 	"disabled:opacity-50",
 ].join(" ");
 
 export const inputVariants = cva(baseStyles, {
 	variants: {
 		variant: {
-			primary: [
-				"bg-bg-surface",
-				"border-border-default",
-				"text-text-primary",
-				"font-medium",
-			].join(" "),
+			// Default surface input.
+			primary: "bg-bg-surface border-border-default text-text-primary font-medium",
 
-			contrast: [
-				"bg-white",
-				"border-border-default",
-				"text-text-primary",
-				"font-medium",
-			].join(" "),
-
-			secondary: "",
-			outline: "",
+			// Stronger surface for busy/raised backgrounds (modals, popovers).
+			// Uses a semantic token so it reskins with the theme.
+			contrast: "bg-bg-raised border-border-default text-text-primary font-medium",
 		},
 
 		size: {
-			xl: "",
-			lg: "",
 			base: "h-12 rounded-xl px-3.5",
-			sm: "h-9 rounded-lg px-2 text-sm",
-			xs: "",
-			icon: "",
-			none: "",
-			checkbox: "h-6 w-6",
+			sm: "h-9 rounded-lg px-1 text-sm",
 		},
 
 		invalid: {
-			true: [
-				"border-danger-border",
-				"ring-[3px]",
-				"ring-danger-border/20",
-			].join(" "),
-
+			// Match the focus ring width; danger color for the error state.
+			true: "border-danger-border ring-1 ring-danger-border",
 			false: "",
 		},
 	},

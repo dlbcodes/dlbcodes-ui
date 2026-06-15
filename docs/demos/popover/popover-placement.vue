@@ -16,7 +16,7 @@ const placements = [
             <PopoverTrigger as-child>
                 <Button variant="outline">{{ label }}</Button>
             </PopoverTrigger>
-            <PopoverContent size="xs">
+            <PopoverContent size="xs" class="p-4">
                 <div class="text-sm text-text-secondary">
                     Opens to the {{ label.toLowerCase() }}.
                 </div>

@@ -36,7 +36,7 @@ const cancelAnd = (close: () => void): void => {
                     Rename
                 </Button>
             </PopoverTrigger>
-            <PopoverContent size="sm">
+            <PopoverContent size="sm" class="p-4">
                 <template #default="{ close }">
                     <div class="flex flex-col gap-3">
                         <Field>
