@@ -17,7 +17,7 @@ import { PhUser, PhGear, PhCreditCard, PhSignOut } from "@phosphor-icons/vue";
                 <Avatar
                     name="Daniel Lobo"
                     src="https://i.pravatar.cc/120?img=12"
-                    size="sm"
+                    size="base"
                 />
             </DropdownTrigger>
             <DropdownContent size="sm">

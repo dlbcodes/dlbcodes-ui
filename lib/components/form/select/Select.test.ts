@@ -10,7 +10,8 @@ import Field from "../field/Field.vue";
 import FieldLabel from "../field/FieldLabel.vue";
 
 // Harness: a real composed Select, since the parts only work together via the
-// provided context. Label is now slot content (<SelectItem value="x">X</SelectItem>).
+// provided context. Items carry a `label` prop (the trigger's display source);
+// the slot mirrors it for the in-list rendering.
 const makeSelect = (props: Record<string, unknown> = {}) =>
 	defineComponent({
 		components: { Select, SelectTrigger, SelectContent, SelectItem, SelectSearch },
@@ -23,9 +24,9 @@ const makeSelect = (props: Record<string, unknown> = {}) =>
                 <SelectTrigger placeholder="Pick one" />
                 <SelectContent>
                     <SelectSearch v-if="props.searchable" />
-                    <SelectItem value="vue">Vue</SelectItem>
-                    <SelectItem value="react">React</SelectItem>
-                    <SelectItem value="svelte">Svelte</SelectItem>
+                    <SelectItem value="vue" label="Vue">Vue</SelectItem>
+                    <SelectItem value="react" label="React">React</SelectItem>
+                    <SelectItem value="svelte" label="Svelte">Svelte</SelectItem>
                 </SelectContent>
             </Select>
         `,
@@ -62,27 +63,29 @@ describe("Select", () => {
 		expect((wrapper.vm as any).model).toBe("vue");
 	});
 
-	// --- label capture on selection (the slot-content design) ---
-	it("captures the clicked item's label and shows it in the trigger", async () => {
+	// --- label display on selection ---
+	it("shows the selected item's label in the trigger", async () => {
 		const wrapper = mount(makeSelect());
 		const options = await open(wrapper);
 		const vue = options.find((o) => o.text().includes("Vue"));
 		await vue!.trigger("click");
 		await nextTick();
-		// trigger should now show the captured label "Vue", not the value "vue"
+		// trigger shows the label "Vue", not the value "vue"
 		expect(wrapper.find("button").text()).toContain("Vue");
 		expect(wrapper.find("button").text()).not.toContain("Pick one");
 	});
 
-	it("falls back to the raw value for a pre-filled selection (no label captured yet)", async () => {
-		// modelValue is set, but no item was clicked, so no label is captured.
-		const wrapper = mount(makeSelect({ modelValue: "vue" }));
+	// --- pre-filled value resolves its label from the item's `label` prop ---
+	it("resolves a pre-filled value's label without opening (label prop)", async () => {
+		// modelValue is set up-front; the trigger should show the LABEL ("React"),
+		// resolved from the matching item's `label` prop, before any interaction.
+		const wrapper = mount(makeSelect({ modelValue: "react" }));
 		await nextTick();
-		// Documented limitation: shows the raw value until the user picks.
-		expect(wrapper.find("button").text()).toContain("vue");
+		expect(wrapper.find("button").text()).toContain("React");
+		expect(wrapper.find("button").text()).not.toContain("Pick one");
 	});
 
-	// --- search (matches against the item's slot text) ---
+	// --- search (matches against the item's label) ---
 	it("renders the search input only when searchable", async () => {
 		const plain = mount(makeSelect());
 		await open(plain);
@@ -120,8 +123,8 @@ describe("Select", () => {
                     <Select v-model="model">
                         <SelectTrigger placeholder="Plan" />
                         <SelectContent>
-                            <SelectItem value="free">Free</SelectItem>
-                            <SelectItem value="ent" disabled>Enterprise</SelectItem>
+                            <SelectItem value="free" label="Free">Free</SelectItem>
+                            <SelectItem value="ent" label="Enterprise" disabled>Enterprise</SelectItem>
                         </SelectContent>
                     </Select>
                 `,
@@ -135,6 +138,33 @@ describe("Select", () => {
 		await nextTick();
 		// disabled item shouldn't change the model
 		expect((wrapper.vm as any).model).toBe("");
+	});
+
+	// --- slot-only fallback (no label prop) still works after render ---
+	it("falls back to slot text as the label when no label prop is given", async () => {
+		const wrapper = mount(
+			defineComponent({
+				components: { Select, SelectTrigger, SelectContent, SelectItem },
+				setup() {
+					const model = ref("");
+					return { model };
+				},
+				template: `
+                    <Select v-model="model">
+                        <SelectTrigger placeholder="Pick one" />
+                        <SelectContent>
+                            <SelectItem value="vue">Vue</SelectItem>
+                        </SelectContent>
+                    </Select>
+                `,
+			}),
+		);
+		const options = await open(wrapper);
+		const vue = options.find((o) => o.text().includes("Vue"));
+		await vue!.trigger("click");
+		await nextTick();
+		// after a click, the captured slot text is shown as the label
+		expect(wrapper.find("button").text()).toContain("Vue");
 	});
 
 	// --- selected item shows the check ---
@@ -158,7 +188,6 @@ describe("Select", () => {
 });
 
 describe("Select + Field integration", () => {
-	// Harness: a Select wrapped in a Field with a label.
 	const makeFieldSelect = () =>
 		defineComponent({
 			components: { Field, FieldLabel, Select, SelectTrigger, SelectContent, SelectItem },
@@ -172,8 +201,8 @@ describe("Select + Field integration", () => {
                     <Select v-model="model">
                         <SelectTrigger placeholder="Pick one" />
                         <SelectContent>
-                            <SelectItem value="vue">Vue</SelectItem>
-                            <SelectItem value="react">React</SelectItem>
+                            <SelectItem value="vue" label="Vue">Vue</SelectItem>
+                            <SelectItem value="react" label="React">React</SelectItem>
                         </SelectContent>
                     </Select>
                 </Field>
@@ -187,7 +216,6 @@ describe("Select + Field integration", () => {
 
 		const forId = label.attributes("for");
 		expect(forId).toBeTruthy();
-		// the trigger button carries the same id the label points at
 		expect(button.attributes("id")).toBe(forId);
 	});
 
@@ -205,7 +233,7 @@ describe("Select + Field integration", () => {
                         <Select v-model="model">
                             <SelectTrigger placeholder="Pick one" />
                             <SelectContent>
-                                <SelectItem value="vue">Vue</SelectItem>
+                                <SelectItem value="vue" label="Vue">Vue</SelectItem>
                             </SelectContent>
                         </Select>
                     </Field>

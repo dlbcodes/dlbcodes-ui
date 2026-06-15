@@ -23,10 +23,12 @@ const loading = ref(true);
             <Skeleton class="h-4 w-5/6" />
         </div>
         <div v-else class="flex flex-col gap-2">
-            <p class="text-lg font-semibold text-text-primary">Loaded title</p>
-            <p class="text-sm text-text-secondary">
+            <div class="text-lg font-semibold text-text-primary">
+                Loaded title
+            </div>
+            <div class="text-sm text-text-secondary">
                 This is the real content that appears once loading finishes.
-            </p>
+            </div>
         </div>
     </div>
 </template>

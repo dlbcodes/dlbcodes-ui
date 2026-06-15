@@ -4,10 +4,14 @@ import Separator from "../../../lib/components/primitives/Separator.vue";
 
 <template>
     <div class="w-full max-w-sm">
-        <p class="text-sm text-text-primary">Profile</p>
-        <p class="text-sm text-text-secondary">Manage your public profile.</p>
+        <div class="text-sm text-text-primary">Profile</div>
+        <div class="text-sm text-text-secondary">
+            Manage your public profile.
+        </div>
         <Separator class="my-4" />
-        <p class="text-sm text-text-primary">Account</p>
-        <p class="text-sm text-text-secondary">Update your account settings.</p>
+        <div class="text-sm text-text-primary">Account</div>
+        <div class="text-sm text-text-secondary">
+            Update your account settings.
+        </div>
     </div>
 </template>

@@ -20,17 +20,18 @@ const sort = ref<(typeof options)[number]>("Newest");
                     <PhCaretDown class="size-4" />
                 </Button>
             </DropdownTrigger>
-            <DropdownContent size="sm">
+            <DropdownContent size="3xs">
                 <DropdownItem
                     v-for="opt in options"
                     :key="opt"
                     @select="sort = opt"
+                    class="justify-between"
                 >
+                    <span>{{ opt }}</span>
                     <PhCheck
                         class="size-4"
                         :class="opt === sort ? 'opacity-100' : 'opacity-0'"
                     />
-                    {{ opt }}
                 </DropdownItem>
             </DropdownContent>
         </Dropdown>

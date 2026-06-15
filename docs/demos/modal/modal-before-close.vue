@@ -56,7 +56,7 @@ const save = (): void => {
 </script>
 
 <template>
-    <div class="flex flex-col items-start gap-3">
+    <div class="flex flex-col items-center gap-3">
         <Button variant="primary" @click="openModal">Edit profile</Button>
 
         <!-- Surface the close reason so the feature is visible -->

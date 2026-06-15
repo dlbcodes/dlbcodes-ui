@@ -7,8 +7,9 @@ import {
     SelectItem,
 } from "../../../lib/components/form/select";
 
-// Nothing selected yet — the trigger shows its placeholder.
-const value = ref("");
+// Bound to a value before the user opens the select. Because each item carries
+// its `label`, the trigger resolves "React" on load — no opening required.
+const value = ref("react");
 </script>
 
 <template>

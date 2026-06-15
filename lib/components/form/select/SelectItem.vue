@@ -1,11 +1,17 @@
 <script setup lang="ts">
-import { computed, inject, ref } from "vue";
+import { computed, inject, onMounted, ref, watch } from "vue";
 import { ListboxOption } from "@headlessui/vue";
 import { PhCheck } from "@phosphor-icons/vue";
 import { SelectKey } from "./context";
 
 interface Props {
     value: string;
+    /**
+     * Display label for this option. Provide it so a pre-filled select shows
+     * the correct label before any click. If omitted, falls back to the
+     * rendered slot text (only available after the item renders).
+     */
+    label?: string;
     disabled?: boolean;
 }
 
@@ -14,23 +20,43 @@ const props = defineProps<Props>();
 const ctx = inject(SelectKey);
 if (!ctx) throw new Error("SelectItem must be used inside Select");
 
-// Ref to the rendered label element, so we can read its text for the trigger
-// display and for search matching (the label is now slot content, not a prop).
+// Ref to the rendered label element, used as the fallback when no `label`
+// prop is given (and for search matching on slot-only items).
 const labelEl = ref<HTMLElement>();
 
-const labelText = (): string => labelEl.value?.textContent?.trim() ?? "";
+const resolvedLabel = (): string =>
+    props.label ?? labelEl.value?.textContent?.trim() ?? "";
 
-// Self-filter: when searching, hide items whose text doesn't match.
+// Prop-based label: register synchronously when the instance is created — no
+// DOM/mount needed, so a pre-filled trigger resolves the label immediately.
+if (props.label) {
+    ctx.registerLabel(props.value, props.label);
+}
+
+// Slot-text fallback (no label prop): the text only exists once rendered, so
+// register it on mount.
+onMounted(() => {
+    if (!props.label) ctx.registerLabel(props.value, resolvedLabel());
+});
+
+// Keep the registration fresh if the label prop changes.
+watch(
+    () => props.label,
+    (next) => {
+        if (next) ctx.registerLabel(props.value, next);
+    },
+);
+
+// Self-filter: when searching, hide items whose label doesn't match.
 const visible = computed(() => {
     if (!ctx.searchable.value) return true;
     const q = ctx.query.value.trim().toLowerCase();
-    return !q || labelText().toLowerCase().includes(q);
+    return !q || resolvedLabel().toLowerCase().includes(q);
 });
 
-// On click, capture this item's rendered text as the label and select it.
 const onSelect = (): void => {
     if (props.disabled) return;
-    ctx.select(props.value, labelText());
+    ctx.select(props.value, resolvedLabel());
 };
 </script>
 
@@ -42,7 +68,8 @@ const onSelect = (): void => {
         :disabled="disabled"
         as="template"
     >
-        <li
+        <div
+            role="option"
             :class="[
                 'relative flex cursor-pointer select-none items-center rounded-lg py-2 pl-3 pr-9',
                 active && 'bg-bg-surface',
@@ -54,7 +81,7 @@ const onSelect = (): void => {
                 ref="labelEl"
                 :class="['block truncate', selected && 'font-semibold']"
             >
-                <slot :active="active" :selected="selected" />
+                <slot :active="active" :selected="selected">{{ label }}</slot>
             </span>
             <span
                 v-if="selected"
@@ -62,6 +89,6 @@ const onSelect = (): void => {
             >
                 <PhCheck class="size-5" aria-hidden="true" />
             </span>
-        </li>
+        </div>
     </ListboxOption>
 </template>

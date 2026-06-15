@@ -18,7 +18,7 @@ const accept = (): void => {
 </script>
 
 <template>
-    <div class="flex flex-col items-start gap-3">
+    <div class="flex flex-col items-center gap-3">
         <Button variant="secondary" @click="open = true">
             Review updated terms
         </Button>

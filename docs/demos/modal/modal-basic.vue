@@ -20,7 +20,7 @@ const confirmDelete = (): void => {
 </script>
 
 <template>
-    <div class="flex flex-col items-start gap-3">
+    <div class="flex flex-col items-center gap-3">
         <Button variant="destructive" @click="open = true">
             Delete project
         </Button>

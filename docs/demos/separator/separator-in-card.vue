@@ -7,10 +7,10 @@ import Button from "../../../lib/components/primitives/Button.vue";
     <div
         class="w-full max-w-sm rounded-2xl border border-border-subtle bg-bg-raised p-5"
     >
-        <p class="font-medium text-text-primary">Workspace settings</p>
-        <p class="mt-1 text-sm text-text-secondary">
+        <div class="font-medium text-text-primary">Workspace settings</div>
+        <div class="mt-1 text-sm text-text-secondary">
             General preferences for this workspace.
-        </p>
+        </div>
         <Separator class="my-4" />
         <div class="flex items-center justify-between">
             <span class="text-sm text-text-primary">Danger zone</span>

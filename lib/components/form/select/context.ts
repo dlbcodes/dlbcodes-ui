@@ -13,12 +13,18 @@ export interface SelectOption {
 export interface SelectContext {
 	/** Currently selected value (single-select). */
 	selected: ComputedRef<string>;
-	/** Display label of the current selection, captured when an item is chosen. */
+	/** Display label of the current selection, resolved from registered items. */
 	selectedLabel: ComputedRef<string>;
-	/** Set the selection. Called by SelectItem with its value and rendered label. */
+	/** Set the selection. Called by SelectItem with its value and label. */
 	select: (value: string, label: string) => void;
 	/** Whether a given value is the current selection. */
 	isSelected: (value: string) => boolean;
+
+	/**
+	 * Register an item's value→label mapping so the trigger can display the
+	 * correct label for a pre-filled modelValue, before any click.
+	 */
+	registerLabel: (value: string, label: string) => void;
 
 	/** Live search query (two-way, owned by Select, written by SelectSearch). */
 	query: Ref<string>;

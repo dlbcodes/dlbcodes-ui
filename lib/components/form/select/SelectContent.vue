@@ -39,7 +39,7 @@ const panelClass = computed(() =>
         leave-from="opacity-100 scale-100"
         leave-to="opacity-0 scale-95"
     >
-        <ListboxOptions :class="panelClass">
+        <ListboxOptions as="div" :class="panelClass">
             <slot />
         </ListboxOptions>
     </FloatContent>
