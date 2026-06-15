@@ -7,10 +7,9 @@ const baseStyles = [
 	"gap-x-2",
 	"w-full",
 	"min-w-0",
-	"border",                       // constant 1px border — never thickens
-	"transition-[color,box-shadow]", // animate ring/color, NOT border width
+	"border",
+	"transition-[color,box-shadow]",
 	"outline-none",
-	// focus shows a RING, not a thicker/colored border shift
 	"focus-within:border-border-dark",
 	"focus-within:ring-1",
 	"focus-within:ring-border-dark",

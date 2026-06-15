@@ -42,6 +42,7 @@ export default defineConfig({
           { text: "Getting Started", link: "/guide/getting-started" },
           { text: "For LLMs (llms.txt)", link: "/llms.txt" },
           { text: "Theming", link: "/guide/theming" },
+          { text: "Architecture", link: "/guide/architecture" },
         ],
       },
       {

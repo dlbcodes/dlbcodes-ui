@@ -5,27 +5,53 @@ import ModalHeader from "../../../lib/components/overlays/modal/ModalHeader.vue"
 import ModalTitle from "../../../lib/components/overlays/modal/ModalTitle.vue";
 import ModalDescription from "../../../lib/components/overlays/modal/ModalDescription.vue";
 import ModalContent from "../../../lib/components/overlays/modal/ModalContent.vue";
+import ModalFooter from "../../../lib/components/overlays/modal/ModalFooter.vue";
 import ModalClose from "../../../lib/components/overlays/modal/ModalClose.vue";
 import Button from "../../../lib/components/primitives/Button.vue";
+import { PhWarning } from "@phosphor-icons/vue";
 
 const open = ref(false);
+const deleted = ref(false);
+
+const confirmDelete = (): void => {
+    deleted.value = true;
+    open.value = false;
+};
 </script>
 
 <template>
-    <Button @click="open = true">Open modal</Button>
+    <div class="flex flex-col items-start gap-3">
+        <Button variant="destructive" @click="open = true">
+            Delete project
+        </Button>
+        <p v-if="deleted" class="text-sm text-text-tertiary">
+            Project deleted. (This is just a demo.)
+        </p>
 
-    <Modal v-model="open">
-        <ModalHeader>
-            <ModalTitle>Edit profile</ModalTitle>
-            <ModalDescription
-                >Update your account details below.</ModalDescription
-            >
-            <ModalClose />
-        </ModalHeader>
-        <ModalContent>
-            <p class="text-sm text-text-secondary">
-                Modal body content goes here.
-            </p>
-        </ModalContent>
-    </Modal>
+        <Modal v-model="open" size="lg">
+            <ModalHeader>
+                <ModalTitle>Delete this project?</ModalTitle>
+                <ModalDescription>
+                    This action can't be undone.
+                </ModalDescription>
+                <ModalClose />
+            </ModalHeader>
+
+            <ModalContent>
+                <p class="text-sm leading-relaxed text-text-secondary">
+                    "Marketing site" and all of its 24 pages will be permanently
+                    removed.
+                </p>
+            </ModalContent>
+
+            <ModalFooter>
+                <Button variant="secondary" @click="open = false"
+                    >Cancel</Button
+                >
+                <Button variant="destructive" @click="confirmDelete">
+                    Delete project
+                </Button>
+            </ModalFooter>
+        </Modal>
+    </div>
 </template>

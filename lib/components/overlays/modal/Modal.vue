@@ -3,7 +3,7 @@ import { ref, watch, type HTMLAttributes } from "vue";
 import { onKeyStroke, useScrollLock } from "@vueuse/core";
 import { useFocusTrap } from "@vueuse/integrations/useFocusTrap";
 import { cn } from "../../../utils/cn";
-import { provideModalContext } from "./modal-context";
+import { provideModalContext, type ModalCloseReason } from "./modal-context";
 
 type ModalSize =
     | "sm"
@@ -21,6 +21,12 @@ interface Props {
     size?: ModalSize;
     closeOnBackdrop?: boolean;
     persistent?: boolean;
+    /**
+     * Run before any close. Return false (or a Promise resolving false) to
+     * veto the close and keep the modal open — e.g. an "unsaved changes?"
+     * confirmation. Receives the reason the close was attempted.
+     */
+    beforeClose?: (reason: ModalCloseReason) => boolean | Promise<boolean>;
     class?: HTMLAttributes["class"];
 }
 
@@ -32,7 +38,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 const emit = defineEmits<{
     "update:modelValue": [value: boolean];
-    close: [];
+    close: [reason: ModalCloseReason];
 }>();
 
 const SIZE_CLASSES: Record<ModalSize, string> = {
@@ -47,20 +53,47 @@ const SIZE_CLASSES: Record<ModalSize, string> = {
     full: "md:max-w-full h-full rounded-t-none md:rounded-none",
 };
 
-const close = (): void => {
+/**
+ * The single funnel every close path routes through. It enforces
+ * persistent/closeOnBackdrop, runs the beforeClose veto, and only then closes —
+ * emitting the reason so consumers can branch on how it was dismissed.
+ */
+const attemptClose = async (reason: ModalCloseReason): Promise<void> => {
+    // persistent blocks casual dismissal; only the close button (explicit
+    // action) and programmatic closes get through.
+    if (
+        props.persistent &&
+        reason !== "close-button" &&
+        reason !== "programmatic"
+    ) {
+        return;
+    }
+    // backdrop is independently opt-out-able.
+    if (reason === "backdrop" && !props.closeOnBackdrop) return;
+
+    // the veto hook — consumer can cancel the close.
+    if (props.beforeClose) {
+        const ok = await props.beforeClose(reason);
+        if (!ok) return; // vetoed: stay open
+    }
+
+    emit("close", reason);
     emit("update:modelValue", false);
-    emit("close");
+};
+
+// Programmatic close used by slot props / ModalClose convenience alias.
+const close = (): void => {
+    void attemptClose("programmatic");
 };
 
 const handleBackdropClick = (): void => {
-    if (props.persistent || !props.closeOnBackdrop) return;
-    close();
+    void attemptClose("backdrop");
 };
 
 onKeyStroke("Escape", (e) => {
-    if (!props.modelValue || props.persistent) return;
+    if (!props.modelValue) return;
     e.preventDefault();
-    close();
+    void attemptClose("escape");
 });
 
 // SSR-safe (the published lib may run in a Nuxt/SSR consumer).
@@ -78,6 +111,9 @@ const { activate, deactivate } = useFocusTrap(dialogRef, {
 const labelId = ref<string | undefined>(undefined);
 const descriptionId = ref<string | undefined>(undefined);
 provideModalContext({
+    attemptClose: (reason) => {
+        void attemptClose(reason);
+    },
     close,
     labelId,
     setLabelId: (id) => {

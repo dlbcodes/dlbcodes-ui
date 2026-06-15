@@ -11,7 +11,7 @@ interface Props {
 
 const props = defineProps<Props>();
 
-const { close } = useModalContext();
+const { attemptClose } = useModalContext();
 </script>
 
 <template>
@@ -20,7 +20,7 @@ const { close } = useModalContext();
         size="icon"
         aria-label="Close"
         :class="cn('absolute right-4 top-4', props.class)"
-        @click="close"
+        @click="attemptClose('close-button')"
     >
         <slot><PhX class="size-5" /></slot>
     </Button>

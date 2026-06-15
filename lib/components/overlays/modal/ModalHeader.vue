@@ -11,12 +11,7 @@ const props = defineProps<Props>();
 
 <template>
     <div
-        :class="
-            cn(
-                'relative flex flex-col gap-0.5 px-6 pb-2 pr-12 pt-4',
-                props.class,
-            )
-        "
+        :class="cn('relative flex flex-col px-6 pb-2 pr-12 pt-4', props.class)"
     >
         <slot />
     </div>
