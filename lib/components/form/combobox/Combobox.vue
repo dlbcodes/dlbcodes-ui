@@ -5,14 +5,7 @@ import { Float } from "@headlessui-float/vue";
 import { cn } from "../../../utils/cn";
 import { ComboboxKey, type ComboboxContext } from "./context";
 import ComboboxItem from "./ComboboxItem.vue";
-
-type Placement =
-    | "bottom-start"
-    | "bottom-end"
-    | "bottom"
-    | "top-start"
-    | "top-end"
-    | "top";
+import type { Placement } from "../../../core/placement";
 
 interface Props {
     modelValue: string;

@@ -3,14 +3,7 @@ import type { HTMLAttributes } from "vue";
 import { Menu } from "@headlessui/vue";
 import { Float } from "@headlessui-float/vue";
 import { cn } from "../../../utils/cn";
-
-type Placement =
-    | "bottom-start"
-    | "bottom-end"
-    | "bottom"
-    | "top-start"
-    | "top-end"
-    | "top";
+import type { Placement } from "../../../core/placement";
 
 interface Props {
     placement?: Placement;
@@ -27,12 +20,13 @@ const props = withDefaults(defineProps<Props>(), {
 <template>
     <Menu as="div" :class="cn('relative inline-flex text-left', props.class)">
         <Float
+            composable
+            floating-as="template"
             :placement="placement"
             :offset="offset"
             flip
             shift
             :z-index="50"
-            floating-as="template"
         >
             <slot />
         </Float>

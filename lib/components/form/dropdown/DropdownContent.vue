@@ -2,10 +2,12 @@
 import type { HTMLAttributes } from "vue";
 import { MenuItems } from "@headlessui/vue";
 import { cn } from "../../../utils/cn";
+import { FloatContent } from "@headlessui-float/vue";
 import {
     popoverVariants,
     type PopoverVariantsProps,
 } from "../../../variants/popover";
+import { overlayTransition } from "../../../core/transitions";
 
 interface Props {
     size?: PopoverVariantsProps["size"];
@@ -18,18 +20,19 @@ const props = withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-    <Transition
-        enter="transition ease-out duration-200"
-        enter-from="opacity-0 scale-95"
-        enter-to="opacity-100 scale-100"
-        leave="transition ease-in duration-150"
-        leave-from="opacity-100 scale-100"
-        leave-to="opacity-0 scale-95"
+    <FloatContent
+        as="template"
+        :enter="overlayTransition.enter"
+        :enter-from="overlayTransition.enterFrom"
+        :enter-to="overlayTransition.enterTo"
+        :leave="overlayTransition.leave"
+        :leave-from="overlayTransition.leaveFrom"
+        :leave-to="overlayTransition.leaveTo"
     >
         <MenuItems
             :class="cn(popoverVariants({ size: props.size }), props.class)"
         >
             <slot />
         </MenuItems>
-    </Transition>
+    </FloatContent>
 </template>

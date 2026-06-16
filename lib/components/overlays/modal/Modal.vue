@@ -4,21 +4,14 @@ import { onKeyStroke, useScrollLock } from "@vueuse/core";
 import { useFocusTrap } from "@vueuse/integrations/useFocusTrap";
 import { cn } from "../../../utils/cn";
 import { provideModalContext, type ModalCloseReason } from "./modal-context";
-
-type ModalSize =
-    | "sm"
-    | "md"
-    | "lg"
-    | "xl"
-    | "2xl"
-    | "3xl"
-    | "4xl"
-    | "5xl"
-    | "full";
+import {
+    modalVariants,
+    type ModalVariantsProps,
+} from "../../../variants/modal";
 
 interface Props {
     modelValue: boolean;
-    size?: ModalSize;
+    size?: ModalVariantsProps["size"];
     closeOnBackdrop?: boolean;
     persistent?: boolean;
     /**
@@ -40,18 +33,6 @@ const emit = defineEmits<{
     "update:modelValue": [value: boolean];
     close: [reason: ModalCloseReason];
 }>();
-
-const SIZE_CLASSES: Record<ModalSize, string> = {
-    sm: "md:max-w-sm",
-    md: "md:max-w-md",
-    lg: "md:max-w-lg",
-    xl: "md:max-w-xl",
-    "2xl": "md:max-w-2xl",
-    "3xl": "md:max-w-3xl",
-    "4xl": "md:max-w-4xl",
-    "5xl": "md:max-w-5xl",
-    full: "md:max-w-full h-full rounded-t-none md:rounded-none",
-};
 
 /**
  * The single funnel every close path routes through. It enforces
@@ -161,13 +142,7 @@ watch(
                 >
                     <div
                         ref="dialogRef"
-                        :class="
-                            cn(
-                                'relative flex max-h-[calc(100vh-100px)] w-full flex-col overflow-y-auto rounded-3xl border border-border-subtle bg-bg-raised shadow-xs',
-                                SIZE_CLASSES[size],
-                                props.class,
-                            )
-                        "
+                        :class="cn(modalVariants({ size }), props.class)"
                         role="dialog"
                         aria-modal="true"
                         :aria-labelledby="labelId"

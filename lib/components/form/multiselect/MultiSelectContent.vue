@@ -7,6 +7,7 @@ import {
     popoverVariants,
     type PopoverVariantsProps,
 } from "../../../variants/popover";
+import { overlayTransition } from "../../../core/transitions";
 
 interface Props {
     size?: PopoverVariantsProps["size"];
@@ -21,12 +22,12 @@ const props = withDefaults(defineProps<Props>(), {
 <template>
     <FloatContent
         as="template"
-        enter="transition duration-200 ease-out"
-        enter-from="opacity-0 scale-95"
-        enter-to="opacity-100 scale-100"
-        leave="transition duration-150 ease-in"
-        leave-from="opacity-100 scale-100"
-        leave-to="opacity-0 scale-95"
+        :enter="overlayTransition.enter"
+        :enter-from="overlayTransition.enterFrom"
+        :enter-to="overlayTransition.enterTo"
+        :leave="overlayTransition.leave"
+        :leave-from="overlayTransition.leaveFrom"
+        :leave-to="overlayTransition.leaveTo"
     >
         <PopoverPanel
             static

@@ -4,8 +4,7 @@ import { Popover } from "@headlessui/vue";
 import { Float } from "@headlessui-float/vue";
 import { cn } from "../../../utils/cn";
 import { MultiSelectKey, type MultiSelectOption } from "./context";
-
-type Placement = "bottom-start" | "bottom-end" | "top-start" | "top-end";
+import type { Placement } from "../../../core/placement";
 
 interface Props {
     options: MultiSelectOption[];

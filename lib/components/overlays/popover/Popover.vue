@@ -3,16 +3,7 @@ import type { HTMLAttributes } from "vue";
 import { Popover } from "@headlessui/vue";
 import { Float } from "@headlessui-float/vue";
 import { cn } from "../../../utils/cn";
-
-type Placement =
-    | "bottom-start"
-    | "bottom-end"
-    | "bottom"
-    | "top-start"
-    | "top-end"
-    | "top"
-    | "left"
-    | "right";
+import type { Placement } from "../../../core/placement";
 
 interface Props {
     placement?: Placement;

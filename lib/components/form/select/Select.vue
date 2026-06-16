@@ -5,14 +5,7 @@ import { Float } from "@headlessui-float/vue";
 import { cn } from "../../../utils/cn";
 import { SelectKey, type SelectContext } from "./context";
 import SelectItem from "./SelectItem.vue";
-
-type Placement =
-    | "bottom-start"
-    | "bottom-end"
-    | "bottom"
-    | "top-start"
-    | "top-end"
-    | "top";
+import type { Placement } from "../../../core/placement";
 
 interface Props {
     modelValue: string;
