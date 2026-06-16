@@ -21,6 +21,10 @@ const value = ref("");
                 <SelectItem value="de">Germany</SelectItem>
                 <SelectItem value="it">Italy</SelectItem>
                 <SelectItem value="jp">Japan</SelectItem>
+                <SelectItem value="br">Brazil</SelectItem>
+                <SelectItem value="ca">Canada</SelectItem>
+                <SelectItem value="cn">China</SelectItem>
+                <SelectItem value="us">United States</SelectItem>
             </SelectContent>
         </Select>
     </div>
