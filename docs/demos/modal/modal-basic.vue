@@ -45,9 +45,9 @@ const confirmDelete = (): void => {
             </ModalContent>
 
             <ModalFooter>
-                <Button variant="secondary" @click="open = false"
-                    >Cancel</Button
-                >
+                <Button variant="secondary" @click="open = false">
+                    Cancel
+                </Button>
                 <Button variant="destructive" @click="confirmDelete">
                     Delete project
                 </Button>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, inject } from "vue";
+import { computed, inject, useId } from "vue";
 import type { HTMLAttributes } from "vue";
 import { cn } from "../../utils/cn";
 import { FieldKey } from "../../core/field-context";
@@ -24,8 +24,12 @@ const emit = defineEmits<{
 // Optionally enhanced by a surrounding Field. Own props win.
 const field = inject(FieldKey, null);
 
+// Every switch needs a stable id (label association, autofill identification).
+// Precedence: explicit prop > Field context > own generated fallback.
+const fallbackId = useId();
+
 const resolved = computed(() => ({
-    id: props.id ?? field?.id.value,
+    id: props.id ?? field?.id.value ?? fallbackId,
     disabled: props.disabled || (field?.disabled.value ?? false),
     describedById: field?.describedById.value,
 }));
@@ -57,7 +61,7 @@ const onChange = (event: Event): void => {
             :class="
                 cn(
                     'h-6 w-11 cursor-pointer rounded-full bg-bg-subtle transition-colors',
-                    'after:absolute after:start-0.5 after:top-0.5 after:size-5 after:rounded-full after:border after:border-border-strong after:bg-bg-base after:transition-all after:content-[\'\']',
+                    'after:absolute after:start-s-0.5 after:top-0.5 after:size-5 after:rounded-full after:border after:border-border-strong after:bg-bg-base after:transition-all after:content-[\'\']',
                     'peer-checked:bg-bg-inverse peer-checked:after:translate-x-full peer-checked:after:border-bg-inverse',
                     'peer-focus-visible:ring-1 peer-focus-visible:ring-border-strong',
                     'peer-disabled:cursor-not-allowed',

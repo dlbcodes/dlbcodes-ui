@@ -69,9 +69,9 @@ const submit = (): void => {
             </ModalContent>
 
             <ModalFooter>
-                <Button variant="secondary" @click="open = false"
-                    >Cancel</Button
-                >
+                <Button variant="secondary" @click="open = false">
+                    Cancel
+                </Button>
                 <Button variant="primary" @click="submit">Add contact</Button>
             </ModalFooter>
         </Modal>

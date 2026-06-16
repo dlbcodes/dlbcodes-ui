@@ -94,9 +94,9 @@ const save = (): void => {
             </ModalContent>
 
             <ModalFooter>
-                <Button variant="secondary" @click="open = false"
-                    >Cancel</Button
-                >
+                <Button variant="secondary" @click="open = false">
+                    Cancel
+                </Button>
                 <Button variant="primary" :disabled="!isDirty" @click="save">
                     Save changes
                 </Button>

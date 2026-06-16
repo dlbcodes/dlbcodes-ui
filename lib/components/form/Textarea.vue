@@ -5,6 +5,7 @@ import {
     ref,
     watch,
     nextTick,
+    useId,
     type HTMLAttributes,
 } from "vue";
 import { useTextareaAutosize } from "@vueuse/core";
@@ -40,8 +41,12 @@ const model = defineModel<string | number | null>();
 
 const field = inject(FieldKey, null);
 
-// props-win precedence: explicit prop > field context > local default.
-const resolvedId = computed(() => props.id ?? field?.id.value);
+// Every textarea needs a stable id (label association, autofill identification).
+// Precedence: explicit prop > Field context > own generated fallback.
+const fallbackId = useId();
+
+// props-win precedence: explicit prop > field context > own fallback.
+const resolvedId = computed(() => props.id ?? field?.id.value ?? fallbackId);
 const resolvedInvalid = computed(
     () => props.invalid ?? field?.invalid.value ?? false,
 );

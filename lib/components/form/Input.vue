@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, inject, ref, type HTMLAttributes } from "vue";
+import { computed, inject, ref, useId, type HTMLAttributes } from "vue";
 import { cn } from "../../utils/cn";
 import { FieldKey } from "../../core/field-context";
 import { inputVariants, type InputProps } from "../../variants/input";
@@ -35,8 +35,11 @@ const model = defineModel<string | number | null>();
 
 const field = inject(FieldKey, null);
 
-// props-win precedence: explicit prop > field context > local default.
-const resolvedId = computed(() => props.id ?? field?.id.value);
+// Every input needs a stable id (for label association and to avoid the
+// "form field has no id/name" warning). Precedence: explicit prop > Field
+// context > this component's own generated fallback.
+const fallbackId = useId();
+const resolvedId = computed(() => props.id ?? field?.id.value ?? fallbackId);
 const resolvedInvalid = computed(
     () => props.invalid ?? field?.invalid.value ?? false,
 );

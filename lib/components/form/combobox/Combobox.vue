@@ -70,7 +70,7 @@ const labelMap = computed<Record<string, string>>(() => {
             }
         }
     };
-    visit(slots.default?.());
+    visit(slots.default?.({}));
     return map;
 });
 
