@@ -26,13 +26,13 @@ const members = [
         role: "Admin",
         status: "success" as const,
     },
-    {
-        name: "Maria Costa",
-        img: "https://i.pravatar.cc/120?img=9",
-        email: "maria@acme.co",
-        role: "Member",
-        status: "pending" as const,
-    },
+    // {
+    //     name: "Maria Costa",
+    //     img: "https://i.pravatar.cc/120?img=9",
+    //     email: "maria@acme.co",
+    //     role: "Member",
+    //     status: "pending" as const,
+    // },
 ];
 </script>
 

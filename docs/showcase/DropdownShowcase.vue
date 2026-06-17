@@ -17,8 +17,8 @@ import {
 
 const rows = [
     { name: "Landing redesign", meta: "Updated 2h ago" },
-    { name: "Mobile app", meta: "Updated yesterday" },
-    { name: "Design tokens", meta: "Updated 3d ago" },
+    // { name: "Mobile app", meta: "Updated yesterday" },
+    // { name: "Design tokens", meta: "Updated 3d ago" },
 ];
 </script>
 
