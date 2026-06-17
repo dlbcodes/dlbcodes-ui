@@ -18,6 +18,8 @@ Think of it like shadcn: you set the semantic roles, not the raw colors.
 Override the semantic tokens after importing the library's tokens. Set them to
 any color you like — a literal value or one of your own variables:
 
+<code-block lang="css">
+
 ```css
 @import "tailwindcss";
 @import "@dlbcodes/my-design-system/tokens.css";
@@ -29,6 +31,8 @@ any color you like — a literal value or one of your own variables:
     --color-border-default: oklch(90% 0.01 260);
 }
 ```
+
+</code-block>
 
 Because every component reads these roles, overriding them re-themes the whole
 system at once. Override only the tokens you want to change — the rest keep
@@ -88,12 +92,16 @@ scales. You generally don't need these, but if you want to shift the underlying
 palette (so every semantic role that uses a primitive moves together), you can
 override a primitive instead:
 
+<code-block lang="css">
+
 ```css
 :root {
     /* shift the whole neutral text scale's darkest step */
     --color-text-900: oklch(15% 0.01 260);
 }
 ```
+
+</code-block>
 
 Most of the time, overriding semantic tokens is the right tool — reach for
 primitives only when you want a broad palette shift.
@@ -105,6 +113,10 @@ The token file also ships two scrollbar utilities you can use on any element:
 - `no-scrollbar` — hides the scrollbar while keeping scroll behavior.
 - `scrollbar-thin` — a slim, themed scrollbar.
 
+<code-block lang="vue">
+
 ```vue
 <div class="overflow-y-auto scrollbar-thin">…</div>
 ```
+
+</code-block>

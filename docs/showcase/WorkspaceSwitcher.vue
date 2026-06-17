@@ -127,18 +127,19 @@ const saveSettings = (): void => {
                     <button
                         type="button"
                         class="flex w-full items-center gap-2 rounded-lg px-2 py-2 text-left text-sm text-text-primary transition-colors hover:bg-bg-surface"
-                        @click="close"
-                    >
-                        <PhPlus class="size-4" />
-                        Create workspace
-                    </button>
-                    <button
-                        type="button"
-                        class="flex w-full items-center gap-2 rounded-lg px-2 py-2 text-left text-sm text-text-primary transition-colors hover:bg-bg-surface"
                         @click="openSettings(close)"
                     >
                         <PhGear class="size-4" />
                         Workspace settings
+                    </button>
+
+                    <button
+                        type="button"
+                        class="flex w-full items-center gap-2 rounded-lg px-2 py-2 text-left text-sm text-text-primary transition-colors hover:bg-bg-surface"
+                        @click="close"
+                    >
+                        <PhPlus class="size-4" />
+                        Create workspace
                     </button>
                 </div>
             </template>

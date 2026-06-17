@@ -9,25 +9,37 @@ build to consume — so the styling stays yours to theme.
 This library is built for **Vue 3** and **Tailwind CSS v4**. You'll need a
 project already using both. If you're starting fresh:
 
+<code-block lang="bash">
+
 ```bash
 npm create vite@latest my-app -- --template vue-ts
 cd my-app
 npm install tailwindcss @tailwindcss/vite
 ```
 
+</code-block>
+
 ## Installation
 
 Install the package:
+
+<code-block lang="bash">
 
 ```bash
 npm install @dlbcodes/my-design-system
 ```
 
+</code-block>
+
 Then install the peer dependencies if you don't already have them:
+
+<code-block lang="bash">
 
 ```bash
 npm install vue vue-router
 ```
+
+</code-block>
 
 `vue-router` is required because some components (like `Button`) can render as
 router links.
@@ -37,11 +49,15 @@ router links.
 The library ships its design tokens and its source so your Tailwind build can
 scan the component classes. In your main CSS file, add three lines:
 
+<code-block lang="css">
+
 ```css
 @import "tailwindcss";
 @import "@dlbcodes/my-design-system/tokens.css";
 @source "../node_modules/@dlbcodes/my-design-system/dist";
 ```
+
+</code-block>
 
 What each line does:
 
@@ -58,6 +74,8 @@ Adjust the `@source` path if your CSS file sits at a different depth relative to
 
 Import components by name and use them in your templates:
 
+<code-block lang="vue">
+
 ```vue
 <script setup lang="ts">
 import { Button } from "@dlbcodes/my-design-system";
@@ -68,8 +86,12 @@ import { Button } from "@dlbcodes/my-design-system";
 </template>
 ```
 
+</code-block>
+
 Components are **compound** where it makes sense — you compose the parts rather
 than configuring one big component:
+
+<code-block lang="vue">
 
 ```vue
 <script setup lang="ts">
@@ -91,11 +113,15 @@ import {
 </template>
 ```
 
+</code-block>
+
 ## Theming
 
 Because every component reads from semantic tokens, you can restyle the whole
 system by overriding the token values — no component edits needed. Override the
 relevant CSS variables after importing the tokens:
+
+<code-block lang="css">
 
 ```css
 @import "@dlbcodes/my-design-system/tokens.css";
@@ -105,6 +131,8 @@ relevant CSS variables after importing the tokens:
     --color-bg-surface: oklch(0.98 0 0);
 }
 ```
+
+</code-block>
 
 ## Next steps
 

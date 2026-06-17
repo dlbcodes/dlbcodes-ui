@@ -5,6 +5,7 @@ import HomeShowcase from "./HomeShowcase.vue";
 import HomeFeatures from "./HomeFeatures.vue";
 import HomeFooter from "./HomeFooter.vue";
 import DemoPreview from "./DemoPreview.vue";
+import CodeBlock from "./CodeBlock.vue";
 import "./style.css";
 import "./demo-preview.css";
 
@@ -19,5 +20,6 @@ export default {
 	},
 	enhanceApp({ app }) {
 		app.component("demo-preview", DemoPreview);
+		app.component("code-block", CodeBlock);
 	},
 };
