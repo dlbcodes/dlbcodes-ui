@@ -1,18 +1,5 @@
 ---
-# https://vitepress.dev/reference/default-theme-home-page
 layout: home
-
-hero:
-    name: "My Design System"
-    text: "Accessible Vue 3 components, tokenized and yours to own."
-    tagline: A composable component library built on Tailwind v4, class-variance-authority, and Headless UI — designed to be styled with your tokens, not fought against.
-    actions:
-        - theme: brand
-          text: Get started
-          link: /guide/getting-started
-        - theme: alt
-          text: Browse components
-          link: /components/avatar
 
 features:
     - title: Tokenized by design

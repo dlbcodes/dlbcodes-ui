@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Avatar from "../../../lib/components/primitives/Avatar.vue";
+import { Avatar } from "@dlbcodes/my-design-system";
 </script>
 
 <template>

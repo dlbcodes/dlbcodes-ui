@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Button from "../../../lib/components/primitives/Button.vue";
+import { Button } from "@dlbcodes/my-design-system";
 </script>
 
 <template>

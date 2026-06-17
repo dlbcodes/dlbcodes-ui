@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from "vue";
-import Progress from "../../../lib/components/primitives/Progress.vue";
-import Button from "../../../lib/components/primitives/Button.vue";
+import { Progress, Button } from "@dlbcodes/my-design-system";
 
 const value = ref(10);
 let timer: ReturnType<typeof setInterval> | undefined;

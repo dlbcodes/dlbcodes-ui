@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import MultiSelect from "../../../lib/components/form/multiselect/MultiSelect.vue";
-import MultiSelectTrigger from "../../../lib/components/form/multiselect/MultiSelectTrigger.vue";
-import MultiSelectContent from "../../../lib/components/form/multiselect/MultiSelectContent.vue";
-import MultiSelectItem from "../../../lib/components/form/multiselect/MultiSelectItem.vue";
-import MultiSelectSearch from "../../../lib/components/form/multiselect/MultiSelectSearch.vue";
+import {
+    MultiSelect,
+    MultiSelectTrigger,
+    MultiSelectContent,
+    MultiSelectItem,
+    MultiSelectSearch,
+} from "@dlbcodes/my-design-system";
 
 const selected = ref<string[]>(["us"]);
 const options = [

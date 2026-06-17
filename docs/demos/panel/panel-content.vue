@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import Panel from "../../../lib/components/primitives/panel/Panel.vue";
-import PanelContent from "../../../lib/components/primitives/panel/PanelContent.vue";
+import { Panel, PanelContent } from "@dlbcodes/my-design-system";
 </script>
 
 <template>

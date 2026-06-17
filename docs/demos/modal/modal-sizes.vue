@@ -1,13 +1,15 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import Modal from "../../../lib/components/overlays/modal/Modal.vue";
-import ModalHeader from "../../../lib/components/overlays/modal/ModalHeader.vue";
-import ModalTitle from "../../../lib/components/overlays/modal/ModalTitle.vue";
-import ModalDescription from "../../../lib/components/overlays/modal/ModalDescription.vue";
-import ModalContent from "../../../lib/components/overlays/modal/ModalContent.vue";
-import ModalFooter from "../../../lib/components/overlays/modal/ModalFooter.vue";
-import ModalClose from "../../../lib/components/overlays/modal/ModalClose.vue";
-import Button from "../../../lib/components/primitives/Button.vue";
+import {
+    Modal,
+    ModalHeader,
+    ModalTitle,
+    ModalDescription,
+    ModalContent,
+    ModalFooter,
+    ModalClose,
+    Button,
+} from "@dlbcodes/my-design-system";
 
 type Demo = "sm" | "lg" | "2xl";
 const active = ref<Demo | null>(null);

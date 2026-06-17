@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Skeleton from "../../../lib/components/primitives/Skeleton.vue";
+import { Skeleton } from "@dlbcodes/my-design-system";
 </script>
 
 <template>

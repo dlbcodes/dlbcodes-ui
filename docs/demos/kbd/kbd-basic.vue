@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Kbd from "../../../lib/components/primitives/Kbd.vue";
+import { Kbd } from "@dlbcodes/my-design-system";
 </script>
 
 <template>

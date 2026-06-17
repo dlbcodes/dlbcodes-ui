@@ -1,16 +1,16 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import Field from "../../../lib/components/form/field/Field.vue";
-import FieldLabel from "../../../lib/components/form/field/FieldLabel.vue";
-import FieldContent from "../../../lib/components/form/field/FieldContent.vue";
-import FieldDescription from "../../../lib/components/form/field/FieldDescription.vue";
 import {
     Combobox,
     ComboboxInput,
     ComboboxContent,
     ComboboxItem,
     ComboboxEmpty,
-} from "../../../lib/components/form/combobox";
+    Field,
+    FieldLabel,
+    FieldContent,
+    FieldDescription,
+} from "@dlbcodes/my-design-system";
 
 const country = ref("");
 </script>

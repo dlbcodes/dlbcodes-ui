@@ -1,6 +1,7 @@
 import { defineConfig, loadEnv } from 'vitepress'
 import tailwindcss from "@tailwindcss/vite";
 import { containerPreview, componentPreview } from "@vitepress-demo-preview/plugin";
+import { fileURLToPath, URL } from "node:url";
 
 const isProd = process.env.NODE_ENV === "production";
 const showcaseUrl = isProd
@@ -20,6 +21,18 @@ export default defineConfig({
         allow: [".."],
       },
     },
+    resolve: {
+      alias: {
+        "@dlbcodes/my-design-system": fileURLToPath(
+          new URL("../../lib/index.ts", import.meta.url),
+        ),
+        // If you also import the tokens CSS by package path:
+        "@dlbcodes/my-design-system/tokens.css": fileURLToPath(
+          new URL("../../lib/styles/tokens.css", import.meta.url),
+        ),
+      },
+    },
+
   },
   markdown: {
     config(md) {

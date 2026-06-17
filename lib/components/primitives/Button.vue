@@ -10,9 +10,7 @@ interface Props {
     variant?: ButtonProps["variant"];
     size?: ButtonProps["size"];
     class?: HTMLAttributes["class"];
-    /** When set, renders a link (RouterLink by default). */
     to?: string;
-    /** Override the link component — e.g. NuxtLink for Nuxt's extras. */
     as?: Component | string;
     type?: "button" | "submit" | "reset";
     loading?: boolean;
@@ -32,10 +30,20 @@ const props = withDefaults(defineProps<Props>(), {
 const isLink = computed(() => Boolean(props.to));
 const isDisabled = computed(() => props.loading || props.disabled);
 
-// Link → the provided component (or RouterLink); otherwise a button.
 const component = computed(() =>
     isLink.value ? (props.as ?? RouterLink) : "button",
 );
+
+// A plain anchor element uses `href`; a router component (RouterLink/NuxtLink)
+// uses `to`. Detect the plain-anchor case so the link actually navigates.
+const isPlainAnchor = computed(() => isLink.value && props.as === "a");
+
+const linkBindings = computed(() => {
+    if (!isLink.value || isDisabled.value) return {};
+    return isPlainAnchor.value
+        ? { href: props.to } // plain <a> needs href
+        : { to: props.to }; // RouterLink/NuxtLink use to
+});
 
 const classes = computed(() =>
     cn(
@@ -49,7 +57,7 @@ const classes = computed(() =>
 <template>
     <component
         :is="component"
-        :to="isLink && !isDisabled ? props.to : undefined"
+        v-bind="linkBindings"
         :type="!isLink ? props.type : undefined"
         :disabled="!isLink ? isDisabled : undefined"
         :aria-disabled="isDisabled || undefined"

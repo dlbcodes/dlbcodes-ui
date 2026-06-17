@@ -4,9 +4,9 @@ import {
     DropdownTrigger,
     DropdownContent,
     DropdownItem,
-} from "../../../lib/components/form/dropdown";
-import Avatar from "../../../lib/components/primitives/Avatar.vue";
-import Separator from "../../../lib/components/primitives/Separator.vue";
+    Avatar,
+    Separator,
+} from "@dlbcodes/my-design-system";
 import { PhUser, PhGear, PhCreditCard, PhSignOut } from "@phosphor-icons/vue";
 </script>
 

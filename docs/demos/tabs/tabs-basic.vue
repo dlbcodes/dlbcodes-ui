@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import Tabs from "../../../lib/components/primitives/tabs/Tabs.vue";
-import TabsList from "../../../lib/components/primitives/tabs/TabsList.vue";
-import TabsTrigger from "../../../lib/components/primitives/tabs/TabsTrigger.vue";
-import TabsPanels from "../../../lib/components/primitives/tabs/TabsPanels.vue";
-import TabsContent from "../../../lib/components/primitives/tabs/TabsContent.vue";
+import {
+    Tabs,
+    TabsList,
+    TabsTrigger,
+    TabsPanels,
+    TabsContent,
+} from "@dlbcodes/my-design-system";
 </script>
 
 <template>

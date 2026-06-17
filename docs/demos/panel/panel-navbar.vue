@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import Panel from "../../../lib/components/primitives/panel/Panel.vue";
-import PanelContent from "../../../lib/components/primitives/panel/PanelContent.vue";
-import Button from "../../../lib/components/primitives/Button.vue";
+import { Panel, PanelContent, Button } from "@dlbcodes/my-design-system";
 import { PhCube } from "@phosphor-icons/vue";
 </script>
 

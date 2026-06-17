@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Checkbox from "../../../lib/components/form/Checkbox.vue";
+import { Checkbox } from "@dlbcodes/my-design-system";
 </script>
 
 <template>

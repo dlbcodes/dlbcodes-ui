@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import Kbd from "../../../lib/components/primitives/Kbd.vue";
-import KbdGroup from "../../../lib/components/primitives/KbdGroup.vue";
+import { Kbd, KbdGroup } from "@dlbcodes/my-design-system";
 </script>
 
 <template>

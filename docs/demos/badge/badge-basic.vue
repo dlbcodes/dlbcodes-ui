@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import Badge from "../../../lib/components/primitives/Badge.vue";
-import Avatar from "../../../lib/components/primitives/Avatar.vue";
-import { Panel, PanelContent } from "../../../lib/components/primitives/panel";
+import { Avatar, Badge, Panel, PanelContent } from "@dlbcodes/my-design-system";
 </script>
 
 <template>

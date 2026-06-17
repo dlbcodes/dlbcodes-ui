@@ -1,12 +1,14 @@
 <script setup lang="ts">
-import Panel from "../../../lib/components/primitives/panel/Panel.vue";
-import PanelHeader from "../../../lib/components/primitives/panel/PanelHeader.vue";
-import PanelContent from "../../../lib/components/primitives/panel/PanelContent.vue";
-import PanelFooter from "../../../lib/components/primitives/panel/PanelFooter.vue";
-import Avatar from "../../../lib/components/primitives/Avatar.vue";
-import Badge from "../../../lib/components/primitives/Badge.vue";
-import Separator from "../../../lib/components/primitives/Separator.vue";
-import Button from "../../../lib/components/primitives/Button.vue";
+import {
+    Panel,
+    PanelHeader,
+    PanelContent,
+    PanelFooter,
+    Avatar,
+    Badge,
+    Separator,
+    Button,
+} from "@dlbcodes/my-design-system";
 import { PhDotsThree, PhPlus } from "@phosphor-icons/vue";
 
 const members = [

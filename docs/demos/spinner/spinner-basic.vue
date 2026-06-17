@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Spinner from "../../../lib/components/primitives/Spinner.vue";
+import { Spinner } from "@dlbcodes/my-design-system";
 </script>
 
 <template>

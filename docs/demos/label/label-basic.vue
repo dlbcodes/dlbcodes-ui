@@ -1,9 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import Panel from "../../../lib/components/primitives/panel/Panel.vue";
-import PanelContent from "../../../lib/components/primitives/panel/PanelContent.vue";
-import Label from "../../../lib/components/primitives/Label.vue";
-import Switch from "../../../lib/components/form/Switch.vue";
+import { Panel, PanelContent, Label, Switch } from "@dlbcodes/my-design-system";
 
 const prefs = ref<Record<string, boolean>>({
     "notif-email": true,

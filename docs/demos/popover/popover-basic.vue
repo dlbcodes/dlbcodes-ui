@@ -1,8 +1,10 @@
 <script setup lang="ts">
-import Popover from "../../../lib/components/overlays/popover/Popover.vue";
-import PopoverTrigger from "../../../lib/components/overlays/popover/PopoverTrigger.vue";
-import PopoverContent from "../../../lib/components/overlays/popover/PopoverContent.vue";
-import Button from "../../../lib/components/primitives/Button.vue";
+import {
+    Popover,
+    PopoverTrigger,
+    PopoverContent,
+    Button,
+} from "@dlbcodes/my-design-system";
 import { PhInfo } from "@phosphor-icons/vue";
 </script>
 

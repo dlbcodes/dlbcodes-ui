@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import Field from "../../../lib/components/form/field/Field.vue";
-import FieldLabel from "../../../lib/components/form/field/FieldLabel.vue";
-import FieldContent from "../../../lib/components/form/field/FieldContent.vue";
-import FieldDescription from "../../../lib/components/form/field/FieldDescription.vue";
-import Textarea from "../../../lib/components/form/Textarea.vue";
+import {
+    Textarea,
+    Field,
+    FieldLabel,
+    FieldContent,
+    FieldDescription,
+    FieldError,
+} from "@dlbcodes/my-design-system";
 
 const bio = ref("");
 </script>

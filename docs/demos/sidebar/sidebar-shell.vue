@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import SidebarProvider from "../../../lib/components/primitives/sidebar/SidebarProvider.vue";
-import Sidebar from "../../../lib/components/primitives/sidebar/Sidebar.vue";
-import SidebarTrigger from "../../../lib/components/primitives/sidebar/SidebarTrigger.vue";
-import SidebarHeader from "../../../lib/components/primitives/sidebar/SidebarHeader.vue";
-import SidebarContent from "../../../lib/components/primitives/sidebar/SidebarContent.vue";
-import SidebarGroup from "../../../lib/components/primitives/sidebar/SidebarGroup.vue";
-import SidebarItem from "../../../lib/components/primitives/sidebar/SidebarItem.vue";
+import {
+    SidebarProvider,
+    Sidebar,
+    SidebarTrigger,
+    SidebarHeader,
+    SidebarContent,
+    SidebarGroup,
+    SidebarItem,
+} from "@dlbcodes/my-design-system";
 import { PhHouse, PhChartBar, PhGear } from "@phosphor-icons/vue";
 
 const active = ref("dashboard");

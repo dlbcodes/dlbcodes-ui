@@ -1,17 +1,20 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import Modal from "../../../lib/components/overlays/modal/Modal.vue";
-import ModalHeader from "../../../lib/components/overlays/modal/ModalHeader.vue";
-import ModalTitle from "../../../lib/components/overlays/modal/ModalTitle.vue";
-import ModalDescription from "../../../lib/components/overlays/modal/ModalDescription.vue";
-import ModalContent from "../../../lib/components/overlays/modal/ModalContent.vue";
-import ModalFooter from "../../../lib/components/overlays/modal/ModalFooter.vue";
-import ModalClose from "../../../lib/components/overlays/modal/ModalClose.vue";
-import Field from "../../../lib/components/form/field/Field.vue";
-import FieldLabel from "../../../lib/components/form/field/FieldLabel.vue";
-import FieldContent from "../../../lib/components/form/field/FieldContent.vue";
-import Input from "../../../lib/components/form/Input.vue";
-import Button from "../../../lib/components/primitives/Button.vue";
+
+import {
+    Modal,
+    ModalHeader,
+    ModalTitle,
+    ModalDescription,
+    ModalContent,
+    ModalFooter,
+    ModalClose,
+    Button,
+    Field,
+    FieldLabel,
+    FieldContent,
+    Input,
+} from "@dlbcodes/my-design-system";
 
 const open = ref(false);
 const workspace = ref("Acme Inc.");

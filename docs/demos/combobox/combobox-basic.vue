@@ -6,7 +6,7 @@ import {
     ComboboxContent,
     ComboboxItem,
     ComboboxEmpty,
-} from "../../../lib/components/form/combobox";
+} from "@dlbcodes/my-design-system";
 
 const value = ref("");
 </script>

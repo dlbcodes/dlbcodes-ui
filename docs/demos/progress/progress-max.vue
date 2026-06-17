@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Progress from "../../../lib/components/primitives/Progress.vue";
+import { Progress } from "@dlbcodes/my-design-system";
 </script>
 
 <template>

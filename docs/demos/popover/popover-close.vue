@@ -1,13 +1,15 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import Popover from "../../../lib/components/overlays/popover/Popover.vue";
-import PopoverTrigger from "../../../lib/components/overlays/popover/PopoverTrigger.vue";
-import PopoverContent from "../../../lib/components/overlays/popover/PopoverContent.vue";
-import Field from "../../../lib/components/form/field/Field.vue";
-import FieldLabel from "../../../lib/components/form/field/FieldLabel.vue";
-import FieldContent from "../../../lib/components/form/field/FieldContent.vue";
-import Input from "../../../lib/components/form/Input.vue";
-import Button from "../../../lib/components/primitives/Button.vue";
+import {
+    Popover,
+    PopoverTrigger,
+    PopoverContent,
+    Field,
+    FieldLabel,
+    FieldContent,
+    Input,
+    Button,
+} from "@dlbcodes/my-design-system";
 
 const label = ref("Untitled board");
 const draft = ref(label.value);

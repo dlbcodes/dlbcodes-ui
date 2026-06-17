@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import Select from "../../../lib/components/form/select/Select.vue";
-import SelectTrigger from "../../../lib/components/form/select/SelectTrigger.vue";
-import SelectContent from "../../../lib/components/form/select/SelectContent.vue";
-import SelectItem from "../../../lib/components/form/select/SelectItem.vue";
+import {
+    Select,
+    SelectTrigger,
+    SelectContent,
+    SelectItem,
+} from "@dlbcodes/my-design-system";
 
 const value = ref("");
 </script>

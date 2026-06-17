@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import Separator from "../../../lib/components/primitives/Separator.vue";
-import Button from "../../../lib/components/primitives/Button.vue";
+import { Separator, Button } from "@dlbcodes/my-design-system";
 </script>
 
 <template>

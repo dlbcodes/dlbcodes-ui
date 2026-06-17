@@ -5,7 +5,7 @@ import {
     SelectTrigger,
     SelectContent,
     SelectItem,
-} from "../../../lib/components/form/select";
+} from "@dlbcodes/my-design-system";
 
 // Bound to a value before the user opens the select. Because each item carries
 // its `label`, the trigger resolves "React" on load — no opening required.

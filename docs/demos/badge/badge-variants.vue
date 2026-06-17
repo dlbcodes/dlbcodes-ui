@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Badge from "../../../lib/components/primitives/Badge.vue";
+import { Badge } from "@dlbcodes/my-design-system";
 </script>
 
 <template>

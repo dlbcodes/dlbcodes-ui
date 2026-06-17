@@ -1,7 +1,9 @@
 <script setup lang="ts">
-import Alert from "../../../lib/components/primitives/alert/Alert.vue";
-import AlertTitle from "../../../lib/components/primitives/alert/AlertTitle.vue";
-import AlertDescription from "../../../lib/components/primitives/alert/AlertDescription.vue";
+import {
+    Alert,
+    AlertTitle,
+    AlertDescription,
+} from "@dlbcodes/my-design-system";
 </script>
 
 <template>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import Input from "../../../lib/components/form/Input.vue";
+import { Input } from "@dlbcodes/my-design-system";
 
 const a = ref("Can't edit this");
 const b = ref("wrong value");

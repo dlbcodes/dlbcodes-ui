@@ -1,7 +1,9 @@
 <script setup lang="ts">
-import Disclosure from "../../../lib/components/primitives/disclosure/Disclosure.vue";
-import DisclosureTrigger from "../../../lib/components/primitives/disclosure/DisclosureTrigger.vue";
-import DisclosureContent from "../../../lib/components/primitives/disclosure/DisclosureContent.vue";
+import {
+    Disclosure,
+    DisclosureTrigger,
+    DisclosureContent,
+} from "@dlbcodes/my-design-system";
 
 const faqs = [
     {
