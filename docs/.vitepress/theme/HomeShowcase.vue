@@ -8,6 +8,13 @@ import NotificationsShowcase from "../../showcase/NotificationsShowcase.vue";
 import ContactShowcase from "../../showcase/ContactShowcase.vue";
 import ShortcutShowcase from "../../showcase/ShortcutShowcase.vue";
 import TeamMembersShowcase from "../../showcase/TeamMembersShowcase.vue";
+import UsageShowcase from "../../showcase/UsageShowcase.vue";
+import VerificationShowcase from "../../showcase/VerificationShowcase.vue";
+import NewProjectShowcase from "../../showcase/NewProjectShowcase.vue";
+import TabsShowcase from "../../showcase/TabsShowcase.vue";
+import DropdownShowcase from "../../showcase/DropdownShowcase.vue";
+import PermissionsShowcase from "../../showcase/PermissionsShowcase.vue";
+import SidebarFooterShowcase from "../../showcase/SidebarFooterShowcase.vue";
 import ButtonDemo from "../../demos/button/button-variants.vue";
 import AlertDemo from "../../demos/alert/alert-basic.vue";
 import PanelDemo from "../../demos/panel/panel-basic.vue";
@@ -30,12 +37,12 @@ import Input from "../../demos/input/input-keyboards.vue";
                 <div
                     class="flex items-center justify-center rounded-2xl border border-border-subtle bg-bg-raised p-8"
                 >
-                    <EmptyState />
+                    <WorkspaceSwitcher />
                 </div>
                 <div
                     class="flex items-center justify-center rounded-2xl border border-border-subtle bg-bg-raised p-8 w-full"
                 >
-                    <Input />
+                    <SidebarFooterShowcase />
                 </div>
             </div>
             <!-- End First column -->
@@ -50,12 +57,12 @@ import Input from "../../demos/input/input-keyboards.vue";
                 <div
                     class="flex items-center justify-center rounded-2xl border border-border-subtle bg-bg-raised p-8"
                 >
-                    <WorkspaceSwitcher />
+                    <NotificationsShowcase />
                 </div>
                 <div
                     class="flex items-center justify-center rounded-2xl border border-border-subtle bg-bg-raised p-8"
                 >
-                    <PanelDemo />
+                    <ShortcutShowcase />
                 </div>
             </div>
             <!-- End Second column -->
@@ -65,7 +72,7 @@ import Input from "../../demos/input/input-keyboards.vue";
                 <div
                     class="flex items-center justify-center rounded-2xl border border-border-subtle bg-bg-raised p-8"
                 >
-                    <NotificationsShowcase />
+                    <EmptyState />
                 </div>
                 <div
                     class="flex items-center justify-center rounded-2xl border border-border-subtle bg-bg-raised p-8"
@@ -75,7 +82,7 @@ import Input from "../../demos/input/input-keyboards.vue";
                 <div
                     class="flex items-center justify-center rounded-2xl border border-border-subtle bg-bg-raised p-8"
                 >
-                    <PanelDemo />
+                    <PermissionsShowcase />
                 </div>
             </div>
             <!-- End Third column -->
@@ -85,17 +92,17 @@ import Input from "../../demos/input/input-keyboards.vue";
                 <div
                     class="flex items-center justify-center rounded-2xl border border-border-subtle bg-bg-raised p-8"
                 >
-                    <ShortcutShowcase />
+                    <UsageShowcase />
                 </div>
                 <div
                     class="flex items-center justify-center rounded-2xl border border-border-subtle bg-bg-raised p-8"
                 >
-                    <AlertDemo />
+                    <VerificationShowcase />
                 </div>
                 <div
                     class="flex items-center justify-center rounded-2xl border border-border-subtle bg-bg-raised p-8"
                 >
-                    <PanelDemo />
+                    <DropdownShowcase />
                 </div>
             </div>
             <!-- End Fourth column -->
@@ -110,12 +117,12 @@ import Input from "../../demos/input/input-keyboards.vue";
                 <div
                     class="flex items-center justify-center rounded-2xl border border-border-subtle bg-bg-raised p-8"
                 >
-                    <AlertDemo />
+                    <NewProjectShowcase />
                 </div>
                 <div
                     class="flex items-center justify-center rounded-2xl border border-border-subtle bg-bg-raised p-8"
                 >
-                    <PanelDemo />
+                    <TabsShowcase />
                 </div>
             </div>
             <!-- End Fifth column -->

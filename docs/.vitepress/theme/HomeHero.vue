@@ -19,7 +19,7 @@ import { Button } from "@dlbcodes/my-design-system";
             </p>
             <div class="flex flex-wrap items-center justify-center gap-3 pt-3">
                 <Button to="/guide/getting-started" as="a">Get started</Button>
-                <Button to="/components/avatar" as="a" variant="secondary">
+                <Button to="/components/alert" as="a" variant="secondary">
                     Browse components
                 </Button>
             </div>
