@@ -3,12 +3,12 @@ import { Button } from "@dlbcodes/my-design-system";
 </script>
 
 <template>
-    <section class="border-b border-border-subtle">
+    <section class="">
         <div
-            class="mx-auto flex max-w-4xl flex-col items-center gap-5 px-6 py-20 text-center md:py-28"
+            class="mx-auto flex max-w-8xl flex-col items-center gap-5 px-6 py-20 text-center md:py-28"
         >
             <h1
-                class="text-3xl font-semibold tracking-tight text-balance text-text-primary md:text-5xl lg:text-6xl lg:leading-[1.05]"
+                class="text-3xl font-semibold tracking-tight text-balance text-text-primary md:text-4xl lg:text-5xl lg:leading-[1.05]"
             >
                 Accessible Vue 3 components, tokenized and yours to own.
             </h1>
