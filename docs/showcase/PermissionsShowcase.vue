@@ -13,7 +13,6 @@ const options = [
     { value: "read", label: "Read" },
     { value: "write", label: "Write" },
     { value: "delete", label: "Delete" },
-    { value: "admin", label: "Admin" },
 ];
 
 const summarize = (count: number, total: number): string =>
@@ -36,7 +35,7 @@ const summarize = (count: number, total: number): string =>
             v-slot="{ label, empty }"
         >
             <MultiSelectTrigger :label="label" :empty="empty" />
-            <MultiSelectContent>
+            <MultiSelectContent size="full">
                 <MultiSelectItem
                     v-for="o in options"
                     :key="o.value"

@@ -51,7 +51,7 @@ const usage = [
         <Alert variant="warning">
             <template #icon><PhWarning /></template>
             <AlertTitle>Storage almost full</AlertTitle>
-            <AlertDescription>
+            <AlertDescription class="text-xs">
                 You've used 86% of your storage. Upgrade to add more.
             </AlertDescription>
         </Alert>

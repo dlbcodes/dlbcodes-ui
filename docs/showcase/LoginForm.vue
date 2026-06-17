@@ -19,7 +19,7 @@ const remember = ref(false);
 </script>
 
 <template>
-    <div class="flex flex-col gap-6 p-8 w-full">
+    <div class="flex flex-col gap-6 w-full">
         <div>
             <div
                 class="text-2xl font-semibold tracking-tight text-text-primary"
