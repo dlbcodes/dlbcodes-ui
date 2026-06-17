@@ -6,7 +6,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 export const modalVariants = cva(
 	[
 		"relative flex max-h-[calc(100vh-100px)] w-full flex-col overflow-y-auto",
-		"rounded-3xl border border-border-subtle bg-bg-raised shadow-xs",
+		"rounded-t-3xl md:rounded-3xl border border-border-subtle bg-bg-raised shadow-xs",
 	].join(" "),
 	{
 		variants: {

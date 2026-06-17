@@ -12,6 +12,7 @@ export default defineConfig({
   title: "My Design System [WIP]",
   description: "A Vue 3 component library",
   appearance: false,
+  cleanUrls: true,
   vite: {
     plugins: [tailwindcss() as any],
     server: {

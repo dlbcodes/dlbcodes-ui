@@ -43,7 +43,7 @@ provide(FieldKey, {
 
 const layout = computed(() =>
     props.orientation === "horizontal"
-        ? "flex items-center gap-x-3"
+        ? "flex items-center gap-x-2"
         : "flex flex-col gap-y-1.5",
 );
 </script>
