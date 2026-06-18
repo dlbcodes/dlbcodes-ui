@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import Checkbox from "../../form/Checkbox.vue";
+import { cn } from "../../../utils/cn";
+import { menuItemVariants } from "../../../variants/menu-item";
 import { useMultiSelectContext } from "./use-context";
 
 interface Props {
@@ -23,7 +25,15 @@ const visible = computed(() => ctx.matchesQuery(props.label));
         type="button"
         :disabled="disabled"
         :aria-pressed="selected"
-        class="flex w-full cursor-pointer select-none items-center gap-x-2 rounded-lg px-3 py-2 text-left text-base text-text-primary transition-colors hover:bg-bg-surface disabled:pointer-events-none disabled:opacity-50"
+        :class="
+            cn(
+                menuItemVariants({ indicator: 'leading-control' }),
+                // Hand-rolled list: no Headless active-index, so the base's
+                // data-active highlight never fires here. Keep an explicit
+                // hover highlight (same token) plus button text alignment.
+                'text-left hover:bg-bg-surface',
+            )
+        "
         @click="ctx.toggle(value)"
     >
         <Checkbox :model-value="selected" visual />

@@ -17,7 +17,14 @@ const props = defineProps<Props>();
         <PopoverButton
             :as="asChild ? 'template' : undefined"
             v-slot="{ open }"
-            :class="asChild ? undefined : cn('outline-none', props.class)"
+            :class="
+                asChild
+                    ? undefined
+                    : cn(
+                          'cursor-pointer rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-border-strong',
+                          props.class,
+                      )
+            "
         >
             <slot :open="open" />
         </PopoverButton>

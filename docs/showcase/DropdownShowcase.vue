@@ -48,7 +48,7 @@ const rows = [
                 </div>
 
                 <Dropdown>
-                    <DropdownTrigger>
+                    <DropdownTrigger as-child>
                         <Button
                             variant="icon"
                             size="icon-sm"
@@ -66,7 +66,7 @@ const rows = [
                             <PhCopy class="size-4" />
                             Duplicate
                         </DropdownItem>
-                        <Separator />
+                        <Separator class="my-1" />
                         <DropdownItem>
                             <PhTrash class="size-4" />
                             Delete

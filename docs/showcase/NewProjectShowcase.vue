@@ -44,15 +44,15 @@ const framework = ref("vue");
                 <Select v-model="visibility">
                     <SelectTrigger placeholder="Choose visibility" />
                     <SelectContent>
-                        <SelectItem value="private" label="Private"
-                            >Private</SelectItem
-                        >
-                        <SelectItem value="public" label="Public"
-                            >Public</SelectItem
-                        >
-                        <SelectItem value="team" label="Team only"
-                            >Team only</SelectItem
-                        >
+                        <SelectItem value="private" label="Private">
+                            Private
+                        </SelectItem>
+                        <SelectItem value="public" label="Public">
+                            Public
+                        </SelectItem>
+                        <SelectItem value="team" label="Team only">
+                            Team only
+                        </SelectItem>
                     </SelectContent>
                 </Select>
             </FieldContent>
@@ -65,26 +65,26 @@ const framework = ref("vue");
                     <ComboboxInput placeholder="Search frameworks..." />
                     <ComboboxContent>
                         <ComboboxItem value="vue" label="Vue">Vue</ComboboxItem>
-                        <ComboboxItem value="react" label="React"
-                            >React</ComboboxItem
-                        >
-                        <ComboboxItem value="svelte" label="Svelte"
-                            >Svelte</ComboboxItem
-                        >
-                        <ComboboxItem value="angular" label="Angular"
-                            >Angular</ComboboxItem
-                        >
-                        <ComboboxItem value="solid" label="Solid"
-                            >Solid</ComboboxItem
-                        >
+                        <ComboboxItem value="react" label="React">
+                            React
+                        </ComboboxItem>
+                        <ComboboxItem value="svelte" label="Svelte">
+                            Svelte
+                        </ComboboxItem>
+                        <ComboboxItem value="angular" label="Angular">
+                            Angular
+                        </ComboboxItem>
+                        <ComboboxItem value="solid" label="Solid">
+                            Solid
+                        </ComboboxItem>
                         <ComboboxEmpty>No frameworks match.</ComboboxEmpty>
                     </ComboboxContent>
                 </Combobox>
             </FieldContent>
         </Field>
 
-        <Button variant="primary" class="w-full justify-center"
-            >Create project</Button
-        >
+        <Button variant="primary" class="w-full justify-center">
+            Create project
+        </Button>
     </div>
 </template>

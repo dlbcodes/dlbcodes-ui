@@ -10,6 +10,7 @@ const baseStyles = [
 	"border",
 	"transition-[color,box-shadow]",
 	"outline-none",
+	"focus-visible:outline-none",
 	"focus-within:border-border-dark",
 	"focus-within:ring-1",
 	"focus-within:ring-border-dark",
@@ -35,8 +36,7 @@ export const inputVariants = cva(baseStyles, {
 		},
 
 		invalid: {
-			// Match the focus ring width; danger color for the error state.
-			true: "border-danger-border ring-1 ring-danger-border",
+			true: "border-danger-border ring-1 ring-danger-border focus-within:border-danger-border focus-within:ring-danger-border",
 			false: "",
 		},
 	},

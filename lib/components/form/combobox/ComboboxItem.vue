@@ -12,6 +12,8 @@ import {
 import { ComboboxOption } from "@headlessui/vue";
 import { PhCheck } from "@phosphor-icons/vue";
 import { ComboboxKey } from "./context";
+import { cn } from "../../../utils/cn";
+import { menuItemVariants } from "../../../variants/menu-item";
 
 interface Props {
     value: string;
@@ -63,11 +65,13 @@ const onSelect = (): void => {
     >
         <div
             role="option"
-            :class="[
-                'relative flex cursor-pointer select-none items-center rounded-lg py-2 pl-3 pr-9',
-                active && 'bg-bg-surface',
-                disabled && 'pointer-events-none opacity-50',
-            ]"
+            :data-active="active || undefined"
+            :class="
+                cn(
+                    menuItemVariants({ indicator: 'trailing-check' }),
+                    disabled && 'pointer-events-none opacity-50',
+                )
+            "
             @click="onSelect"
         >
             <span

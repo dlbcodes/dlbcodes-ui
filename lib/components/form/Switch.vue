@@ -63,7 +63,7 @@ const onChange = (event: Event): void => {
                     'h-6 w-11 cursor-pointer rounded-full bg-bg-subtle transition-colors',
                     'after:absolute after:inset-s-0.5 after:top-0.5 after:size-5 after:rounded-full after:border after:border-border-strong after:bg-bg-base after:transition-all after:content-[\'\']',
                     'peer-checked:bg-bg-inverse peer-checked:after:translate-x-5 peer-checked:after:border-bg-inverse',
-                    'peer-focus-visible:ring-1 peer-focus-visible:ring-border-strong',
+                    'peer-focus-visible:ring-2 peer-focus-visible:ring-offset-2 peer-focus-visible:ring-border-strong',
                     'peer-disabled:cursor-not-allowed',
                     props.class,
                 )

@@ -37,31 +37,29 @@ import {
         <!-- The footer strip: user identity on the left, help on the right -->
         <div class="flex items-center justify-between">
             <Dropdown placement="top-start">
-                <DropdownTrigger>
-                    <button
-                        type="button"
-                        class="flex min-w-0 flex-1 items-center gap-2 rounded-lg px-2 py-1.5 text-left transition-colors hover:bg-bg-subtle"
-                    >
-                        <Avatar
-                            name="Daniel Lobo"
-                            src="https://i.pravatar.cc/120?img=12"
-                            size="sm"
-                        />
-                        <span class="flex min-w-0 flex-col">
-                            <span
-                                class="truncate text-sm font-medium text-text-primary"
-                                >Daniel Lobo</span
-                            >
-                            <span class="truncate text-xs text-text-tertiary"
-                                >daniel@example.com</span
-                            >
+                <DropdownTrigger
+                    class="flex min-w-0 flex-1 items-center gap-2 text-left"
+                >
+                    <Avatar
+                        name="Daniel Lobo"
+                        src="https://i.pravatar.cc/120?img=12"
+                        size="sm"
+                    />
+                    <span class="flex min-w-0 flex-col">
+                        <span
+                            class="truncate text-sm font-medium text-text-primary"
+                        >
+                            Daniel
                         </span>
-                        <PhCaretUpDown
-                            class="ml-auto size-4 shrink-0 text-text-tertiary"
-                        />
-                    </button>
+                        <span class="truncate text-xs text-text-tertiary">
+                            daniel@example.com
+                        </span>
+                    </span>
+                    <PhCaretUpDown
+                        class="ml-auto size-4 shrink-0 text-text-tertiary"
+                    />
                 </DropdownTrigger>
-                <DropdownContent size="sm">
+                <DropdownContent size="xs">
                     <DropdownItem
                         ><PhUser class="size-4" /> Profile</DropdownItem
                     >
@@ -79,7 +77,7 @@ import {
             </Dropdown>
 
             <Dropdown placement="top-end">
-                <DropdownTrigger>
+                <DropdownTrigger as-child>
                     <Button
                         variant="secondary"
                         size="icon-sm"

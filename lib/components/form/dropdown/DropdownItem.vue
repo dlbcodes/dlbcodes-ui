@@ -2,6 +2,7 @@
 import type { HTMLAttributes } from "vue";
 import { MenuItem } from "@headlessui/vue";
 import { cn } from "../../../utils/cn";
+import { menuItemVariants } from "../../../variants/menu-item";
 
 interface Props {
     disabled?: boolean;
@@ -20,10 +21,7 @@ const emit = defineEmits<{ select: [] }>();
             :disabled="disabled"
             :data-active="active || undefined"
             :class="
-                cn(
-                    'flex w-full cursor-pointer select-none items-center gap-x-2 rounded-lg px-2 py-1.5 text-sm text-text-primary outline-none transition-colors data-active:bg-bg-subtle disabled:pointer-events-none disabled:opacity-50',
-                    props.class,
-                )
+                cn(menuItemVariants(), 'text-text-primary text-sm', props.class)
             "
             @click="emit('select')"
         >

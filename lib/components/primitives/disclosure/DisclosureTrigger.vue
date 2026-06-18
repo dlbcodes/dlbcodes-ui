@@ -17,12 +17,12 @@ const props = defineProps<Props>();
         :class="
             cn(
                 'flex w-full items-center justify-between gap-2 py-4 text-left text-sm font-medium text-text-primary transition-colors',
-                'outline-none hover:text-text-secondary focus-visible:ring-2 focus-visible:ring-border-strong focus-visible:ring-offset-2 focus-visible:ring-offset-bg-base rounded-lg',
+                'focus-visible:outline-none hover:text-text-secondary focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-border-strong focus-visible:ring-offset-bg-base rounded-lg',
                 props.class,
             )
         "
     >
-        <span class="flex-1"><slot :open="open" /></span>
+        <span class="flex-1 outline-none"><slot :open="open" /></span>
         <PhCaretDown
             class="size-4 shrink-0 text-text-tertiary transition-transform duration-200"
             :class="open && 'rotate-180'"
