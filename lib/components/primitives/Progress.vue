@@ -7,6 +7,7 @@ interface Props {
     value?: number;
     /** Maximum value. */
     max?: number;
+    label?: string;
     class?: HTMLAttributes["class"];
 }
 
@@ -28,6 +29,7 @@ const percent = computed(() => {
         :aria-valuemin="0"
         :aria-valuemax="max"
         :aria-valuenow="value"
+        :aria-label="label"
         :class="
             cn(
                 'relative h-1 w-full overflow-hidden rounded-full bg-bg-surface',

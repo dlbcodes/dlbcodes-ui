@@ -60,6 +60,7 @@ const onInput = (e: Event): void => {
                 @input="onInput"
             />
             <ComboboxButton
+                aria-label="Toggle options"
                 class="absolute inset-y-0 right-0 flex items-center pr-2"
             >
                 <PhCaretUpDown

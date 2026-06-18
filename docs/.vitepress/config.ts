@@ -47,6 +47,7 @@ export default defineConfig({
       { text: "Guide", link: "/guide/getting-started" },
       { text: "Components", link: "/components/button" },
       { text: "Showcase", link: showcaseUrl },
+      { text: "Playground", link: "https://dlbcodes-playground.vercel.app/" },
     ],
 
     sidebar: [
