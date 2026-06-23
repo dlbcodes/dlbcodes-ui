@@ -10,10 +10,13 @@ const showcaseUrl = isProd
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "My Design System [WIP]",
+  title: "My Design System",
   description: "A Vue 3 component library",
   appearance: false,
   cleanUrls: true,
+  head: [
+    ["link", { rel: "icon", type: "image/svg+xml", href: "/public/favicon.svg" }],
+  ],
   vite: {
     plugins: [tailwindcss() as any],
     server: {
