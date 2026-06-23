@@ -15,7 +15,7 @@ export default defineConfig({
   appearance: false,
   cleanUrls: true,
   head: [
-    ["link", { rel: "icon", type: "image/svg+xml", href: "/public/favicon.svg" }],
+    ["link", { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" }],
   ],
   vite: {
     plugins: [tailwindcss() as any],
