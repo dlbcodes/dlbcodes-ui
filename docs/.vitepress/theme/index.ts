@@ -4,6 +4,7 @@ import HomeHero from "./HomeHero.vue";
 import HomeShowcase from "./HomeShowcase.vue";
 import HomeFeatures from "./HomeFeatures.vue";
 import HomeFooter from "./HomeFooter.vue";
+import { Analytics } from "@vercel/analytics/vue";
 import DemoPreview from "./DemoPreview.vue";
 import CodeBlock from "./CodeBlock.vue";
 import "./style.css";
@@ -16,6 +17,7 @@ export default {
 			"home-hero-before": () => h(HomeHero),
 			"home-hero-after": () => h(HomeShowcase),
 			"home-features-after": () => [h(HomeFeatures), h(HomeFooter)],
+			"layout-bottom": () => h(Analytics),
 		});
 	},
 	enhanceApp({ app }) {

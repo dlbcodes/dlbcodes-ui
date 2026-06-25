@@ -4,7 +4,6 @@
    VitePress's .vp-doc element styles here — demos use <div>/<span> (not
    <p>/<a>/<h*>), which VitePress doesn't target, so there's nothing to fight. */
 .vp-doc .ds-preview__demo {
-    color: var(--color-text-primary);
     line-height: 1.5;
 }
 
@@ -12,8 +11,6 @@
 .ds-preview__code .shiki {
     @apply m-0 overflow-x-auto rounded-b-xl py-3.5 text-[0.8125rem];
     line-height: 1;
-    max-height: 24rem;
-    overflow-y: auto;
 }
 
 .ds-preview__code .shiki code {

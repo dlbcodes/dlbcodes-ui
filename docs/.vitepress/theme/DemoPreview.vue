@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ref, computed, shallowRef, watch } from "vue";
+import { ref, computed, shallowRef, onMounted } from "vue";
 import { codeToHtml } from "shiki";
-import { PhCopy, PhCheck } from "@phosphor-icons/vue";
+import { PhCopy, PhCheck, PhCaretDown } from "@phosphor-icons/vue";
 
 interface Props {
     title?: string;
@@ -14,33 +14,25 @@ interface Props {
 
 const props = defineProps<Props>();
 
-const showCode = ref(false);
+const expanded = ref(false);
 
 const decodedCode = computed(() =>
     props.code ? decodeURIComponent(props.code) : "",
 );
 
+const lang = computed(() => props.suffixName ?? "vue");
+
 const highlighted = shallowRef<string>("");
-const loading = ref(false);
 
-const lang = computed(() => {
-    const ext = props.suffixName ?? "vue";
-    return ext === "vue" ? "vue" : ext;
-});
-
-watch(showCode, async (open) => {
-    if (open && !highlighted.value && decodedCode.value) {
-        loading.value = true;
-        try {
-            highlighted.value = await codeToHtml(decodedCode.value, {
-                lang: lang.value,
-                theme: "github-dark",
-            });
-        } catch {
-            highlighted.value = "";
-        } finally {
-            loading.value = false;
-        }
+onMounted(async () => {
+    if (!decodedCode.value) return;
+    try {
+        highlighted.value = await codeToHtml(decodedCode.value, {
+            lang: lang.value,
+            theme: "github-dark",
+        });
+    } catch {
+        highlighted.value = "";
     }
 });
 
@@ -58,13 +50,15 @@ const copy = async (): Promise<void> => {
 
 <template>
     <div class="my-6 rounded-xl border border-border-subtle bg-bg-raised">
-        <!-- Demo area: the reset class scopes the VitePress wall to ONLY here. -->
+        <!-- Live demo -->
         <div
-            class="ds-preview__demo relative flex min-h-72 w-full justify-center rounded-t-xl p-10"
+            class="ds-preview__demo relative flex min-h-72 w-full justify-center rounded-t-xl bg-bg-raised p-10"
         >
             <slot />
         </div>
+        <!-- End Live demo -->
 
+        <!-- Meta bar -->
         <div
             class="flex items-center gap-3 border-t border-border-subtle bg-bg-surface px-3 py-2 text-[0.8125rem]"
         >
@@ -74,18 +68,11 @@ const copy = async (): Promise<void> => {
             <span v-if="description" class="text-text-secondary">{{
                 description
             }}</span>
-            <button
-                type="button"
-                class="ml-auto cursor-pointer rounded-lg border border-border-default bg-bg-raised px-3 py-1 text-xs font-medium text-text-secondary transition-colors hover:bg-bg-subtle hover:text-text-primary"
-                :aria-expanded="showCode"
-                @click="showCode = !showCode"
-            >
-                {{ showCode ? "Hide code" : "Show code" }}
-            </button>
         </div>
+        <!-- End Meta bar -->
 
+        <!-- Code -->
         <div
-            v-if="showCode"
             class="ds-preview__code relative rounded-b-xl border-t border-border-subtle bg-zinc-900"
         >
             <button
@@ -98,12 +85,45 @@ const copy = async (): Promise<void> => {
                 <PhCopy v-else class="size-4" />
             </button>
 
-            <div v-if="highlighted" v-html="highlighted" />
-            <pre
-                v-else
-                class="m-0 overflow-x-auto px-4 py-3.5 font-mono text-[0.8125rem] text-zinc-100"
-                style="line-height: 1.6"
-            ><code>{{ decodedCode }}</code></pre>
+            <!-- The clipped region -->
+            <div
+                class="relative overflow-hidden transition-[max-height] duration-300 ease-out"
+                :class="expanded ? 'max-h-96 overflow-y-auto' : 'max-h-40'"
+            >
+                <div
+                    v-if="highlighted"
+                    class="ds-preview__shiki"
+                    v-html="highlighted"
+                />
+                <pre
+                    v-else
+                    class="m-0 overflow-x-auto px-4 py-3.5 font-mono text-[0.8125rem] text-zinc-100"
+                    style="line-height: 1.6"
+                ><code>{{ decodedCode }}</code></pre>
+
+                <!-- Fade overlay on collapsed -->
+                <div
+                    v-if="!expanded"
+                    class="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-linear-to-t from-zinc-900 to-transparent"
+                />
+                <!-- End Fade overlay on collapsed -->
+            </div>
+
+            <!-- Expand / collapse -->
+            <button
+                type="button"
+                class="flex w-full items-center justify-center gap-1.5 border-t border-white/5 py-2 text-xs font-medium text-zinc-400 transition-colors hover:bg-white/5 hover:text-zinc-100"
+                :aria-expanded="expanded"
+                @click="expanded = !expanded"
+            >
+                {{ expanded ? "Collapse code" : "Expand code" }}
+                <PhCaretDown
+                    class="size-3.5 transition-transform"
+                    :class="expanded && 'rotate-180'"
+                />
+            </button>
+            <!-- End Expand / collapse -->
         </div>
+        <!-- End Code -->
     </div>
 </template>

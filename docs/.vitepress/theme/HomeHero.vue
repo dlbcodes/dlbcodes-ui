@@ -10,7 +10,8 @@ import { Button } from "@dlbcodes/my-design-system";
             <h1
                 class="text-3xl font-semibold tracking-tight text-balance text-text-primary md:text-4xl lg:text-5xl lg:leading-[1.05]"
             >
-                Accessible Vue 3 components, tokenized and yours to own.
+                Accessible Vue 3 components you can theme with your own design
+                tokens.
             </h1>
             <p class="max-w-2xl text-lg text-balance text-text-secondary">
                 A composable component library built on Tailwind v4,

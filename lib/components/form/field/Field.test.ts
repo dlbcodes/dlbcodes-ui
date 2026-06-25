@@ -102,4 +102,128 @@ describe("Field family", () => {
 			expect(describedBy).toContain(errId);
 		});
 	});
+
+	// ── Added: state cascade + the describedById ordering decision ──────────
+
+	describe("invalid state cascade", () => {
+		it("cascades invalid to aria-invalid on the control", () => {
+			const wrapper = mount({
+				components: { Field, Input },
+				template: `<Field :invalid="true"><Input /></Field>`,
+			});
+			expect(wrapper.find("input").attributes("aria-invalid")).toBe("true");
+		});
+
+		it("does not set aria-invalid when valid", () => {
+			const wrapper = mount({
+				components: { Field, Input },
+				template: `<Field><Input /></Field>`,
+			});
+			// Input forwards `field.invalid || undefined`, so the attr is absent when valid.
+			expect(wrapper.find("input").attributes("aria-invalid")).toBeUndefined();
+		});
+
+		it("marks the group with data-invalid when invalid", () => {
+			const wrapper = mount({
+				components: { Field, Input },
+				template: `<Field :invalid="true"><Input /></Field>`,
+			});
+			expect(
+				wrapper.find("[role='group']").attributes("data-invalid"),
+			).toBe("true");
+		});
+
+		it("omits data-invalid when valid", () => {
+			const wrapper = mount({
+				components: { Field, Input },
+				template: `<Field><Input /></Field>`,
+			});
+			expect(
+				wrapper.find("[role='group']").attributes("data-invalid"),
+			).toBeUndefined();
+		});
+	});
+
+	describe("describedById ordering (shadcn parity)", () => {
+		it("describes the control by ONLY the description when valid", () => {
+			const wrapper = mount({
+				components: { Field, FieldDescription, FieldError, Input },
+				template: `
+                    <Field>
+                        <Input />
+                        <FieldDescription>Hint</FieldDescription>
+                        <FieldError>Required</FieldError>
+                    </Field>
+                `,
+			});
+			const describedBy = wrapper.find("input").attributes("aria-describedby");
+			const descId = wrapper.find("[id$='-description']").attributes("id");
+			expect(describedBy).toBe(descId);
+		});
+
+		it("describes by BOTH description and error when invalid, description first", () => {
+			const wrapper = mount({
+				components: { Field, FieldDescription, FieldError, Input },
+				template: `
+                    <Field :invalid="true">
+                        <Input />
+                        <FieldDescription>Hint</FieldDescription>
+                        <FieldError>Required</FieldError>
+                    </Field>
+                `,
+			});
+			const describedBy = wrapper.find("input").attributes("aria-describedby");
+			const descId = wrapper.find("[id$='-description']").attributes("id");
+			const errId = wrapper.find("[role='alert']").attributes("id");
+			// matches Field's describedById: `${descriptionId} ${errorId}` when invalid
+			expect(describedBy).toBe(`${descId} ${errId}`);
+		});
+	});
+
+	describe("disabled state cascade", () => {
+		it("cascades disabled to the control", () => {
+			const wrapper = mount({
+				components: { Field, Input },
+				template: `<Field :disabled="true"><Input /></Field>`,
+			});
+			// Input inherits the field's disabled state.
+			expect(wrapper.find("input").attributes("disabled")).toBeDefined();
+		});
+
+		it("marks the group with data-disabled when disabled", () => {
+			const wrapper = mount({
+				components: { Field, Input },
+				template: `<Field :disabled="true"><Input /></Field>`,
+			});
+			expect(
+				wrapper.find("[role='group']").attributes("data-disabled"),
+			).toBe("true");
+		});
+	});
+
+	describe("identity", () => {
+		it("renders the root as a group", () => {
+			const wrapper = mount({
+				components: { Field, Input },
+				template: `<Field><Input /></Field>`,
+			});
+			expect(wrapper.find("div").attributes("role")).toBe("group");
+		});
+
+		it("gives separate Field instances unique ids", () => {
+			const wrapper = mount({
+				components: { Field, Input },
+				template: `
+                    <div>
+                        <Field><Input /></Field>
+                        <Field><Input /></Field>
+                    </div>
+                `,
+			});
+			const [a, b] = wrapper.findAll("input").map((i) => i.attributes("id"));
+			expect(a).toBeTruthy();
+			expect(b).toBeTruthy();
+			expect(a).not.toBe(b);
+		});
+	});
 });

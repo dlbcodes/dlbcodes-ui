@@ -1,5 +1,3 @@
-/* ── Tailwind (preflight skipped — re-applied scoped to demos in
-   demo-preview.css — so it doesn't reset VitePress's chrome) ── */
 @import "tailwindcss/theme.css" layer(theme);
 @import "tailwindcss/utilities.css";
 @import "../../../lib/styles/tokens.css";
@@ -105,4 +103,71 @@
 
 .vp-doc tr:nth-child(2n) {
     background-color: transparent;
+}
+
+.vp-doc
+    .ds-preview__demo
+    :where(p, summary, li, h1, h2, h3, h4, h5, h6, ul, ol, a) {
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: revert !important;
+    text-decoration: revert !important;
+}
+.vp-doc .ds-preview__demo :where(input, textarea, select, button) {
+    font-family: inherit !important;
+}
+
+/* Let component text color utilities beat .vp-doc p inside demos. */
+.vp-doc .ds-preview__demo .text-danger-text {
+    color: var(--color-danger-text) !important;
+}
+.vp-doc .ds-preview__demo .text-text-secondary {
+    color: var(--color-text-secondary) !important;
+}
+.vp-doc .ds-preview__demo .text-text-primary {
+    color: var(--color-text-primary) !important;
+}
+.vp-doc .ds-preview__demo .text-text-tertiary {
+    color: var(--color-text-tertiary) !important;
+}
+
+@layer vp-reset, theme, base, components, utilities;
+
+/* then later */
+@layer vp-reset {
+    .vp-doc
+        .ds-preview__demo
+        :where(
+            p,
+            summary,
+            li,
+            a,
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6,
+            ul,
+            ol,
+            blockquote,
+            strong,
+            em,
+            hr,
+            table,
+            th,
+            td,
+            figure
+        ) {
+        margin: revert;
+        padding: revert;
+        color: revert !important;
+        line-height: revert;
+        font: revert;
+        text-decoration: revert;
+    }
+
+    .vp-doc .ds-preview__demo :where(input, textarea, select, button) {
+        font: revert;
+    }
 }

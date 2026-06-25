@@ -6,5 +6,7 @@ const value = ref("");
 </script>
 
 <template>
-    <Textarea v-model="value" placeholder="Write a message…" class="max-w-md" />
+    <div class="w-full max-w-md">
+        <Textarea v-model="value" placeholder="Write a message…" />
+    </div>
 </template>
