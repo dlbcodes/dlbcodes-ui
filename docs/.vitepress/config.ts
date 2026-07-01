@@ -3,11 +3,6 @@ import tailwindcss from "@tailwindcss/vite";
 import { containerPreview, componentPreview } from "@vitepress-demo-preview/plugin";
 import { fileURLToPath, URL } from "node:url";
 
-const isProd = process.env.NODE_ENV === "production";
-const showcaseUrl = isProd
-  ? "https://dlbcodes-ui-showcase.vercel.app/"
-  : "http://localhost:5174";
-
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "My Design System",
@@ -49,8 +44,8 @@ export default defineConfig({
     nav: [
       { text: "Guide", link: "/guide/getting-started" },
       { text: "Components", link: "/components/button" },
-      { text: "Showcase", link: showcaseUrl },
-      { text: "Playground", link: "https://dlbcodes-playground.vercel.app/" },
+      { text: "Showcase", link: "https://assistant.dlbcodes.com/app" },
+      { text: "Playground", link: "https://playground.dlbcodes.com/" },
     ],
 
     sidebar: [

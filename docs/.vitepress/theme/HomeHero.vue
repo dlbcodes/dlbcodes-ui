@@ -5,13 +5,12 @@ import { Button } from "@dlbcodes/my-design-system";
 <template>
     <section class="">
         <div
-            class="mx-auto flex max-w-8xl flex-col items-center gap-5 px-6 py-20 text-center md:py-28"
+            class="mx-auto flex max-w-3xl flex-col items-center gap-5 px-6 py-20 text-center md:py-28"
         >
             <h1
                 class="text-3xl font-semibold tracking-tight text-balance text-text-primary md:text-4xl lg:text-5xl lg:leading-[1.05]"
             >
-                Accessible Vue 3 components you can theme with your own design
-                tokens.
+                A Vue 3 component library you theme with your own tokens
             </h1>
             <p class="max-w-2xl text-lg text-balance text-text-secondary">
                 A composable component library built on Tailwind v4,
