@@ -7,7 +7,7 @@ import {
     FieldDescription,
     FieldError,
     Input,
-} from "@dlbcodes/my-design-system";
+} from "@dlbcodes/ui";
 
 const value = ref("not-an-email");
 </script>

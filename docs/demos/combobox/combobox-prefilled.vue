@@ -6,7 +6,7 @@ import {
     ComboboxContent,
     ComboboxItem,
     ComboboxEmpty,
-} from "@dlbcodes/my-design-system";
+} from "@dlbcodes/ui";
 
 const value = ref("react");
 </script>

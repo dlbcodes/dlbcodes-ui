@@ -11,8 +11,6 @@ There are two layers:
 - **Primitives** — the raw palette (`--color-bg-200`, `--color-text-900`) that
   the semantic tokens reference. Internal; you rarely touch these directly.
 
-Think of it like shadcn: you set the semantic roles, not the raw colors.
-
 ## How to theme
 
 Override the semantic tokens after importing the library's tokens. Set them to
@@ -22,7 +20,7 @@ any color you like — a literal value or one of your own variables:
 
 ```css
 @import "tailwindcss";
-@import "@dlbcodes/my-design-system/tokens.css";
+@import "@dlbcodes/ui/tokens.css";
 
 :root {
     --color-bg-base: oklch(99% 0 0);
@@ -54,15 +52,17 @@ These are the tokens to override.
 
 ### Background
 
-| Token                 | Role                        |
-| --------------------- | --------------------------- |
-| `--color-bg-base`     | Page background             |
-| `--color-bg-surface`  | Cards, panels               |
-| `--color-bg-raised`   | Floating / selected surface |
-| `--color-bg-elevated` | Dropdowns, tooltips         |
-| `--color-bg-subtle`   | Hover states, tags          |
-| `--color-bg-strong`   | Separators, badges          |
-| `--color-bg-inverse`  | Dark surfaces, banners      |
+Surfaces run from the page background up to the brightest floating surface.
+
+| Token                 | Role                       |
+| --------------------- | -------------------------- |
+| `--color-bg-base`     | Page background            |
+| `--color-bg-surface`  | Cards, panels              |
+| `--color-bg-elevated` | Dropdowns, tooltips        |
+| `--color-bg-subtle`   | Hover states, tags         |
+| `--color-bg-raised`   | Brightest floating surface |
+| `--color-bg-strong`   | Separators, badges         |
+| `--color-bg-inverse`  | Dark surfaces, banners     |
 
 ### Border
 
@@ -86,11 +86,11 @@ Each status has a **surface**, **border**, and **text** token:
 
 ## Going further: primitives
 
-Semantic tokens reference an internal palette of primitives — neutral ramps
-(`--color-text-100…900`, `--color-bg-0…900`), brand, accent, and per-status
-scales. You generally don't need these, but if you want to shift the underlying
-palette (so every semantic role that uses a primitive moves together), you can
-override a primitive instead:
+Semantic tokens reference an internal palette of primitives — a neutral text
+ramp (`--color-text-100…900`), a neutral background ramp (`--color-bg-0…900`),
+brand, accent, and per-status scales. You generally don't need these, but if you
+want to shift the underlying palette (so every semantic role that uses a
+primitive moves together), you can override a primitive instead:
 
 <code-block lang="css">
 

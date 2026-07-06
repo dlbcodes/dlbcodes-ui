@@ -7,7 +7,7 @@ import {
     EmptyDescription,
     EmptyContent,
     Button,
-} from "@dlbcodes/my-design-system";
+} from "@dlbcodes/ui";
 import { PhPlus, PhRocket } from "@phosphor-icons/vue";
 </script>
 

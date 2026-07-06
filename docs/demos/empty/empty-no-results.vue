@@ -5,7 +5,7 @@ import {
     EmptyMedia,
     EmptyTitle,
     EmptyDescription,
-} from "@dlbcodes/my-design-system";
+} from "@dlbcodes/ui";
 import { PhMagnifyingGlass } from "@phosphor-icons/vue";
 </script>
 

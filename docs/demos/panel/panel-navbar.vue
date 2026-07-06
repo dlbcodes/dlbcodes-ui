@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Panel, PanelContent, Button } from "@dlbcodes/my-design-system";
+import { Panel, PanelContent, Button } from "@dlbcodes/ui";
 import { PhCube } from "@phosphor-icons/vue";
 </script>
 

@@ -5,7 +5,7 @@ import {
     TabsTrigger,
     TabsPanels,
     TabsContent,
-} from "@dlbcodes/my-design-system";
+} from "@dlbcodes/ui";
 import { PhUser, PhLock, PhBell } from "@phosphor-icons/vue";
 </script>
 

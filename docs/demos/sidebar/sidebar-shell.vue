@@ -8,7 +8,7 @@ import {
     SidebarContent,
     SidebarGroup,
     SidebarItem,
-} from "@dlbcodes/my-design-system";
+} from "@dlbcodes/ui";
 import { PhHouse, PhChartBar, PhGear } from "@phosphor-icons/vue";
 
 const active = ref("dashboard");

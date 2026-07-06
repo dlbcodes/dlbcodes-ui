@@ -14,7 +14,7 @@ import {
     FieldContent,
     Input,
     Textarea,
-} from "@dlbcodes/my-design-system";
+} from "@dlbcodes/ui";
 
 const open = ref(false);
 const name = ref("");

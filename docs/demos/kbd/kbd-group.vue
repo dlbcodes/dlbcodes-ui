@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Kbd, KbdGroup } from "@dlbcodes/my-design-system";
+import { Kbd, KbdGroup } from "@dlbcodes/ui";
 </script>
 
 <template>

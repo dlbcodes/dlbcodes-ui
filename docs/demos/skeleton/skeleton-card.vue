@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Skeleton } from "@dlbcodes/my-design-system";
+import { Skeleton } from "@dlbcodes/ui";
 </script>
 
 <template>

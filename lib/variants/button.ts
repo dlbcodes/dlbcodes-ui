@@ -33,15 +33,14 @@ export const buttonVariants = cva(baseStyles, {
 	variants: {
 		variant: {
 			// Brand-filled primary action.
-			primary: "border border-brand-200 bg-brand-200 text-text-inverse hover:bg-brand-100",
+			primary: "border border-brand-200 bg-brand-200 text-text-inverse hover:brightness-110",
 
 			// Neutral surface action. aria-expanded keeps it "active" while its menu is open.
 			secondary:
 				"border border-border-default bg-bg-base text-text-primary hover:bg-bg-subtle aria-expanded:bg-bg-subtle",
 
 			// Destructive action.
-			destructive:
-				"border border-danger-text bg-danger-text text-text-inverse hover:opacity-90",
+			destructive: "border border-danger-text bg-danger-text text-text-inverse hover:brightness-110",
 
 			// Bordered, transparent fill. Active-while-open via aria-expanded.
 			outline:

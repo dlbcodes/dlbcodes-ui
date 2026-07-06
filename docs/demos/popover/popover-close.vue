@@ -9,7 +9,7 @@ import {
     FieldContent,
     Input,
     Button,
-} from "@dlbcodes/my-design-system";
+} from "@dlbcodes/ui";
 
 const label = ref("Untitled board");
 const draft = ref(label.value);

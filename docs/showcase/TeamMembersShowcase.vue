@@ -8,7 +8,7 @@ import {
     Badge,
     Separator,
     Button,
-} from "@dlbcodes/my-design-system";
+} from "@dlbcodes/ui";
 import { PhDotsThree, PhPlus } from "@phosphor-icons/vue";
 
 const members = [

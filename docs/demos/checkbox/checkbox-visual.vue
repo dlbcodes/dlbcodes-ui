@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Checkbox } from "@dlbcodes/my-design-system";
+import { Checkbox } from "@dlbcodes/ui";
 </script>
 
 <template>

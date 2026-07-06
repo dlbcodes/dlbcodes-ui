@@ -1,6 +1,4 @@
-# @dlbcodes/my-design-system
-
-> ⚠️ Early alpha (`0.x`) — the API may change between releases.
+# @dlbcodes/ui
 
 A personal, reusable component library for Vue 3 — tokenized, accessible, and built to be composed.
 
@@ -23,7 +21,7 @@ monolithic components with dozens of props.
 ## Installation
 
 ```bash
-npm install @dlbcodes/my-design-system
+npm install @dlbcodes/ui
 ```
 
 Peer dependencies:
@@ -39,15 +37,15 @@ the component classes:
 
 ```css
 @import "tailwindcss";
-@import "@dlbcodes/my-design-system/tokens.css";
-@source "../node_modules/@dlbcodes/my-design-system/dist";
+@import "@dlbcodes/ui/tokens.css";
+@source "../node_modules/@dlbcodes/ui/dist";
 ```
 
 ## Usage
 
 ```vue
 <script setup lang="ts">
-import { Button } from "@dlbcodes/my-design-system";
+import { Button } from "@dlbcodes/ui";
 </script>
 
 <template>
@@ -63,6 +61,10 @@ import { Button } from "@dlbcodes/my-design-system";
   per component.
 - **Composable** — small parts that combine, over large components with many props.
 
+## Documentation
+
+Full component docs and live examples: [ui.dlbcodes.com](https://ui.dlbcodes.com)
+
 ## License
 
-MIT © Daniel L.
+MIT © Daniel Lobo

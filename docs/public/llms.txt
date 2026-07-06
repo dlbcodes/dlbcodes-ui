@@ -1,60 +1,60 @@
-# @dlbcodes/my-design-system
+# @dlbcodes/ui
 
 > An accessible, tokenized Vue 3 component library built on Tailwind CSS v4,
 > class-variance-authority, and Headless UI. Components are compound and
 > composable (Trigger/Content patterns), themed entirely through semantic
-> design tokens. Published on npm as @dlbcodes/my-design-system.
+> design tokens. Published on npm as @dlbcodes/ui.
 
 ## Getting Started
 
-- [Getting Started](https://my-design-system-beta.vercel.app/guide/getting-started): Install, Tailwind v4 setup, and first usage.
-- [Theming](https://my-design-system-beta.vercel.app/guide/theming): Override semantic tokens to retheme the whole system.
+- [Getting Started](https://ui.dlbcodes.com/guide/getting-started): Install, Tailwind v4 setup, and first usage.
+- [Theming](https://ui.dlbcodes.com/guide/theming): Override semantic tokens to retheme the whole system.
 
 ## Installation
 
-Install: `npm install @dlbcodes/my-design-system`
+Install: `npm install @dlbcodes/ui`
 Peer deps: `npm install vue vue-router`
 
 Tailwind v4 setup (in your main CSS):
 @import "tailwindcss";
-@import "@dlbcodes/my-design-system/tokens.css";
-@source "../node_modules/@dlbcodes/my-design-system/dist";
+@import "@dlbcodes/ui/tokens.css";
+@source "../node_modules/@dlbcodes/ui/dist";
 
 ## Components
 
 ### Primitives
 
-- [Button](https://my-design-system-beta.vercel.app/components/button): Button with variants (primary, secondary, destructive, outline, ghost, link) and sizes (sm, base, lg, xl, icon, icon-sm). Supports loading, disabled, and rendering as a link via `to`/`as`.
-- [Badge](https://my-design-system-beta.vercel.app/components/badge): Status/label badge with variants.
-- [Avatar](https://my-design-system-beta.vercel.app/components/avatar): User avatar with name/src, sizes sm/base/lg.
-- [Spinner](https://my-design-system-beta.vercel.app/components/spinner): Loading spinner.
-- [Kbd](https://my-design-system-beta.vercel.app/components/kbd): Keyboard shortcut display (Kbd, KbdGroup).
-- [Label](https://my-design-system-beta.vercel.app/components/label): Form label.
-- [Separator](https://my-design-system-beta.vercel.app/components/separator): Visual divider.
-- [Skeleton](https://my-design-system-beta.vercel.app/components/skeleton): Loading placeholder.
-- [Progress](https://my-design-system-beta.vercel.app/components/progress): Progress bar.
-- [Alert](https://my-design-system-beta.vercel.app/components/alert): Message/notification callout (Alert, AlertTitle, AlertDescription).
-- [Tabs](https://my-design-system-beta.vercel.app/components/tabs): Tabbed interface (Tabs, TabsList, TabsTrigger, TabsPanels, TabsContent); Headless UI, position-paired.
-- [Disclosure](https://my-design-system-beta.vercel.app/components/disclosure): Collapsible section (Disclosure, DisclosureTrigger, DisclosureContent).
-- [Empty](https://my-design-system-beta.vercel.app/components/empty): Empty-state placeholder (Empty, EmptyHeader, EmptyMedia, EmptyTitle, EmptyDescription, EmptyContent). EmptyMedia has variant "default" | "icon".
-- [Sidebar](https://my-design-system-beta.vercel.app/components/sidebar): Responsive app navigation (SidebarProvider, Sidebar, SidebarTrigger, SidebarHeader, SidebarContent, SidebarFooter, SidebarGroup, SidebarItem). Inline panel on desktop (collapsible to hidden via SidebarTrigger), overlay drawer on mobile (<768px). SidebarProvider is required; useSidebar() exposes { collapsed, isMobile, open, close, toggle }. SidebarItem is framework-agnostic via an `as` prop ("a", RouterLink, NuxtLink, "button") with consumer-controlled `active`, and supports `disabled`.
-- [Panel](https://my-design-system-beta.vercel.app/components/panel): Surface container for grouping content (cards, sidebars, sections); compound parts PanelHeader, PanelContent, PanelFooter with concentric corner radii.
+- [Button](https://ui.dlbcodes.com/components/button): Button with variants (primary, secondary, destructive, outline, ghost, link) and sizes (sm, base, lg, xl, icon, icon-sm). Supports loading, disabled, and rendering as a link via `to`/`as`.
+- [Badge](https://ui.dlbcodes.com/components/badge): Status/label badge with variants.
+- [Avatar](https://ui.dlbcodes.com/components/avatar): User avatar with name/src, sizes sm/base/lg.
+- [Spinner](https://ui.dlbcodes.com/components/spinner): Loading spinner.
+- [Kbd](https://ui.dlbcodes.com/components/kbd): Keyboard shortcut display (Kbd, KbdGroup).
+- [Label](https://ui.dlbcodes.com/components/label): Form label.
+- [Separator](https://ui.dlbcodes.com/components/separator): Visual divider.
+- [Skeleton](https://ui.dlbcodes.com/components/skeleton): Loading placeholder.
+- [Progress](https://ui.dlbcodes.com/components/progress): Progress bar.
+- [Alert](https://ui.dlbcodes.com/components/alert): Message/notification callout (Alert, AlertTitle, AlertDescription).
+- [Tabs](https://ui.dlbcodes.com/components/tabs): Tabbed interface (Tabs, TabsList, TabsTrigger, TabsPanels, TabsContent); Headless UI, position-paired.
+- [Disclosure](https://ui.dlbcodes.com/components/disclosure): Collapsible section (Disclosure, DisclosureTrigger, DisclosureContent).
+- [Empty](https://ui.dlbcodes.com/components/empty): Empty-state placeholder (Empty, EmptyHeader, EmptyMedia, EmptyTitle, EmptyDescription, EmptyContent). EmptyMedia has variant "default" | "icon".
+- [Sidebar](https://ui.dlbcodes.com/components/sidebar): Responsive app navigation (SidebarProvider, Sidebar, SidebarTrigger, SidebarHeader, SidebarContent, SidebarFooter, SidebarGroup, SidebarItem). Inline panel on desktop (collapsible to hidden via SidebarTrigger), overlay drawer on mobile (<768px). SidebarProvider is required; useSidebar() exposes { collapsed, isMobile, open, close, toggle }. SidebarItem is framework-agnostic via an `as` prop ("a", RouterLink, NuxtLink, "button") with consumer-controlled `active`, and supports `disabled`.
+- [Panel](https://ui.dlbcodes.com/components/panel): Surface container for grouping content (cards, sidebars, sections); compound parts PanelHeader, PanelContent, PanelFooter with concentric corner radii.
 
 ### Form
 
-- [Field](https://my-design-system-beta.vercel.app/components/field): Wires label/description/error and ARIA for a control (Field, FieldLabel, FieldContent, FieldDescription, FieldError). Generates a shared id and cascades disabled/required/invalid. Supports orientation="horizontal" for toggle rows.
-- [Input](https://my-design-system-beta.vercel.app/components/input): Text input. Variants primary | contrast.
-- [Textarea](https://my-design-system-beta.vercel.app/components/textarea): Multi-line text input (autosize).
-- [Checkbox](https://my-design-system-beta.vercel.app/components/checkbox): Checkbox input.
-- [Switch](https://my-design-system-beta.vercel.app/components/switch): Toggle switch.
-- [Select](https://my-design-system-beta.vercel.app/components/select): Single-select dropdown (Select, SelectTrigger, SelectContent, SelectSearch, SelectItem). Item label is slot content; optional `searchable`.
-- [MultiSelect](https://my-design-system-beta.vercel.app/components/multiselect): Multi-select with summary (MultiSelect, MultiSelectTrigger, MultiSelectContent, MultiSelectItem, MultiSelectSearch). Root exposes slot props (label, count, empty, allSelected, toggleAll, clear).
-- [Dropdown](https://my-design-system-beta.vercel.app/components/dropdown): Action menu (Dropdown, DropdownTrigger, DropdownContent, DropdownItem).
+- [Field](https://ui.dlbcodes.com/components/field): Wires label/description/error and ARIA for a control (Field, FieldLabel, FieldContent, FieldDescription, FieldError). Generates a shared id and cascades disabled/required/invalid. Supports orientation="horizontal" for toggle rows.
+- [Input](https://ui.dlbcodes.com/components/input): Text input. Variants primary | contrast.
+- [Textarea](https://ui.dlbcodes.com/components/textarea): Multi-line text input (autosize).
+- [Checkbox](https://ui.dlbcodes.com/components/checkbox): Checkbox input.
+- [Switch](https://ui.dlbcodes.com/components/switch): Toggle switch.
+- [Select](https://ui.dlbcodes.com/components/select): Single-select dropdown (Select, SelectTrigger, SelectContent, SelectSearch, SelectItem). Item label is slot content; optional `searchable`.
+- [MultiSelect](https://ui.dlbcodes.com/components/multiselect): Multi-select with summary (MultiSelect, MultiSelectTrigger, MultiSelectContent, MultiSelectItem, MultiSelectSearch). Root exposes slot props (label, count, empty, allSelected, toggleAll, clear).
+- [Dropdown](https://ui.dlbcodes.com/components/dropdown): Action menu (Dropdown, DropdownTrigger, DropdownContent, DropdownItem).
 
 ### Overlays
 
-- [Modal](https://my-design-system-beta.vercel.app/components/modal): Dialog with v-model open state (Modal, ModalHeader, ModalTitle, ModalDescription, ModalContent, ModalFooter, ModalClose). Teleports to body.
-- [Popover](https://my-design-system-beta.vercel.app/components/popover): Floating panel (Popover, PopoverTrigger, PopoverContent). PopoverContent exposes `close` via its default slot.
+- [Modal](https://ui.dlbcodes.com/components/modal): Dialog with v-model open state (Modal, ModalHeader, ModalTitle, ModalDescription, ModalContent, ModalFooter, ModalClose). Teleports to body.
+- [Popover](https://ui.dlbcodes.com/components/popover): Floating panel (Popover, PopoverTrigger, PopoverContent). PopoverContent exposes `close` via its default slot.
 
 ## Conventions
 

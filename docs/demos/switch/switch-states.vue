@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { Switch, Label } from "@dlbcodes/my-design-system";
+import { Switch, Label } from "@dlbcodes/ui";
 
 const a = ref(true);
 const b = ref(false);

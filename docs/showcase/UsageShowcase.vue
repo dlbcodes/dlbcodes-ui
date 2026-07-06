@@ -6,7 +6,7 @@ import {
     Alert,
     AlertTitle,
     AlertDescription,
-} from "@dlbcodes/my-design-system";
+} from "@dlbcodes/ui";
 import { PhWarning } from "@phosphor-icons/vue";
 
 const usage = [

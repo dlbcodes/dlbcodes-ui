@@ -22,7 +22,6 @@ export * from "./variants/button";
 export * from "./variants/badge";
 export * from "./variants/input";
 export * from "./variants/popover";
-// ...other variant files...
 
 // Shared types
 export type { FieldContext } from "./core/field-context";

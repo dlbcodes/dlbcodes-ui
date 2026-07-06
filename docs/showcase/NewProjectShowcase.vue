@@ -15,7 +15,7 @@ import {
     ComboboxItem,
     ComboboxEmpty,
     Button,
-} from "@dlbcodes/my-design-system";
+} from "@dlbcodes/ui";
 
 const name = ref("");
 const visibility = ref("private");

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Button } from "@dlbcodes/my-design-system";
+import { Button } from "@dlbcodes/ui";
 </script>
 
 <template>

@@ -7,7 +7,7 @@ import {
     Input,
     Textarea,
     Button,
-} from "@dlbcodes/my-design-system";
+} from "@dlbcodes/ui";
 import { PhCube } from "@phosphor-icons/vue";
 
 const subject = ref("");

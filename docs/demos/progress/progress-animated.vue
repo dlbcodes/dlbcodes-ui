@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from "vue";
-import { Progress, Button } from "@dlbcodes/my-design-system";
+import { Progress, Button } from "@dlbcodes/ui";
 
 const value = ref(10);
 let timer: ReturnType<typeof setInterval> | undefined;

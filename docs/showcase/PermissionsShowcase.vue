@@ -5,7 +5,7 @@ import {
     MultiSelectTrigger,
     MultiSelectContent,
     MultiSelectItem,
-} from "@dlbcodes/my-design-system";
+} from "@dlbcodes/ui";
 
 const selected = ref<string[]>(["read", "write"]);
 

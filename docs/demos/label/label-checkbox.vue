@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { Label, Checkbox } from "@dlbcodes/my-design-system";
+import { Label, Checkbox } from "@dlbcodes/ui";
 
 const checked = ref(false);
 </script>

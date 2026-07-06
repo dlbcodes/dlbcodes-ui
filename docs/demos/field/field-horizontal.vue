@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { Field, FieldLabel, Switch } from "@dlbcodes/my-design-system";
+import { Field, FieldLabel, Switch } from "@dlbcodes/ui";
 
 const on = ref(false);
 </script>

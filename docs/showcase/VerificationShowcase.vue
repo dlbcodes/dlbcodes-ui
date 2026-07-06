@@ -7,7 +7,7 @@ import {
     FieldDescription,
     Input,
     Button,
-} from "@dlbcodes/my-design-system";
+} from "@dlbcodes/ui";
 
 const phone = ref("");
 const code = ref("");

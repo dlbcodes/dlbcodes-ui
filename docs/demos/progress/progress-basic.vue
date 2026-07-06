@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Progress } from "@dlbcodes/my-design-system";
+import { Progress } from "@dlbcodes/ui";
 </script>
 
 <template>

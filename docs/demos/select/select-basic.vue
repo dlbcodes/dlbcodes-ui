@@ -1,11 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import {
-    Select,
-    SelectTrigger,
-    SelectContent,
-    SelectItem,
-} from "@dlbcodes/my-design-system";
+import { Select, SelectTrigger, SelectContent, SelectItem } from "@dlbcodes/ui";
 
 // Nothing selected yet — the trigger shows its placeholder.
 const value = ref("");

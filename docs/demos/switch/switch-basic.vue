@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { Switch } from "@dlbcodes/my-design-system";
+import { Switch } from "@dlbcodes/ui";
 
 const on = ref(false);
 </script>

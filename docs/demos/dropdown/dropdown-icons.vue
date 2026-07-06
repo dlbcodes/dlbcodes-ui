@@ -5,7 +5,7 @@ import {
     DropdownContent,
     DropdownItem,
     Button,
-} from "@dlbcodes/my-design-system";
+} from "@dlbcodes/ui";
 import {
     PhPencilSimple,
     PhCopy,

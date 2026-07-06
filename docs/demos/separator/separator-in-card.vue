@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Separator, Button } from "@dlbcodes/my-design-system";
+import { Separator, Button } from "@dlbcodes/ui";
 </script>
 
 <template>

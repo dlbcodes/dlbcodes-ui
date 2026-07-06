@@ -1,6 +1,6 @@
 # Getting Started
 
-`@dlbcodes/my-design-system` is an accessible, tokenized Vue 3 component
+`@dlbcodes/ui` is an accessible, tokenized Vue 3 component
 library. It ships its components and design tokens for your own Tailwind v4
 build to consume — so the styling stays yours to theme.
 
@@ -26,7 +26,7 @@ Install the package:
 <code-block lang="bash">
 
 ```bash
-npm install @dlbcodes/my-design-system
+npm install @dlbcodes/ui
 ```
 
 </code-block>
@@ -53,8 +53,8 @@ scan the component classes. In your main CSS file, add three lines:
 
 ```css
 @import "tailwindcss";
-@import "@dlbcodes/my-design-system/tokens.css";
-@source "../node_modules/@dlbcodes/my-design-system/dist";
+@import "@dlbcodes/ui/tokens.css";
+@source "../node_modules/@dlbcodes/ui/dist";
 ```
 
 </code-block>
@@ -62,7 +62,7 @@ scan the component classes. In your main CSS file, add three lines:
 What each line does:
 
 - `@import "tailwindcss"` — Tailwind itself (you likely already have this).
-- `@import "@dlbcodes/my-design-system/tokens.css"` — the design tokens (colors,
+- `@import "@dlbcodes/ui/tokens.css"` — the design tokens (colors,
   surfaces, spacing) the components reference. Override these to theme the system.
 - `@source "..."` — tells Tailwind to scan the library's built files so the
   utility classes the components use are generated in your build.
@@ -78,7 +78,7 @@ Import components by name and use them in your templates:
 
 ```vue
 <script setup lang="ts">
-import { Button } from "@dlbcodes/my-design-system";
+import { Button } from "@dlbcodes/ui";
 </script>
 
 <template>
@@ -95,12 +95,7 @@ than configuring one big component:
 
 ```vue
 <script setup lang="ts">
-import {
-    Field,
-    FieldLabel,
-    FieldContent,
-    Input,
-} from "@dlbcodes/my-design-system";
+import { Field, FieldLabel, FieldContent, Input } from "@dlbcodes/ui";
 </script>
 
 <template>
@@ -124,7 +119,7 @@ relevant CSS variables after importing the tokens:
 <code-block lang="css">
 
 ```css
-@import "@dlbcodes/my-design-system/tokens.css";
+@import "@dlbcodes/ui/tokens.css";
 
 :root {
     /* override a token to retheme everywhere it's used */
@@ -139,4 +134,4 @@ relevant CSS variables after importing the tokens:
 Browse the [components](/components/button) to see what's available, each with
 live examples and props.
 
-> This library is in early alpha (`0.x`) — the API may change between releases.
+> This library is in early alpha (`0.x`)

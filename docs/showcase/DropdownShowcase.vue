@@ -7,7 +7,7 @@ import {
     Separator,
     Button,
     Avatar,
-} from "@dlbcodes/my-design-system";
+} from "@dlbcodes/ui";
 import {
     PhDotsThree,
     PhPencilSimple,

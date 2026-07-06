@@ -1,11 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import {
-    Tabs,
-    TabsList,
-    TabsTrigger,
-    TabsContent,
-} from "@dlbcodes/my-design-system";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@dlbcodes/ui";
 
 const tab = ref("overview");
 </script>

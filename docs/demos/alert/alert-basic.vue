@@ -1,9 +1,5 @@
 <script setup lang="ts">
-import {
-    Alert,
-    AlertTitle,
-    AlertDescription,
-} from "@dlbcodes/my-design-system";
+import { Alert, AlertTitle, AlertDescription } from "@dlbcodes/ui";
 </script>
 
 <template>

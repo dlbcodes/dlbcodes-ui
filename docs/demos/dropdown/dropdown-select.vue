@@ -6,7 +6,7 @@ import {
     DropdownContent,
     DropdownItem,
     Button,
-} from "@dlbcodes/my-design-system";
+} from "@dlbcodes/ui";
 import { PhCaretDown, PhCheck } from "@phosphor-icons/vue";
 
 const options = ["Newest", "Oldest", "Most popular"] as const;

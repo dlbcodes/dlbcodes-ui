@@ -9,7 +9,7 @@ import {
     SidebarGroup,
     SidebarItem,
     Avatar,
-} from "@dlbcodes/my-design-system";
+} from "@dlbcodes/ui";
 import {
     PhHouse,
     PhChartBar,

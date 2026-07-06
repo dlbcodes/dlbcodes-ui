@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Kbd } from "@dlbcodes/my-design-system";
+import { Kbd } from "@dlbcodes/ui";
 
 const shortcuts = [
     { keys: ["⌘", "K"], action: "Open command menu" },

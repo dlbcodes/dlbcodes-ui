@@ -1,10 +1,5 @@
 <script setup lang="ts">
-import {
-    Alert,
-    AlertTitle,
-    AlertDescription,
-    Button,
-} from "@dlbcodes/my-design-system";
+import { Alert, AlertTitle, AlertDescription, Button } from "@dlbcodes/ui";
 import { PhSealWarning } from "@phosphor-icons/vue";
 </script>
 

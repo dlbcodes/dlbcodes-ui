@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Avatar } from "@dlbcodes/my-design-system";
+import { Avatar } from "@dlbcodes/ui";
 </script>
 
 <template>

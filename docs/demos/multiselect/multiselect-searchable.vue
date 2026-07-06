@@ -6,7 +6,7 @@ import {
     MultiSelectContent,
     MultiSelectItem,
     MultiSelectSearch,
-} from "@dlbcodes/my-design-system";
+} from "@dlbcodes/ui";
 
 const selected = ref<string[]>(["us"]);
 const options = [

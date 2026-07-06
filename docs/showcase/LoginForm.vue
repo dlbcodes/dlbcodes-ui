@@ -9,7 +9,7 @@ import {
     Checkbox,
     Label,
     Separator,
-} from "@dlbcodes/my-design-system";
+} from "@dlbcodes/ui";
 import { PhGoogleLogo, PhGithubLogo } from "@phosphor-icons/vue";
 
 // Local state only — this is a static showcase, nothing navigates or submits.

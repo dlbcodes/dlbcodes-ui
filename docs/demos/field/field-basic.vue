@@ -6,7 +6,7 @@ import {
     FieldContent,
     FieldDescription,
     Input,
-} from "@dlbcodes/my-design-system";
+} from "@dlbcodes/ui";
 
 const email = ref("");
 </script>

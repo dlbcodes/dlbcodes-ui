@@ -5,7 +5,7 @@ import {
     EmptyMedia,
     EmptyTitle,
     EmptyDescription,
-} from "@dlbcodes/my-design-system";
+} from "@dlbcodes/ui";
 import { PhTray } from "@phosphor-icons/vue";
 </script>
 

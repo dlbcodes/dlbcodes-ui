@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Badge } from "@dlbcodes/my-design-system";
+import { Badge } from "@dlbcodes/ui";
 </script>
 
 <template>

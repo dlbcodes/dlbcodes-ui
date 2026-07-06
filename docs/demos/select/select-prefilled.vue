@@ -1,11 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import {
-    Select,
-    SelectTrigger,
-    SelectContent,
-    SelectItem,
-} from "@dlbcodes/my-design-system";
+import { Select, SelectTrigger, SelectContent, SelectItem } from "@dlbcodes/ui";
 
 // Bound to a value before the user opens the select. Because each item carries
 // its `label`, the trigger resolves "React" on load — no opening required.

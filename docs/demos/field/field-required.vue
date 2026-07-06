@@ -1,11 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import {
-    Field,
-    FieldLabel,
-    FieldContent,
-    Input,
-} from "@dlbcodes/my-design-system";
+import { Field, FieldLabel, FieldContent, Input } from "@dlbcodes/ui";
 
 const name = ref("");
 </script>

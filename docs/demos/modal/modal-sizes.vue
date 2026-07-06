@@ -9,7 +9,7 @@ import {
     ModalFooter,
     ModalClose,
     Button,
-} from "@dlbcodes/my-design-system";
+} from "@dlbcodes/ui";
 
 type Demo = "sm" | "lg" | "2xl";
 const active = ref<Demo | null>(null);

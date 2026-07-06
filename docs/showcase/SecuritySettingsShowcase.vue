@@ -9,7 +9,7 @@ import {
     Disclosure,
     DisclosureTrigger,
     DisclosureContent,
-} from "@dlbcodes/my-design-system";
+} from "@dlbcodes/ui";
 
 const twoFactor = ref(true);
 const sessionAlerts = ref(false);

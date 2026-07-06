@@ -5,7 +5,7 @@ import { fileURLToPath, URL } from "node:url";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "My Design System",
+  title: "@dlbcodes/ui",
   description: "A Vue 3 component library",
   appearance: false,
   cleanUrls: true,
@@ -21,11 +21,10 @@ export default defineConfig({
     },
     resolve: {
       alias: {
-        "@dlbcodes/my-design-system": fileURLToPath(
+        "@dlbcodes/ui": fileURLToPath(
           new URL("../../lib/index.ts", import.meta.url),
         ),
-        // If you also import the tokens CSS by package path:
-        "@dlbcodes/my-design-system/tokens.css": fileURLToPath(
+        "@dlbcodes/ui/tokens.css": fileURLToPath(
           new URL("../../lib/styles/tokens.css", import.meta.url),
         ),
       },

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Alert, AlertDescription } from "@dlbcodes/my-design-system";
+import { Alert, AlertDescription } from "@dlbcodes/ui";
 import { PhInfo } from "@phosphor-icons/vue";
 </script>
 

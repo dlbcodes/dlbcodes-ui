@@ -8,7 +8,7 @@ import {
     Separator,
     Button,
     Badge,
-} from "@dlbcodes/my-design-system";
+} from "@dlbcodes/ui";
 import {
     PhUser,
     PhGear,

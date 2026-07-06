@@ -14,11 +14,10 @@ export default defineConfig({
   build: {
     lib: {
       entry: resolve(__dirname, "lib/index.ts"),
-      name: "YourDesignSystem",
+      name: "DlbcodesUI",
       fileName: "index",
     },
     rollupOptions: {
-      // Don't bundle peer deps into the library:
       external: ["vue", "@headlessui/vue", "@headlessui-float/vue", "@phosphor-icons/vue"],
       output: { globals: { vue: "Vue" } },
     },

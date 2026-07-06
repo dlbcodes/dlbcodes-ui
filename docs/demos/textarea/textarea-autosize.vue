@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { Textarea } from "@dlbcodes/my-design-system";
+import { Textarea } from "@dlbcodes/ui";
 const value = ref("");
 </script>
 <template>

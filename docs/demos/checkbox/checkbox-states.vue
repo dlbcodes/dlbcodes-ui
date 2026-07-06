@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { Checkbox, Label, Field, FieldLabel } from "@dlbcodes/my-design-system";
+import { Checkbox, Label, Field, FieldLabel } from "@dlbcodes/ui";
 
 const a = ref(true);
 const b = ref(false);

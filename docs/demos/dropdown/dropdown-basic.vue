@@ -6,7 +6,7 @@ import {
     DropdownItem,
     Avatar,
     Separator,
-} from "@dlbcodes/my-design-system";
+} from "@dlbcodes/ui";
 import { PhUser, PhGear, PhCreditCard, PhSignOut } from "@phosphor-icons/vue";
 </script>
 

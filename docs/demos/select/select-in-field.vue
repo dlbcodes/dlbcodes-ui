@@ -9,7 +9,7 @@ import {
     FieldLabel,
     FieldContent,
     FieldDescription,
-} from "@dlbcodes/my-design-system";
+} from "@dlbcodes/ui";
 
 const role = ref("");
 </script>

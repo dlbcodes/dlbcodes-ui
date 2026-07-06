@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { Input } from "@dlbcodes/my-design-system";
+import { Input } from "@dlbcodes/ui";
 
 const a = ref("");
 const b = ref("");

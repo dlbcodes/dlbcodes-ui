@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { Skeleton, Button } from "@dlbcodes/my-design-system";
+import { Skeleton, Button } from "@dlbcodes/ui";
 
 const loading = ref(true);
 </script>

@@ -13,7 +13,7 @@ import {
     FieldLabel,
     FieldContent,
     Input,
-} from "@dlbcodes/my-design-system";
+} from "@dlbcodes/ui";
 
 type CloseReason = "escape" | "backdrop" | "close-button" | "programmatic";
 

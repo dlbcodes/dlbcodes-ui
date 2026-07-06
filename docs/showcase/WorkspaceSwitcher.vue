@@ -20,7 +20,7 @@ import {
     FieldContent,
     Input,
     Button,
-} from "@dlbcodes/my-design-system";
+} from "@dlbcodes/ui";
 import { PhCaretUpDown, PhCheck, PhPlus, PhGear } from "@phosphor-icons/vue";
 
 interface Workspace {

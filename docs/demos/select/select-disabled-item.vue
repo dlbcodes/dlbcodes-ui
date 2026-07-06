@@ -1,11 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import {
-    Select,
-    SelectTrigger,
-    SelectContent,
-    SelectItem,
-} from "@dlbcodes/my-design-system";
+import { Select, SelectTrigger, SelectContent, SelectItem } from "@dlbcodes/ui";
 
 const value = ref("");
 </script>

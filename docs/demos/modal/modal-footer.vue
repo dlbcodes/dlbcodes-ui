@@ -14,7 +14,7 @@ import {
     FieldLabel,
     FieldContent,
     Input,
-} from "@dlbcodes/my-design-system";
+} from "@dlbcodes/ui";
 
 const open = ref(false);
 const workspace = ref("Acme Inc.");

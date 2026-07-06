@@ -1,10 +1,5 @@
 <script setup lang="ts">
-import {
-    Popover,
-    PopoverTrigger,
-    PopoverContent,
-    Button,
-} from "@dlbcodes/my-design-system";
+import { Popover, PopoverTrigger, PopoverContent, Button } from "@dlbcodes/ui";
 
 const placements = [
     { p: "top", label: "Top" },

@@ -7,7 +7,7 @@ import {
     FieldContent,
     FieldDescription,
     FieldError,
-} from "@dlbcodes/my-design-system";
+} from "@dlbcodes/ui";
 
 const feedback = ref("Too short");
 </script>

@@ -1,9 +1,5 @@
 <script setup lang="ts">
-import {
-    Disclosure,
-    DisclosureTrigger,
-    DisclosureContent,
-} from "@dlbcodes/my-design-system";
+import { Disclosure, DisclosureTrigger, DisclosureContent } from "@dlbcodes/ui";
 </script>
 
 <template>

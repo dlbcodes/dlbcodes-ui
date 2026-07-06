@@ -8,7 +8,7 @@ import {
     ModalContent,
     ModalFooter,
     Button,
-} from "@dlbcodes/my-design-system";
+} from "@dlbcodes/ui";
 
 const open = ref(false);
 const accepted = ref(false);

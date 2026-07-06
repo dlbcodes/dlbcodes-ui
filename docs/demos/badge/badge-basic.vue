@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Avatar, Badge, Panel, PanelContent } from "@dlbcodes/my-design-system";
+import { Avatar, Badge, Panel, PanelContent } from "@dlbcodes/ui";
 </script>
 
 <template>

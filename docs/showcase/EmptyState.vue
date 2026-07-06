@@ -19,7 +19,7 @@ import {
     FieldLabel,
     FieldContent,
     Input,
-} from "@dlbcodes/my-design-system";
+} from "@dlbcodes/ui";
 import { PhPlus, PhRocket } from "@phosphor-icons/vue";
 
 const open = ref(false);

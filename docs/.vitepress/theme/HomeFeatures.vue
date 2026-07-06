@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Panel, PanelContent } from "@dlbcodes/my-design-system";
+import { Panel, PanelContent } from "@dlbcodes/ui";
 
 const features = [
     {
