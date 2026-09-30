@@ -62,7 +62,7 @@ const describedById = computed(() => field?.describedById.value);
 // (The bare `rows` attribute gets overridden by the inherited flex layout and,
 // in autosize mode, by the height autosize sets — so we enforce the floor here.)
 const minHeightStyle = computed(() => ({
-    minHeight: `${props.rows * 1.5 + 1}rem`,
+    minHeight: `calc(${props.rows}lh + 1rem)`,
 }));
 
 // Autosize: VueUse sets the element's `height` from its content. Combined with
@@ -109,7 +109,7 @@ const onInput = (event: Event): void => {
     <div :class="wrapperClass" :data-invalid="resolvedInvalid || undefined">
         <span
             v-if="$slots.default"
-            class="flex items-center gap-1 text-text-secondary"
+            class="flex items-center gap-1 text-muted-foreground"
         >
             <slot />
         </span>
@@ -129,7 +129,7 @@ const onInput = (event: Event): void => {
             :data-invalid="resolvedInvalid || undefined"
             :class="
                 cn(
-                    'w-full bg-transparent py-2 text-text-primary/70 outline-none transition-colors group-hover:text-text-primary focus:text-text-primary disabled:cursor-not-allowed',
+                    'w-full bg-transparent py-2 text-foreground/70 outline-none transition-colors group-hover:text-foreground focus:text-foreground disabled:cursor-not-allowed',
                     autosize
                         ? 'resize-none max-h-60 overflow-y-auto scrollbar-thin pr-3.5'
                         : 'resize-none',

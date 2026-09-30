@@ -42,7 +42,7 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: "Guide", link: "/guide/getting-started" },
-      { text: "Components", link: "/components/button" },
+      { text: "Components", link: "/components/alert" },
       { text: "Showcase", link: "https://assistant.dlbcodes.com/app" },
       { text: "Playground", link: "https://playground.dlbcodes.com/" },
     ],
@@ -91,7 +91,7 @@ export default defineConfig({
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/dlbcodes/my-design-system' }
+      { icon: 'github', link: 'https://github.com/dlbcodes/dlbcodes-ui' }
     ]
   }
 })

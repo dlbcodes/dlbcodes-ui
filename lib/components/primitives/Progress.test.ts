@@ -2,85 +2,62 @@ import { describe, it, expect } from "vitest";
 import { mount } from "@vue/test-utils";
 import Progress from "./Progress.vue";
 
-// Helper: read the indicator's transform style.
-const indicatorTransform = (wrapper: ReturnType<typeof mount>): string => {
-	// the inner indicator div is the second div (or the child of the track)
-	const indicator = wrapper.findAll("div")[1];
-	return indicator.attributes("style") ?? "";
-};
+// The fill is the track's only child.
+const fill = (wrapper: ReturnType<typeof mount>) => wrapper.findAll("div")[1];
 
 describe("Progress", () => {
-	it("renders with progressbar role and aria range", () => {
+	it("exposes the progressbar role and aria range", () => {
 		const wrapper = mount(Progress, { props: { value: 50 } });
 		const track = wrapper.find('[role="progressbar"]');
-		expect(track.exists()).toBe(true);
 		expect(track.attributes("aria-valuemin")).toBe("0");
 		expect(track.attributes("aria-valuemax")).toBe("100");
 		expect(track.attributes("aria-valuenow")).toBe("50");
 	});
 
-	it("translates the indicator to reflect the value", () => {
-		const wrapper = mount(Progress, { props: { value: 25 } });
-		// 25% → translateX(-75%)
-		expect(indicatorTransform(wrapper)).toContain("translateX(-75%)");
-	});
-
-	it("shows a full bar at 100%", () => {
-		const wrapper = mount(Progress, { props: { value: 100 } });
-		expect(indicatorTransform(wrapper)).toContain("translateX(-0%)");
-	});
-
-	it("shows an empty bar at 0%", () => {
-		const wrapper = mount(Progress, { props: { value: 0 } });
-		expect(indicatorTransform(wrapper)).toContain("translateX(-100%)");
-	});
-
-	// --- custom max ---
-	it("computes the percentage against a custom max", () => {
+	it("reflects a custom max in the aria attributes", () => {
 		const wrapper = mount(Progress, { props: { value: 3, max: 5 } });
-		// 3/5 = 60% → translateX(-40%)
-		expect(indicatorTransform(wrapper)).toContain("translateX(-40%)");
-		// and aria reflects the custom max
 		const track = wrapper.find('[role="progressbar"]');
 		expect(track.attributes("aria-valuemax")).toBe("5");
 		expect(track.attributes("aria-valuenow")).toBe("3");
 	});
 
-	// --- clamping ---
-	it("clamps a value above max to 100%", () => {
-		const wrapper = mount(Progress, { props: { value: 150, max: 100 } });
-		expect(indicatorTransform(wrapper)).toContain("translateX(-0%)");
+	// value, max, expected translateX (100% - percent), including clamping
+	it.each([
+		[0, 100, "-100%"],
+		[25, 100, "-75%"],
+		[100, 100, "-0%"],
+		[3, 5, "-40%"],
+		[150, 100, "-0%"], // above max clamps to full
+		[-20, 100, "-100%"], // negative clamps to empty
+	])("value %s of %s translates the fill by %s", (value, max, expected) => {
+		const wrapper = mount(Progress, { props: { value, max } });
+		expect(fill(wrapper).attributes("style")).toContain(
+			`translateX(${expected})`,
+		);
 	});
 
-	it("clamps a negative value to 0%", () => {
-		const wrapper = mount(Progress, { props: { value: -20 } });
-		expect(indicatorTransform(wrapper)).toContain("translateX(-100%)");
-	});
-
-	// --- indeterminate (no value) ---
-	it("renders empty with no aria-valuenow when value is omitted", () => {
+	it("is indeterminate when value is omitted", () => {
 		const wrapper = mount(Progress);
-		const track = wrapper.find('[role="progressbar"]');
-		// no value → aria-valuenow absent
-		expect(track.attributes("aria-valuenow")).toBeUndefined();
-		// bar shows empty
-		expect(indicatorTransform(wrapper)).toContain("translateX(-100%)");
+		expect(
+			wrapper.find('[role="progressbar"]').attributes("aria-valuenow"),
+		).toBeUndefined();
+		// no width-based fill: the bar animates instead
+		expect(fill(wrapper).attributes("style")).toBeUndefined();
+		expect(fill(wrapper).classes()).toContain("animate-progress-indeterminate");
 	});
 
-	// --- updates reactively ---
 	it("updates the fill when the value changes", async () => {
 		const wrapper = mount(Progress, { props: { value: 20 } });
-		expect(indicatorTransform(wrapper)).toContain("translateX(-80%)");
+		expect(fill(wrapper).attributes("style")).toContain("translateX(-80%)");
 
 		await wrapper.setProps({ value: 70 });
-		expect(indicatorTransform(wrapper)).toContain("translateX(-30%)");
+		expect(fill(wrapper).attributes("style")).toContain("translateX(-30%)");
 	});
 
-	it("merges a custom class onto the track", () => {
+	it("merges a custom class with the base classes", () => {
 		const wrapper = mount(Progress, { props: { value: 50, class: "h-2" } });
-		const track = wrapper.find('[role="progressbar"]');
-		expect(track.classes()).toContain("h-2");
-		// base class still present
-		expect(track.classes()).toContain("rounded-full");
+		const classes = wrapper.find('[role="progressbar"]').classes();
+		expect(classes).toContain("h-2");
+		expect(classes).toContain("w-full");
 	});
 });

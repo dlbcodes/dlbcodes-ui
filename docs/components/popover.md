@@ -9,7 +9,7 @@ Popover is a **compound component**: you compose three parts.
 ## Anatomy
 
 ```
-Popover ← the root; controls placement and offset
+Popover          ← the root; controls placement and offset
 ├── PopoverTrigger ← the clickable element that opens it
 └── PopoverContent ← the floating panel (controls its own size)
 ```
@@ -45,6 +45,13 @@ natural home for small inline edits.
 content), `full`, or a fixed step (`3xs` through `lg`). Unlike a select menu, a
 popover isn't matched to the trigger's width; it's sized for its content.
 
+## Appearance
+
+The panel uses the theme's `--popover` surface with a `--border` outline and a
+shadow, and its corners follow `--radius`. It shares this look with Dropdown and
+Modal, so floating surfaces match, including in dark mode. See
+[Theming](/theming).
+
 ## Props
 
 ### Popover
@@ -69,7 +76,7 @@ The element that opens the panel. It has two modes:
 ```vue
 <PopoverTrigger as-child>
     <Button variant="outline">Open</Button>
-  </PopoverTrigger>
+</PopoverTrigger>
 ```
 
 Exposes `open` (boolean) via its default slot.
@@ -92,3 +99,5 @@ Exposes `open` (boolean) via its default slot.
   click-outside dismissal, and ARIA wiring are handled for you.
 - The trigger is a real button; the panel is keyboard-navigable and returns focus
   to the trigger on close.
+- The default-mode trigger shows a visible keyboard focus ring in the theme's
+  `--ring` color.

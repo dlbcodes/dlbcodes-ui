@@ -13,12 +13,12 @@ all automatically, so you never manage `id`s or ARIA attributes by hand.
 ## Anatomy
 
 ```
-Field ← provides context; sets orientation and state
-├── FieldLabel ← label; auto-targets the control (shows \* when required)
-└── FieldContent ← groups the control with its messages
-├── (your control) ← Input, Checkbox, Switch… inherits id/state from Field
-├── FieldDescription ← help text; linked via aria-describedby
-└── FieldError ← error message; role="alert", linked when invalid
+Field                    ← provides context; sets orientation and state
+├── FieldLabel           ← label; auto-targets the control (shows * when required)
+└── FieldContent         ← groups the control with its messages
+    ├── (your control)   ← Input, Checkbox, Switch… inherits id/state from Field
+    ├── FieldDescription ← help text; linked via aria-describedby
+    └── FieldError       ← error message; role="alert", linked when invalid
 ```
 
 Put the control inside `FieldContent` alongside its `FieldDescription` and
@@ -33,8 +33,9 @@ generates it and wires the label and description to the input automatically.
 
 ## Required
 
-Set `required` on the `Field` and the label gets a `*` indicator. The state
-cascades to the control too (setting its `aria-required`).
+Set `required` on the `Field` and the label gets a `*` indicator, in the theme's
+`--destructive` color. The state cascades to the control too (setting its
+`aria-required`).
 
 <preview path="../demos/field/field-required.vue" title="Required" description="The required indicator, driven by the field."></preview>
 
@@ -42,7 +43,8 @@ cascades to the control too (setting its `aria-required`).
 
 Set `invalid` and add a `FieldError`. The control gets error styling and
 `aria-invalid`, and its `aria-describedby` now points at both the description and
-the error — so screen readers announce the problem.
+the error — so screen readers announce the problem. The message is shown in the
+`--destructive` color.
 
 <preview path="../demos/field/field-error.vue" title="Error" description="Invalid state with an error message."></preview>
 
@@ -66,7 +68,8 @@ When you wrap a control in a `Field`:
   cascade to the control and the label.
 
 A control still works perfectly **without** a `Field` — it just falls back to its
-own props. `Field` is the convenience layer for the common labelled-control case.
+own props, and generates its own `id` if you don't pass one. `Field` is the
+convenience layer for the common labelled-control case.
 
 ## Props
 
@@ -101,3 +104,6 @@ with the ids the control's `aria-describedby` expects; `FieldError` uses
 - `FieldError` has `role="alert"`, so an error is announced when it appears.
 - State set on the `Field` (`disabled`/`required`/`invalid`) cascades to the
   control, keeping the visual and accessible states in sync.
+- The error and the required marker are red, but they don't rely on color alone:
+  the error is text, and the label carries a `*` and `aria-required` on the
+  control.

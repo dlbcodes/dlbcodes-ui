@@ -59,12 +59,12 @@ when the list is short enough to scan and a filter would be overkill.
 
 ### ComboboxInput
 
-| Prop          | Type                      | Default       | Description                            |
-| ------------- | ------------------------- | ------------- | -------------------------------------- |
-| `placeholder` | `string`                  | `"Search..."` | Shown when nothing is typed/selected.  |
-| `variant`     | `"primary" \| "contrast"` | `"primary"`   | Field style (shares Input's variants). |
-| `size`        | `"base" \| "sm"`          | `"base"`      | Field size.                            |
-| `class`       | `string`                  | none          | Classes merged onto the input wrapper. |
+| Prop          | Type                             | Default       | Description                                                                                                       |
+| ------------- | -------------------------------- | ------------- | ----------------------------------------------------------------------------------------------------------------- |
+| `placeholder` | `string`                         | `"Search..."` | Shown when nothing is typed/selected.                                                                             |
+| `variant`     | `"primary" \| "contrast"`        | `"primary"`   | Field style (shares Input's variants).                                                                            |
+| `size`        | `"sm" \| "base" \| "lg" \| "xl"` | `"base"`      | Field size (shares Input's sizes). Heights are 32, 40, 48 and 56px, the same as Button, so they line up in a row. |
+| `class`       | `string`                         | none          | Classes merged onto the input wrapper.                                                                            |
 
 ### ComboboxContent
 

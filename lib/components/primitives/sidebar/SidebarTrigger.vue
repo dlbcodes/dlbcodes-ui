@@ -16,8 +16,8 @@ const { toggle } = useSidebar();
         type="button"
         :class="
             cn(
-                'inline-flex size-9 items-center justify-center rounded-lg text-text-secondary transition-colors hover:bg-bg-subtle hover:text-text-primary',
-                'outline-none focus-visible:ring-2 focus-visible:ring-border-strong',
+                'inline-flex size-10 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground',
+                'outline-none focus-visible:ring-2 focus-visible:ring-ring',
                 props.class,
             )
         "

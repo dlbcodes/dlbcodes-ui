@@ -13,7 +13,7 @@ Dropdown is a **compound component** composed of four parts.
 Dropdown               ← the root; controls placement and offset
 ├── DropdownTrigger    ← the button that opens the menu
 └── DropdownContent    ← the floating menu panel
-    └── DropdownItem    ← each selectable action (emits`select`)
+    └── DropdownItem   ← each selectable action (emits `select`)
 ```
 
 `DropdownItem` is slot-only: put a label, or an icon plus a label, inside it. It
@@ -48,6 +48,12 @@ navigation and does not emit `select`.
 
 <preview path="../demos/dropdown/dropdown-disabled.vue" title="Disabled item" description="A non-selectable item, e.g. an action the user lacks permission for."></preview>
 
+## Appearance
+
+The menu panel uses the theme's `--popover` surface and `--border`, and the
+active item is highlighted with `--accent`, so a dropdown follows your theme,
+including dark mode. Its corners follow `--radius`. See [Theming](/theming).
+
 ## Props
 
 ### Dropdown
@@ -77,7 +83,7 @@ The button that opens the menu. It has two modes:
 ```vue
 <DropdownTrigger as-child>
     <Button variant="outline">Options</Button>
-  </DropdownTrigger>
+</DropdownTrigger>
 ```
 
 In `asChild` mode the child must be a single root element that forwards
@@ -115,3 +121,5 @@ Emits `select` when chosen. Exposes `active` (boolean) via its slot.
 - The active item (hover or keyboard) is exposed via the `active` slot prop and
   styled with `data-active`.
 - Disabled items are correctly skipped by keyboard navigation.
+- The default-mode trigger shows a visible keyboard focus ring in the theme's
+  `--ring` color.

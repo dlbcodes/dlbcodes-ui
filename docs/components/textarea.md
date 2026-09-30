@@ -36,20 +36,27 @@ and scrolls instead, so a long entry never takes over the page.
 
 <preview path="../demos/textarea/textarea-autosize.vue" title="Autosize" description="Grows from the minimum, caps, then scrolls."></preview>
 
+## Sizes
+
+`size` takes the same values as [Input](/components/input): `sm`, `base`, `lg` and
+`xl`. Unlike an input, a textarea's height comes from `rows` (and its content, with
+`autosize`), so `size` changes the text size, padding and corners, not the height.
+Corners follow the theme's `--radius`.
+
 ## Props
 
-| Prop          | Type                       | Default     | Description                                                                    |
-| ------------- | -------------------------- | ----------- | ------------------------------------------------------------------------------ |
-| `modelValue`  | `string \| number \| null` | —           | The value. Use with `v-model`.                                                 |
-| `rows`        | `number`                   | `4`         | Visible height in text rows. Acts as the minimum height when `autosize` is on. |
-| `autosize`    | `boolean`                  | `false`     | Grows with content from the `rows` height up to a maximum, then scrolls.       |
-| `variant`     | `"primary" \| "contrast"`  | `"primary"` | Visual style (shares Input's variants).                                        |
-| `size`        | `"base" \| "sm"`           | `"base"`    | Field size.                                                                    |
-| `placeholder` | `string`                   | —           | Placeholder text.                                                              |
-| `disabled`    | `boolean`                  | —           | Disables the field. Inherited from a surrounding `Field`.                      |
-| `required`    | `boolean`                  | —           | Marks required. Inherited from a `Field`.                                      |
-| `invalid`     | `boolean`                  | —           | Applies error styling. Inherited from a `Field`'s error state.                 |
-| `class`       | `string`                   | —           | Classes merged onto the wrapper.                                               |
+| Prop          | Type                             | Default     | Description                                                                                           |
+| ------------- | -------------------------------- | ----------- | ----------------------------------------------------------------------------------------------------- |
+| `modelValue`  | `string \| number \| null`       | —           | The value. Use with `v-model`.                                                                        |
+| `rows`        | `number`                         | `4`         | Visible height in text rows. Acts as the minimum height when `autosize` is on.                        |
+| `autosize`    | `boolean`                        | `false`     | Grows with content from the `rows` height up to a maximum, then scrolls.                              |
+| `variant`     | `"primary" \| "contrast"`        | `"primary"` | Visual style (shares Input's variants).                                                               |
+| `size`        | `"sm" \| "base" \| "lg" \| "xl"` | `"base"`    | Field size (shares Input's sizes). Sets text size, padding and corners; the height comes from `rows`. |
+| `placeholder` | `string`                         | —           | Placeholder text.                                                                                     |
+| `disabled`    | `boolean`                        | —           | Disables the field. Inherited from a surrounding `Field`.                                             |
+| `required`    | `boolean`                        | —           | Marks required. Inherited from a `Field`.                                                             |
+| `invalid`     | `boolean`                        | —           | Applies error styling. Inherited from a `Field`'s error state.                                        |
+| `class`       | `string`                         | —           | Classes merged onto the wrapper.                                                                      |
 
 ## Accessibility
 

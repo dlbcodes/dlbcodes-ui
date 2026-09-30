@@ -25,14 +25,32 @@ becomes a dead zone.
 
 ## Sizes
 
-Two sizes via the `size` prop: `base` (default) and `sm`.
+Four sizes via the `size` prop: `sm`, `base` (default), `lg`, and `xl`.
 
-<preview path="../demos/input/input-sizes.vue" title="Sizes" description="base and sm."></preview>
+<preview path="../demos/input/input-sizes.vue" title="Sizes" description="sm, base, lg, and xl."></preview>
+
+| Size   | Height |
+| ------ | ------ |
+| `sm`   | 32px   |
+| `base` | 40px   |
+| `lg`   | 48px   |
+| `xl`   | 56px   |
+
+These are the same heights as [Button](/components/button) at the same size, so an
+input and a button line up when placed in a row, such as a search field with a
+submit button. Corners follow the theme's `--radius`.
+
+## Variants
+
+`primary` (the default) has a tinted fill. `contrast` has a plain fill, for
+inputs that sit on a card, modal or popover, where the tinted fill would blend in.
+Both use the same border.
 
 ## States
 
-`disabled` makes the field non-interactive; `invalid` applies error styling.
-Inside a `Field`, both are driven by the field's state automatically.
+`disabled` makes the field non-interactive and dims it; `invalid` applies error
+styling in the theme's `--destructive` color. Inside a `Field`, both are driven
+by the field's state automatically.
 
 <preview path="../demos/input/input-states.vue" title="States" description="Disabled and invalid."></preview>
 
@@ -50,6 +68,10 @@ Prefer `type="text"` with `inputmode="numeric"` over `type="number"` for things
 like PINs, codes, and quantities. `type="number"` allows characters like `e` and
 strips leading zeros, while `inputmode` just picks the keyboard and leaves the
 value alone.
+
+The input text is 16px on small screens (and 14px from the `md` breakpoint up
+for `sm` and `base`). That's deliberate: iOS Safari zooms the page when it
+focuses a field whose text is smaller than 16px.
 
 ## Native attributes
 
@@ -70,17 +92,17 @@ message, and all the accessibility wiring without managing ids by hand. See
 
 ## Props
 
-| Prop          | Type                       | Default     | Description                                                                    |
-| ------------- | -------------------------- | ----------- | ------------------------------------------------------------------------------ |
-| `modelValue`  | `string \| number \| null` | none        | The field's value. Use with `v-model`. Optional, runs uncontrolled if unbound. |
-| `variant`     | `"primary" \| "contrast"`  | `"primary"` | Visual style. `contrast` uses a stronger border for busy backgrounds.          |
-| `size`        | `"base" \| "sm"`           | `"base"`    | Field size.                                                                    |
-| `type`        | `string`                   | `"text"`    | Native input type (`text`, `email`, `password`, etc.).                         |
-| `placeholder` | `string`                   | none        | Placeholder text.                                                              |
-| `disabled`    | `boolean`                  | none        | Disables the field. Inherited from a surrounding `Field`.                      |
-| `required`    | `boolean`                  | none        | Marks required. Inherited from a `Field`.                                      |
-| `invalid`     | `boolean`                  | none        | Applies error styling. Inherited from a `Field`'s error state.                 |
-| `class`       | `string`                   | none        | Classes merged onto the wrapper.                                               |
+| Prop          | Type                             | Default     | Description                                                                                               |
+| ------------- | -------------------------------- | ----------- | --------------------------------------------------------------------------------------------------------- |
+| `modelValue`  | `string \| number \| null`       | none        | The field's value. Use with `v-model`. Optional, runs uncontrolled if unbound.                            |
+| `variant`     | `"primary" \| "contrast"`        | `"primary"` | Visual style. `primary` has a tinted fill; `contrast` a plain fill for use on cards, modals and popovers. |
+| `size`        | `"sm" \| "base" \| "lg" \| "xl"` | `"base"`    | Field size. Heights are 32, 40, 48 and 56px, matching Button.                                             |
+| `type`        | `string`                         | `"text"`    | Native input type (`text`, `email`, `password`, etc.).                                                    |
+| `placeholder` | `string`                         | none        | Placeholder text.                                                                                         |
+| `disabled`    | `boolean`                        | none        | Disables the field. Inherited from a surrounding `Field`.                                                 |
+| `required`    | `boolean`                        | none        | Marks required. Inherited from a `Field`.                                                                 |
+| `invalid`     | `boolean`                        | none        | Applies error styling. Inherited from a `Field`'s error state.                                            |
+| `class`       | `string`                         | none        | Classes merged onto the wrapper.                                                                          |
 
 Plus any native `<input>` attribute (`name`, `inputmode`, `autocomplete`,
 `maxlength`, `pattern`, `readonly`, ...), which forwards to the input element.
@@ -93,3 +115,5 @@ Plus any native `<input>` attribute (`name`, `inputmode`, `autocomplete`,
   input with only a placeholder is not accessibly labelled.
 - Inside a `Field`, `aria-invalid`, `aria-required`, and `aria-describedby` are
   wired automatically; standalone, set `invalid` / `required` as props.
+- Keyboard focus is shown with a strong border and ring in the theme's
+  `--foreground` color, which keeps enough contrast against the field.

@@ -16,7 +16,7 @@ const props = defineProps<Props>();
         :for="props.for"
         :class="
             cn(
-                'cursor-pointer select-none text-sm font-medium text-text-primary',
+                'cursor-pointer select-none text-sm font-medium text-foreground',
                 props.class,
             )
         "

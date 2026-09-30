@@ -21,7 +21,7 @@ const emit = defineEmits<{ select: [] }>();
             :disabled="disabled"
             :data-active="active || undefined"
             :class="
-                cn(menuItemVariants(), 'text-text-primary text-sm', props.class)
+                cn(menuItemVariants(), 'text-foreground text-sm', props.class)
             "
             @click="emit('select')"
         >

@@ -5,27 +5,35 @@
 @source "../../../lib/**/*.vue";
 @source "../../../lib/**/*.ts";
 
-/* ── Map VitePress theme variables onto design tokens ── */
+/* ── Map VitePress theme variables onto design tokens ──
+   Uses the plain semantic variables (--brand, --background, ...) that are
+   defined on :root and .dark, so light/dark follows VitePress's `html.dark`
+   class automatically. */
 :root {
     /* Brand / accent */
-    --vp-c-brand-1: var(--color-brand-200);
-    --vp-c-brand-2: var(--color-brand-100);
-    --vp-c-brand-3: var(--color-brand-200);
-    --vp-c-brand-soft: var(--color-brand-100);
+    --vp-c-brand-1: var(--brand);
+    --vp-c-brand-2: color-mix(in oklab, var(--brand) 85%, black);
+    --vp-c-brand-3: var(--brand);
+    --vp-c-brand-soft: color-mix(in oklab, var(--brand) 14%, transparent);
 
     /* Backgrounds */
-    --vp-c-bg: var(--color-bg-base);
-    --vp-c-bg-alt: var(--color-bg-base);
-    --vp-c-bg-soft: var(--color-bg-surface);
+    --vp-c-bg: var(--background);
+    --vp-c-bg-alt: var(--background);
+    --vp-c-bg-elv: var(--popover);
+    --vp-c-bg-soft: var(--muted);
 
     /* Text */
-    --vp-c-text-1: var(--color-text-primary);
-    --vp-c-text-2: var(--color-text-secondary);
-    --vp-c-text-3: var(--color-text-tertiary);
+    --vp-c-text-1: var(--foreground);
+    --vp-c-text-2: var(--muted-foreground);
+    --vp-c-text-3: color-mix(
+        in oklab,
+        var(--muted-foreground) 70%,
+        transparent
+    );
 
     /* Borders / dividers */
-    --vp-c-divider: var(--color-bg-400);
-    --vp-c-border: var(--color-bg-400);
+    --vp-c-divider: var(--border);
+    --vp-c-border: var(--border);
 }
 
 /* ── Polished doc-content styling (all markdown pages) ── */
@@ -34,36 +42,38 @@
     font-size: 1.875rem;
     font-weight: 600;
     letter-spacing: -0.02em;
-    color: var(--color-text-primary);
+    color: var(--foreground);
 }
 
 .vp-doc h2 {
     margin-top: 3rem;
     margin-bottom: 1rem;
     padding-top: 1.5rem;
-    border-top: 1px solid var(--color-border-subtle);
+    border-top: 1px solid var(--border-subtle);
     font-size: 1.25rem;
     font-weight: 600;
     letter-spacing: -0.01em;
-    color: var(--color-text-primary);
+    color: var(--foreground);
 }
 
 .vp-doc h3 {
     margin-top: 2rem;
     font-size: 1rem;
     font-weight: 600;
-    color: var(--color-text-primary);
+    color: var(--foreground);
 }
 
 .vp-doc p {
-    color: var(--color-text-secondary);
+    color: var(--muted-foreground);
     line-height: 1.7;
 }
 
-/* Inline code → token pill */
+/* Inline code → token pill.
+   A translucent foreground tint, so it stays visible in both themes
+   (--muted is very close to the page background in the light theme). */
 .vp-doc :not(pre) > code {
-    background-color: var(--color-bg-subtle);
-    color: var(--color-text-primary);
+    background-color: color-mix(in oklab, var(--foreground) 7%, transparent);
+    color: var(--foreground);
     border-radius: 0.25rem;
     padding: 0.1rem 0.35rem;
     font-size: 0.8125rem;
@@ -77,23 +87,23 @@
     border-collapse: collapse;
     overflow: hidden;
     border-radius: 0.75rem;
-    border: 1px solid var(--color-border-subtle);
+    border: 1px solid var(--border-subtle);
     font-size: 0.875rem;
 }
 
 .vp-doc th {
-    background-color: var(--color-bg-surface);
-    color: var(--color-text-secondary);
+    background-color: var(--muted);
+    color: var(--muted-foreground);
     font-weight: 500;
     text-align: left;
     padding: 0.625rem 1rem;
-    border-bottom: 1px solid var(--color-border-subtle);
+    border-bottom: 1px solid var(--border-subtle);
 }
 
 .vp-doc td {
     padding: 0.625rem 1rem;
-    border-bottom: 1px solid var(--color-border-subtle);
-    color: var(--color-text-secondary);
+    border-bottom: 1px solid var(--border-subtle);
+    color: var(--muted-foreground);
     vertical-align: top;
 }
 
@@ -118,17 +128,21 @@
 }
 
 /* Let component text color utilities beat .vp-doc p inside demos. */
-.vp-doc .ds-preview__demo .text-danger-text {
-    color: var(--color-danger-text) !important;
+.vp-doc .ds-preview__demo .text-destructive {
+    color: var(--destructive) !important;
 }
-.vp-doc .ds-preview__demo .text-text-secondary {
-    color: var(--color-text-secondary) !important;
+.vp-doc .ds-preview__demo .text-muted-foreground {
+    color: var(--muted-foreground) !important;
 }
-.vp-doc .ds-preview__demo .text-text-primary {
-    color: var(--color-text-primary) !important;
+.vp-doc .ds-preview__demo .text-foreground {
+    color: var(--foreground) !important;
 }
-.vp-doc .ds-preview__demo .text-text-tertiary {
-    color: var(--color-text-tertiary) !important;
+.vp-doc .ds-preview__demo .text-muted-foreground\/70 {
+    color: color-mix(
+        in oklab,
+        var(--muted-foreground) 70%,
+        transparent
+    ) !important;
 }
 
 @layer vp-reset, theme, base, components, utilities;

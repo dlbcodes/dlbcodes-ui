@@ -12,11 +12,11 @@ and so on.
 ## Anatomy
 
 ```
-Tabs ← the root; sets the default/selected tab
-├── TabsList ← the pill bar containing the triggers
-│ └── TabsTrigger ← one per tab (its content is the label)
-└── TabsPanels ← wraps the panels
-└── TabsContent ← one per tab; shown when its tab is selected
+Tabs                  ← the root; sets the default/selected tab
+├── TabsList          ← the bar containing the triggers
+│   └── TabsTrigger   ← one per tab (its content is the label)
+└── TabsPanels        ← wraps the panels
+    └── TabsContent   ← one per tab; shown when its tab is selected
 ```
 
 Keep the triggers and panels in the **same order** — the Nth trigger pairs with
@@ -61,6 +61,29 @@ For full control, bind `selectedIndex` and listen for `change` instead of using
 Use `manual` on `Tabs` if you'd rather a tab activate only on Enter/Space (not as
 soon as it's focused) — useful when switching tabs triggers expensive work.
 
+## Appearance
+
+The bar is a `--muted` track with a `--border` outline, and the selected tab is
+lifted above it: white in the light theme, a lighter grey in dark mode. Unselected
+tabs use `--muted-foreground` and darken on hover. Keyboard focus shows a ring in
+the `--ring` color. See [Theming](/theming).
+
+The corners follow the theme's `--radius`, so the bar and its tabs change shape
+with your radius setting: square at `0`, softly rounded at the default. The tab
+is one step smaller than the bar so the two stay nested cleanly. If you'd like
+the classic pill shape, round both parts yourself:
+
+<code-block lang="vue">
+
+```vue
+<TabsList class="rounded-full">
+    <TabsTrigger class="rounded-full">Account</TabsTrigger>
+    <TabsTrigger class="rounded-full">Password</TabsTrigger>
+</TabsList>
+```
+
+</code-block>
+
 ## Props
 
 ### Tabs
@@ -85,8 +108,8 @@ Its slot content is the label, and it exposes `selected` (boolean) via the slot.
 
 ### TabsList / TabsPanels / TabsContent
 
-Each takes only `class`. `TabsList` is the pill bar, `TabsPanels` wraps the
-panels, and each `TabsContent` is one panel.
+Each takes only `class`. `TabsList` is the bar, `TabsPanels` wraps the panels,
+and each `TabsContent` is one panel.
 
 ## Accessibility
 

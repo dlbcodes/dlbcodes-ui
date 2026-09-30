@@ -13,7 +13,7 @@ const props = defineProps<Props>();
     <div
         :class="
             cn(
-                'h-full overflow-hidden p-2 bg-bg-raised shadow-xs rounded-[20px]',
+                'h-full overflow-hidden p-2 bg-card shadow-xs rounded-[calc(var(--radius)*2.2-0.25rem)]',
                 props.class,
             )
         "

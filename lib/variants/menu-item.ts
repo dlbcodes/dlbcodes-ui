@@ -1,7 +1,7 @@
 import { cva, type VariantProps } from "class-variance-authority";
 
 export const menuItemVariants = cva(
-	"flex w-full items-center rounded-lg cursor-pointer select-none text-base outline-none transition-colors data-active:bg-bg-surface disabled:pointer-events-none disabled:opacity-50",
+	"flex w-full items-center rounded-lg cursor-pointer select-none text-base outline-none transition-colors data-active:bg-accent data-active:text-accent-foreground disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50",
 	{
 		variants: {
 			indicator: {

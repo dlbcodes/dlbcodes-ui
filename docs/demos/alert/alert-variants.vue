@@ -28,7 +28,7 @@ import {
             <AlertDescription>Your storage is almost full.</AlertDescription>
         </Alert>
 
-        <Alert variant="danger">
+        <Alert variant="destructive">
             <template #icon><PhXCircle /></template>
             <AlertTitle>Error</AlertTitle>
             <AlertDescription

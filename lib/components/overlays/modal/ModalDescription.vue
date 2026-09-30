@@ -17,7 +17,7 @@ onUnmounted(() => setDescriptionId(undefined));
 </script>
 
 <template>
-    <p :id="id" :class="cn('text-sm text-text-secondary', props.class)">
+    <p :id="id" :class="cn('text-sm text-muted-foreground', props.class)">
         <slot />
     </p>
 </template>

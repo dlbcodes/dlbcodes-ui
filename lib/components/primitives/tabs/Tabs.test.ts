@@ -16,126 +16,109 @@ const makeTabs = (props: Record<string, unknown> = {}) =>
 			return { props };
 		},
 		template: `
-            <Tabs v-bind="props">
-                <TabsList>
-                    <TabsTrigger>Account</TabsTrigger>
-                    <TabsTrigger>Password</TabsTrigger>
-                    <TabsTrigger :disabled="true">Billing</TabsTrigger>
-                </TabsList>
-                <TabsPanels>
-                    <TabsContent>Account panel</TabsContent>
-                    <TabsContent>Password panel</TabsContent>
-                    <TabsContent>Billing panel</TabsContent>
-                </TabsPanels>
-            </Tabs>
-        `,
+			<Tabs v-bind="props">
+				<TabsList>
+					<TabsTrigger>Account</TabsTrigger>
+					<TabsTrigger>Password</TabsTrigger>
+					<TabsTrigger :disabled="true">Billing</TabsTrigger>
+				</TabsList>
+				<TabsPanels>
+					<TabsContent>Account panel</TabsContent>
+					<TabsContent>Password panel</TabsContent>
+					<TabsContent>Billing panel</TabsContent>
+				</TabsPanels>
+			</Tabs>
+		`,
 	});
+
+type Wrapper = ReturnType<typeof mount>;
+
+const tabsOf = (wrapper: Wrapper) => wrapper.findAll('[role="tab"]');
+// Which tabs are selected, e.g. [true, false, false]
+const selected = (wrapper: Wrapper) =>
+	tabsOf(wrapper).map((t) => t.attributes("aria-selected") === "true");
 
 describe("Tabs", () => {
-	it("renders all triggers", () => {
-		const wrapper = mount(makeTabs());
-		const tabs = wrapper.findAll('[role="tab"]');
-		expect(tabs.length).toBe(3);
+	it("renders every trigger as a tab button", () => {
+		const tabs = tabsOf(mount(makeTabs()));
 		expect(tabs.map((t) => t.text())).toEqual(["Account", "Password", "Billing"]);
+		expect(tabs.every((t) => t.element.tagName === "BUTTON")).toBe(true);
 	});
 
-	it("renders the triggers as real buttons (as=template forwards to a button)", () => {
+	it.each([
+		[{}, [true, false, false], "Account panel"],
+		[{ defaultIndex: 1 }, [false, true, false], "Password panel"],
+	])("initial selection %j", (props, expected, panel) => {
+		const wrapper = mount(makeTabs(props));
+		expect(selected(wrapper)).toEqual(expected);
+		expect(wrapper.text()).toContain(panel);
+	});
+
+	it("switches tab and panel on click, and emits change with the index", async () => {
 		const wrapper = mount(makeTabs());
-		// The as="template" + single <button> child pattern should yield buttons.
-		const buttons = wrapper.findAll("button");
-		expect(buttons.length).toBeGreaterThanOrEqual(3);
-	});
-
-	it("selects the first tab by default and shows its panel", () => {
-		const wrapper = mount(makeTabs());
-		const tabs = wrapper.findAll('[role="tab"]');
-		// first tab is selected
-		expect(tabs[0].attributes("aria-selected")).toBe("true");
-		expect(tabs[1].attributes("aria-selected")).toBe("false");
-		// only the first panel's content is visible
-		expect(wrapper.text()).toContain("Account panel");
-	});
-
-	it("respects defaultIndex", () => {
-		const wrapper = mount(makeTabs({ defaultIndex: 1 }));
-		const tabs = wrapper.findAll('[role="tab"]');
-		expect(tabs[1].attributes("aria-selected")).toBe("true");
-		expect(tabs[0].attributes("aria-selected")).toBe("false");
-	});
-
-	it("switches the selected tab and panel on click", async () => {
-		const wrapper = mount(makeTabs());
-		const tabs = wrapper.findAll('[role="tab"]');
-
-		await tabs[1].trigger("click");
+		await tabsOf(wrapper)[1].trigger("click");
 		await nextTick();
 
-		expect(tabs[1].attributes("aria-selected")).toBe("true");
-		expect(tabs[0].attributes("aria-selected")).toBe("false");
+		expect(selected(wrapper)).toEqual([false, true, false]);
+		expect(wrapper.text()).toContain("Password panel");
+		expect(wrapper.text()).not.toContain("Account panel");
+		expect(wrapper.findComponent(Tabs).emitted("change")?.at(-1)).toEqual([1]);
 	});
 
-	it("applies the selected styling via the variant", async () => {
+	it("does not select a disabled tab", async () => {
 		const wrapper = mount(makeTabs());
-		const tabs = wrapper.findAll('[role="tab"]');
-		// selected tab gets the raised/shadow classes from tabVariants
-		expect(tabs[0].attributes("class")).toContain("bg-bg-raised");
-		// unselected tab gets the secondary text class
-		expect(tabs[1].attributes("class")).toContain("text-text-secondary");
+		const billing = tabsOf(wrapper)[2];
+		expect(billing.attributes("disabled")).toBeDefined();
+
+		await billing.trigger("click");
+		await nextTick();
+		expect(selected(wrapper)).toEqual([true, false, false]);
 	});
 
-	it("marks a disabled tab and doesn't select it on click", async () => {
-		const wrapper = mount(makeTabs());
-		const tabs = wrapper.findAll('[role="tab"]');
-		const disabled = tabs[2];
-
-		// native disabled attribute on the button
-		expect(disabled.attributes("disabled")).toBeDefined();
-
-		await disabled.trigger("click");
-		await nextTick();
-		expect(disabled.attributes("aria-selected")).toBe("false");
+	// The selected tab is the only one with the raised look (shadow).
+	it("styles the selected tab differently from the others", () => {
+		const [first, second] = tabsOf(mount(makeTabs()));
+		expect(first.classes()).toContain("shadow-sm");
+		expect(second.classes()).not.toContain("shadow-sm");
 	});
 
-	it("emits change with the new index", async () => {
-		const wrapper = mount(makeTabs());
-		const tabs = wrapper.findAll('[role="tab"]');
+	describe("controlled selectedIndex", () => {
+		const makeControlled = () =>
+			mount(
+				defineComponent({
+					components: { Tabs, TabsList, TabsTrigger, TabsPanels, TabsContent },
+					setup() {
+						const active = ref(0);
+						return { active };
+					},
+					template: `
+						<Tabs :selected-index="active" @change="active = $event">
+							<TabsList>
+								<TabsTrigger>One</TabsTrigger>
+								<TabsTrigger>Two</TabsTrigger>
+							</TabsList>
+							<TabsPanels>
+								<TabsContent>Panel one</TabsContent>
+								<TabsContent>Panel two</TabsContent>
+							</TabsPanels>
+						</Tabs>
+					`,
+				}),
+			);
 
-		await tabs[1].trigger("click");
-		await nextTick();
+		it("follows a click through the parent", async () => {
+			const wrapper = makeControlled();
+			await tabsOf(wrapper)[1].trigger("click");
+			await nextTick();
+			expect(selected(wrapper)).toEqual([false, true]);
+		});
 
-		// the harness's Tabs emits "change" — find it on the Tabs component
-		const tabsComponent = wrapper.findComponent(Tabs);
-		const changeEvents = tabsComponent.emitted("change");
-		expect(changeEvents).toBeTruthy();
-		expect(changeEvents!.at(-1)).toEqual([1]);
-	});
-
-	it("supports controlled selectedIndex", async () => {
-		const wrapper = mount(
-			defineComponent({
-				components: { Tabs, TabsList, TabsTrigger, TabsPanels, TabsContent },
-				setup() {
-					const active = ref(0);
-					return { active };
-				},
-				template: `
-                    <Tabs :selected-index="active" @change="active = $event">
-                        <TabsList>
-                            <TabsTrigger>One</TabsTrigger>
-                            <TabsTrigger>Two</TabsTrigger>
-                        </TabsList>
-                        <TabsPanels>
-                            <TabsContent>Panel one</TabsContent>
-                            <TabsContent>Panel two</TabsContent>
-                        </TabsPanels>
-                    </Tabs>
-                `,
-			}),
-		);
-		const tabs = wrapper.findAll('[role="tab"]');
-		await tabs[1].trigger("click");
-		await nextTick();
-		// controlled: clicking emits change, parent updates active, second tab selected
-		expect(tabs[1].attributes("aria-selected")).toBe("true");
+		it("follows a change made by the parent", async () => {
+			const wrapper = makeControlled();
+			(wrapper.vm as unknown as { active: number }).active = 1;
+			await nextTick();
+			expect(selected(wrapper)).toEqual([false, true]);
+			expect(wrapper.text()).toContain("Panel two");
+		});
 	});
 });

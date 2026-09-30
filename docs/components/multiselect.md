@@ -11,11 +11,11 @@ items to taste.
 ## Anatomy
 
 ```
-MultiSelect ← root: holds options + v-model, exposes slot props
-├── MultiSelectTrigger   ← the field-like button showing the summary
-└── MultiSelectContent   ← the floating panel
-    ├── MultiSelectSearch ← optional search input (needs`searchable`)
-└── MultiSelectItem ← one per option (a checkbox row)
+MultiSelect                  ← root: holds options + v-model, exposes slot props
+├── MultiSelectTrigger       ← the field-like button showing the summary
+└── MultiSelectContent       ← the floating panel
+    ├── MultiSelectSearch    ← optional search input (needs `searchable`)
+    └── MultiSelectItem      ← one per option (a checkbox row)
 ```
 
 The root's default slot exposes everything the parts need: `label` (the trigger
@@ -64,13 +64,13 @@ customize the text when more than one option is selected.
 
 ### MultiSelectTrigger
 
-| Prop      | Type                      | Default     | Description                                   |
-| --------- | ------------------------- | ----------- | --------------------------------------------- |
-| `label`   | `string`                  | —           | The summary text (pass the slot's `label`).   |
-| `empty`   | `boolean`                 | —           | Whether nothing is selected (greys the text). |
-| `variant` | `"primary" \| "contrast"` | `"primary"` | Field style (shares Input's variants).        |
-| `size`    | `"base" \| "sm"`          | `"base"`    | Field size.                                   |
-| `class`   | `string`                  | —           | Merged onto the trigger.                      |
+| Prop      | Type                             | Default     | Description                                                                                       |
+| --------- | -------------------------------- | ----------- | ------------------------------------------------------------------------------------------------- |
+| `label`   | `string`                         | —           | The summary text (pass the slot's `label`).                                                       |
+| `empty`   | `boolean`                        | —           | Whether nothing is selected (greys the text).                                                     |
+| `variant` | `"primary" \| "contrast"`        | `"primary"` | Field style (shares Input's variants).                                                            |
+| `size`    | `"sm" \| "base" \| "lg" \| "xl"` | `"base"`    | Field size (shares Input's sizes). Heights are 32, 40, 48 and 56px, the same as Button and Input. |
+| `class`   | `string`                         | —           | Merged onto the trigger.                                                                          |
 
 ### MultiSelectContent / MultiSelectSearch / MultiSelectItem
 

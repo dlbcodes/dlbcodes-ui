@@ -22,8 +22,14 @@ There's no `size` prop — set the size with a `size-*` utility via `class`.
 ## Color
 
 The spinner draws with `currentColor`, so set its color with a `text-*` utility.
+By default it's a soft grey, the theme's `--muted-foreground` at reduced
+opacity, so it works on any background.
 
 <preview path="../demos/spinner/spinner-color.vue" title="Color" description="Recolored via text-* classes."></preview>
+
+To make it match the text around it, use `text-current`. The [Button](/components/button)
+does this for its loading state, so the spinner takes on the variant's own text
+color instead of grey.
 
 ## Props
 

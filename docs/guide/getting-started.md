@@ -62,8 +62,9 @@ scan the component classes. In your main CSS file, add three lines:
 What each line does:
 
 - `@import "tailwindcss"` — Tailwind itself (you likely already have this).
-- `@import "@dlbcodes/ui/tokens.css"` — the design tokens (colors,
-  surfaces, spacing) the components reference. Override these to theme the system.
+- `@import "@dlbcodes/ui/tokens.css"` — the design tokens (colors and corner
+  radius) the components reference, for light and dark mode. Override these to
+  theme the system.
 - `@source "..."` — tells Tailwind to scan the library's built files so the
   utility classes the components use are generated in your build.
 
@@ -112,9 +113,9 @@ import { Field, FieldLabel, FieldContent, Input } from "@dlbcodes/ui";
 
 ## Theming
 
-Because every component reads from semantic tokens, you can restyle the whole
-system by overriding the token values — no component edits needed. Override the
-relevant CSS variables after importing the tokens:
+Every component reads from CSS variables, so you can restyle the whole system
+by overriding them — no component edits needed. Override the variables after
+importing the tokens, with light values on `:root` and dark values on `.dark`:
 
 <code-block lang="css">
 
@@ -122,12 +123,19 @@ relevant CSS variables after importing the tokens:
 @import "@dlbcodes/ui/tokens.css";
 
 :root {
-    /* override a token to retheme everywhere it's used */
-    --color-bg-surface: oklch(0.98 0 0);
+    --brand: oklch(60% 0.14 250); /* brand color: primary button, links */
+    --radius: 0.5rem; /* base corner radius for every component */
+}
+
+.dark {
+    --brand: oklch(70% 0.13 250);
 }
 ```
 
 </code-block>
+
+Dark mode is a `dark` class on the `<html>` element. See [Theming](/theming) for
+the full list of variables and how they fit together.
 
 ## Next steps
 

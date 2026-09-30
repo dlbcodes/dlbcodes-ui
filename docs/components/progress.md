@@ -25,6 +25,22 @@ progress.
 
 <preview path="../demos/progress/progress-max.vue" title="Custom max" description="3 out of 5."></preview>
 
+## Indeterminate
+
+When you don't know how far along the task is, omit `value`. The bar shows a
+segment sliding across the track instead of a fill.
+
+<code-block lang="vue">
+
+```vue
+<Progress label="Loading results" />
+```
+
+</code-block>
+
+For users who prefer reduced motion, the sliding segment is replaced by a gentle
+pulse of the full bar.
+
 ## Labelling
 
 A progress bar needs an accessible name so screen readers can announce _what_ is
@@ -42,26 +58,32 @@ instead, so the accessible name and the on-screen text stay in sync:
 <Progress :value="60" aria-labelledby="upload-label" />
 ```
 
+## Appearance
+
+The track is the theme's `--muted` color and the fill is `--brand`, so a
+progress bar follows your theme, including dark mode. Both ends are fully
+rounded regardless of `--radius`. See [Theming](/theming).
+
 ## Props
 
-| Prop    | Type     | Default | Description                                                                        |
-| ------- | -------- | ------- | ---------------------------------------------------------------------------------- |
-| `value` | `number` | —       | Current progress (0–`max`). Omit for an empty/indeterminate bar. Clamped to range. |
-| `max`   | `number` | `100`   | The value representing 100% complete.                                              |
-| `label` | `string` | —       | Accessible name for the bar, announced by screen readers (sets `aria-label`).      |
-| `class` | `string` | —       | Classes merged onto the track — use for height, width, or color.                   |
+| Prop    | Type     | Default | Description                                                                             |
+| ------- | -------- | ------- | --------------------------------------------------------------------------------------- |
+| `value` | `number` | —       | Current progress (0–`max`). Omit for an indeterminate (animated) bar. Clamped to range. |
+| `max`   | `number` | `100`   | The value representing 100% complete.                                                   |
+| `label` | `string` | —       | Accessible name for the bar, announced by screen readers (sets `aria-label`).           |
+| `class` | `string` | —       | Classes merged onto the track — use for height or width.                                |
 
 Any other attribute (e.g. `aria-labelledby`) forwards to the progressbar element.
 
 ## Accessibility
 
 - The bar has `role="progressbar"` with `aria-valuemin`, `aria-valuemax`, and
-  `aria-valuenow`, so assistive tech announces the current progress. When `value`
-  is a percentage, `aria-valuetext` announces it with the `%` unit.
+  `aria-valuenow`, so assistive tech announces the current progress.
 - **Give every bar a name.** A `progressbar` role without an accessible name is
   announced generically and is unusable on a screen reader. Pass `label` (or
   `aria-labelledby` to reference visible text). There is intentionally no default
   name — a generic one would hide the need for a meaningful one.
-- An indeterminate bar (no `value`) sets `aria-busy`, signalling work in progress.
+- An indeterminate bar (no `value`) leaves out `aria-valuenow`, which is how ARIA
+  tells assistive tech that the amount of progress is unknown.
 - Values are clamped to the `0`–`max` range, so out-of-range input won't break the
   bar visually or in the ARIA values.

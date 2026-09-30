@@ -1,20 +1,17 @@
 # Theming
 
-Every color in the system comes from a **CSS variable token**. To restyle the
-components, you override tokens — no component code, no overrides, no
-specificity battles.
+Every color and every corner radius in the system comes from a **CSS variable**.
+To restyle the components, you override variables — no component code, no
+overrides, no specificity battles.
 
-There are two layers:
-
-- **Semantic tokens** — role-based (`--color-bg-surface`, `--color-text-primary`).
-  **This is the layer you theme.** Each maps a role to a color.
-- **Primitives** — the raw palette (`--color-bg-200`, `--color-text-900`) that
-  the semantic tokens reference. Internal; you rarely touch these directly.
+The variables follow the [shadcn/ui](https://ui.shadcn.com) naming, so if you
+know that convention, you already know these. Colors come in **pairs**: a
+surface and the text that sits on it (`--primary` and `--primary-foreground`).
 
 ## How to theme
 
-Override the semantic tokens after importing the library's tokens. Set them to
-any color you like — a literal value or one of your own variables:
+Import the library's tokens, then override any variable. Set light values on
+`:root` and dark values on `.dark`:
 
 <code-block lang="css">
 
@@ -23,88 +20,171 @@ any color you like — a literal value or one of your own variables:
 @import "@dlbcodes/ui/tokens.css";
 
 :root {
-    --color-bg-base: oklch(99% 0 0);
-    --color-bg-surface: oklch(97% 0 0);
-    --color-text-primary: oklch(20% 0.02 260);
-    --color-border-default: oklch(90% 0.01 260);
+    --radius: 0.5rem;
+    --brand: oklch(60% 0.14 250);
+    --primary: oklch(25% 0.02 260);
+}
+
+.dark {
+    --brand: oklch(70% 0.13 250);
+    --primary: oklch(92% 0.01 260);
 }
 ```
 
 </code-block>
 
-Because every component reads these roles, overriding them re-themes the whole
-system at once. Override only the tokens you want to change — the rest keep
+Because every component reads these variables, overriding them re-themes the
+whole system at once. Override only what you want to change — the rest keep
 their defaults.
 
-## Semantic tokens
+::: warning Set both `:root` and `.dark`
+`:root` and `.dark` have the same specificity, and your stylesheet comes after
+the library's. A value you set only on `:root` therefore **also wins in dark
+mode**. If you support dark mode, give every variable you override a `.dark`
+value too.
+:::
 
-These are the tokens to override.
+## Dark mode
 
-### Text
+Dark mode is a `dark` class on the `<html>` element. Toggle it however you like:
 
-| Token                    | Role                  |
-| ------------------------ | --------------------- |
-| `--color-text-primary`   | Body copy, headings   |
-| `--color-text-secondary` | Labels, metadata      |
-| `--color-text-tertiary`  | Placeholders, hints   |
-| `--color-text-disabled`  | Disabled state        |
-| `--color-text-inverse`   | Text on dark surfaces |
+<code-block lang="ts">
 
-### Background
+```ts
+document.documentElement.classList.toggle("dark");
+```
 
-Surfaces run from the page background up to the brightest floating surface.
+</code-block>
 
-| Token                 | Role                       |
-| --------------------- | -------------------------- |
-| `--color-bg-base`     | Page background            |
-| `--color-bg-surface`  | Cards, panels              |
-| `--color-bg-elevated` | Dropdowns, tooltips        |
-| `--color-bg-subtle`   | Hover states, tags         |
-| `--color-bg-raised`   | Brightest floating surface |
-| `--color-bg-strong`   | Separators, badges         |
-| `--color-bg-inverse`  | Dark surfaces, banners     |
+## Radius
 
-### Border
+`--radius` is the base corner radius. Every component's corners are derived from
+it, so one variable changes the whole system, from square to very round:
 
-| Token                    | Role            |
-| ------------------------ | --------------- |
-| `--color-border-subtle`  | Soft dividers   |
-| `--color-border-default` | Inputs, cards   |
-| `--color-border-strong`  | Focus, emphasis |
-| `--color-border-dark`    | Strong outline  |
-
-### Status
-
-Each status has a **surface**, **border**, and **text** token:
-
-| Status  | Surface                   | Border                   | Text                   |
-| ------- | ------------------------- | ------------------------ | ---------------------- |
-| Success | `--color-success-surface` | `--color-success-border` | `--color-success-text` |
-| Warning | `--color-warning-surface` | `--color-warning-border` | `--color-warning-text` |
-| Info    | `--color-info-surface`    | `--color-info-border`    | `--color-info-text`    |
-| Danger  | `--color-danger-surface`  | `--color-danger-border`  | `--color-danger-text`  |
-
-## Going further: primitives
-
-Semantic tokens reference an internal palette of primitives — a neutral text
-ramp (`--color-text-100…900`), a neutral background ramp (`--color-bg-0…900`),
-brand, accent, and per-status scales. You generally don't need these, but if you
-want to shift the underlying palette (so every semantic role that uses a
-primitive moves together), you can override a primitive instead:
+| Class         | Value            |
+| ------------- | ---------------- |
+| `rounded-sm`  | `--radius` × 0.6 |
+| `rounded-md`  | `--radius` × 0.8 |
+| `rounded-lg`  | `--radius`       |
+| `rounded-xl`  | `--radius` × 1.4 |
+| `rounded-2xl` | `--radius` × 1.8 |
+| `rounded-3xl` | `--radius` × 2.2 |
 
 <code-block lang="css">
 
 ```css
 :root {
-    /* shift the whole neutral text scale's darkest step */
-    --color-text-900: oklch(15% 0.01 260);
+    --radius: 0; /* fully square */
 }
 ```
 
 </code-block>
 
-Most of the time, overriding semantic tokens is the right tool — reach for
-primitives only when you want a broad palette shift.
+Shapes that are round by definition (switches, progress bars, avatars' pills)
+use `rounded-full` and are not affected.
+
+## Semantic tokens
+
+### Surfaces
+
+| Token                  | Role                         |
+| ---------------------- | ---------------------------- |
+| `--background`         | Page background              |
+| `--foreground`         | Body text, headings          |
+| `--card`               | Cards and panels             |
+| `--card-foreground`    | Text on cards                |
+| `--popover`            | Dropdowns, popovers, dialogs |
+| `--popover-foreground` | Text on popovers             |
+
+### Actions
+
+| Token                    | Role                                  |
+| ------------------------ | ------------------------------------- |
+| `--primary`              | Main neutral action, checked controls |
+| `--primary-foreground`   | Text on `--primary`                   |
+| `--secondary`            | Secondary surfaces                    |
+| `--secondary-foreground` | Text on `--secondary`                 |
+| `--brand`                | Brand color: primary button, links    |
+| `--brand-foreground`     | Text on `--brand`                     |
+| `--pro`                  | Premium / "pro" accent                |
+| `--pro-foreground`       | Text on `--pro`                       |
+
+### Muted and accent
+
+| Token                 | Role                                      |
+| --------------------- | ----------------------------------------- |
+| `--muted`             | Quiet fills: tags, tracks, skeleton areas |
+| `--muted-foreground`  | Labels, metadata, placeholders            |
+| `--accent`            | Hover and selected rows                   |
+| `--accent-foreground` | Text on `--accent`                        |
+
+### Lines and focus
+
+| Token             | Role                       |
+| ----------------- | -------------------------- |
+| `--border`        | Default borders            |
+| `--border-subtle` | Soft dividers              |
+| `--border-strong` | Emphasis, scrollbar thumbs |
+| `--input`         | Input borders              |
+| `--ring`          | Focus rings                |
+
+### Status
+
+Each status has four tokens: the **solid** color (also used for text), the text
+**on** that solid color, a light **subtle** surface, and a **border**.
+
+| Status      | Solid           | On solid                   | Subtle                 | Border                 |
+| ----------- | --------------- | -------------------------- | ---------------------- | ---------------------- |
+| Destructive | `--destructive` | `--destructive-foreground` | `--destructive-subtle` | `--destructive-border` |
+| Success     | `--success`     | `--success-foreground`     | `--success-subtle`     | `--success-border`     |
+| Warning     | `--warning`     | `--warning-foreground`     | `--warning-subtle`     | `--warning-border`     |
+| Info        | `--info`        | `--info-foreground`        | `--info-subtle`        | `--info-border`        |
+
+### Charts
+
+`--chart-1` to `--chart-5` are a five-color categorical palette.
+
+### Sidebar
+
+The sidebar has its own set so it can be themed separately from the page:
+`--sidebar`, `--sidebar-foreground`, `--sidebar-primary`,
+`--sidebar-primary-foreground`, `--sidebar-accent`,
+`--sidebar-accent-foreground`, `--sidebar-border` and `--sidebar-ring`.
+
+## Using tokens in your own code
+
+Every token is available as a Tailwind color, so your own UI can match the
+components:
+
+<code-block lang="vue">
+
+```vue
+<div class="rounded-xl border border-border bg-card p-4 text-card-foreground">
+    <p class="text-muted-foreground">Same colors as the components.</p>
+</div>
+```
+
+</code-block>
+
+Opacity modifiers work too: `bg-destructive/10`, `text-foreground/70`.
+
+## Theming part of the page
+
+Variables cascade, so you can retheme any subtree by overriding them on a
+wrapper element:
+
+<code-block lang="css">
+
+```css
+.checkout {
+    --brand: oklch(55% 0.16 155);
+    --radius: 1rem;
+}
+```
+
+</code-block>
+
+Everything inside `.checkout` picks up the new brand color and radius.
 
 ## Utilities
 
@@ -120,3 +200,26 @@ The token file also ships two scrollbar utilities you can use on any element:
 ```
 
 </code-block>
+
+## Migrating from the old tokens
+
+Earlier versions used `--color-bg-*`, `--color-text-*` and a primitive palette.
+Those are gone. Rename them as follows:
+
+| Old                                   | New                                |
+| ------------------------------------- | ---------------------------------- |
+| `--color-text-primary`                | `--foreground`                     |
+| `--color-text-secondary`, `-tertiary` | `--muted-foreground`               |
+| `--color-text-inverse`                | the matching `--*-foreground`      |
+| `--color-bg-base`                     | `--background`                     |
+| `--color-bg-surface`, `-elevated`     | `--muted`                          |
+| `--color-bg-raised`                   | `--popover` or `--card`            |
+| `--color-bg-subtle`                   | `--accent`                         |
+| `--color-border-default`              | `--border` (`--input` on inputs)   |
+| `--color-border-dark`                 | `--foreground`                     |
+| `--color-{status}-surface` / `-text`  | `--{status}-subtle` / `--{status}` |
+| `--color-brand-200`                   | `--brand`                          |
+
+Two components also renamed a variant: Alert `danger` is now `destructive`, and
+Badge `pending` is now `warning`. Input and Textarea sizes now match Button
+heights, so the old `base` (48px) is now `lg`.

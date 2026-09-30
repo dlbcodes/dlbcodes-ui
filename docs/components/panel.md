@@ -35,12 +35,23 @@ a navigation bar.
 
 <preview path="../demos/panel/panel-navbar.vue" title="Navbar" description="A navigation bar built from a Panel surface."></preview>
 
+## Appearance
+
+`Panel` is a `--muted` frame with a `--border` outline, and `PanelContent` is a
+`--card` surface inside it. In the light theme the content is the brighter of the
+two; in dark mode it is a step darker than the frame, so it reads as inset. Both
+follow your theme. See [Theming](/theming).
+
 ## Concentric corners
 
 `PanelContent` uses a slightly smaller corner radius than `Panel` so the inner
 surface nests cleanly inside the outer border. This concentric radius
 (`Panel`'s radius minus its padding) keeps the rounded corners visually parallel
-rather than mismatched. It assumes `PanelContent` sits directly inside `Panel`.
+rather than mismatched.
+
+Both radii come from the theme's `--radius` token, so they stay concentric when
+you change it, from square to very round. It assumes `PanelContent` sits directly
+inside `Panel`.
 
 ## Props
 
@@ -59,4 +70,4 @@ The parts are not coupled by shared state, they're independent layout
 containers. You can omit any of them, reorder them, or use `PanelContent` on its
 own. The concentric corner radius on `PanelContent` is calibrated for being a
 direct child of `Panel`; if you nest it elsewhere, set the radius yourself via
-`class`.
+`class` (for example `rounded-xl`).

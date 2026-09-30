@@ -12,13 +12,13 @@ button), and it closes itself via the close button, backdrop, or `Escape`.
 ## Anatomy
 
 ```
-Modal ← the dialog; controlled by v-model, sets size/persistence
-├── ModalHeader ← title area (position the close button here)
-│ ├── ModalTitle ← the heading (wires aria-labelledby)
-│ ├── ModalDescription ← supporting text (wires aria-describedby)
-│ └── ModalClose ← the × dismiss button
-├── ModalContent ← the body
-└── ModalFooter ← action buttons (Cancel / Confirm)
+Modal                  ← the dialog; controlled by v-model, sets size/persistence
+├── ModalHeader        ← title area (position the close button here)
+│   ├── ModalTitle       ← the heading (wires aria-labelledby)
+│   ├── ModalDescription ← supporting text (wires aria-describedby)
+│   └── ModalClose       ← the × dismiss button
+├── ModalContent       ← the body
+└── ModalFooter        ← action buttons (Cancel / Confirm)
 ```
 
 Every part is optional except `Modal` itself. Include only what you need. The
@@ -29,6 +29,11 @@ default slot exposes a `close` function for wiring footer actions.
 Drive the modal with `v-model`; open it from a button.
 
 <preview path="../demos/modal/modal-basic.vue" title="Confirm an action" description="A confirmation dialog with a clear primary action."></preview>
+
+On small screens the modal is a bottom sheet: full width, anchored to the bottom
+of the screen, with rounded top corners. From the `md` breakpoint up it is a
+centered dialog. Its height is capped to the visible screen, and it scrolls
+inside when the content is taller.
 
 ## With a form
 
@@ -88,6 +93,12 @@ trapping them.
 
 <preview path="../demos/modal/modal-persistent.vue" title="Persistent" description="Can't dismiss by clicking outside or pressing Escape."></preview>
 
+## Appearance
+
+The dialog uses the theme's `--popover` surface with a `--border-subtle` border,
+and its corners follow `--radius`. The backdrop is a translucent black in both
+light and dark mode. See [Theming](/theming).
+
 ## Props
 
 ### Modal
@@ -123,8 +134,12 @@ All sub-components accept `class`.
 - The dialog has `role="dialog"` and `aria-modal="true"`. `ModalTitle` and
   `ModalDescription` automatically register `aria-labelledby` / `aria-describedby`,
   so include a `ModalTitle` for an accessible name.
-- Focus is trapped within the dialog while open and restored when it closes.
-- Page scroll is locked while open.
+- Focus is trapped within the dialog while open and restored when it closes. A
+  dialog with nothing focusable in it (only text) keeps focus on the dialog
+  itself instead of failing.
+- Page scroll is locked while open, including when the modal is rendered open
+  from the start. The lock is released if the modal is removed while open, for
+  example on a route change.
 - `Escape` closes the modal (unless `persistent` or vetoed by `before-close`);
   `ModalClose` routes through `before-close` too.
 - Content is only mounted while the modal is open.

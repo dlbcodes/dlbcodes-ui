@@ -2,10 +2,13 @@
     "name": "@dlbcodes/ui",
     "license": "MIT",
     "private": false,
-    "version": "0.8.0",
+    "version": "0.8.1",
     "type": "module",
     "files": [
         "dist"
+    ],
+    "sideEffects": [
+        "**/*.css"
     ],
     "module": "./dist/index.js",
     "types": "./dist/lib/index.d.ts",
@@ -17,8 +20,12 @@
         "./tokens.css": "./dist/lib/styles/tokens.css"
     },
     "scripts": {
+        "typecheck": "vue-tsc --noEmit -p tsconfig.app.json",
         "build:lib": "vite build --config vite.lib.config.ts",
+        "build": "npm run typecheck && npm run build:lib",
         "test": "vitest",
+        "test:run": "vitest run",
+        "prepublishOnly": "npm run build && npm run test:run",
         "docs:dev": "vitepress dev docs",
         "docs:build": "vitepress build docs",
         "docs:preview": "vitepress preview docs"
@@ -31,18 +38,18 @@
         "@headlessui-float/vue": "^0.15.0",
         "@headlessui/vue": "^1.7.23",
         "@phosphor-icons/vue": "^2.2.0",
-        "@vercel/analytics": "^2.0.1",
         "@vueuse/core": "^14.3.0",
         "@vueuse/integrations": "^14.3.0",
         "class-variance-authority": "^0.7.1",
         "clsx": "^2.1.1",
         "focus-trap": "^8.2.1",
-        "tailwind-merge": "^2.5.4"
+        "tailwind-merge": "^3.3.0"
     },
     "devDependencies": {
         "@microsoft/api-extractor": "^7.58.7",
         "@tailwindcss/vite": "^4.0.0",
         "@types/node": "^24.12.3",
+        "@vercel/analytics": "^2.0.1",
         "@vitejs/plugin-vue": "^6.0.6",
         "@vitepress-demo-preview/component": "^2.6.2",
         "@vitepress-demo-preview/plugin": "^1.4.1",
@@ -58,11 +65,7 @@
         "vitepress": "^1.6.4",
         "vitest": "^4.1.8",
         "vue": "^3.5.34",
+        "vue-router": "^5.3.1",
         "vue-tsc": "^3.2.8"
-    },
-    "overrides": {
-        "@vercel/analytics": {
-            "vue-router": "$vue-router"
-        }
     }
 }

@@ -5,8 +5,10 @@ import { cva, type VariantProps } from "class-variance-authority";
 // max-width; `full` additionally fills height and squares the corners.
 export const modalVariants = cva(
 	[
-		"relative flex max-h-[calc(100vh-100px)] w-full flex-col overflow-y-auto",
-		"rounded-t-3xl md:rounded-3xl border border-border-subtle bg-bg-raised shadow-xs",
+		// dvh (not vh) so the panel isn't taller than the visible area on mobile
+		// browsers whose toolbars collapse and expand.
+		"relative flex max-h-[calc(100dvh-100px)] w-full flex-col overflow-y-auto",
+		"rounded-t-3xl md:rounded-3xl border border-border-subtle bg-popover text-popover-foreground shadow-xs",
 	].join(" "),
 	{
 		variants: {

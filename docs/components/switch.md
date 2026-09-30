@@ -22,19 +22,31 @@ Pair it with a `Label` via `for`/`id`. Clicking the label toggles the switch.
 
 ## States
 
-On, off, and disabled.
+On, off, and disabled. The on state is filled with the theme's `--primary` color,
+and a disabled switch is dimmed.
 
 <preview path="../demos/switch/switch-states.vue" title="States" description="On, off, disabled."></preview>
 
+## Appearance
+
+The off track is the theme's `--input` color, the on track is `--primary`, and the
+thumb is `--background`, so a switch follows your theme, including dark mode. It
+is always fully rounded regardless of `--radius`, and the thumb moves the right
+way in right-to-left layouts. Keyboard focus shows a ring in the `--ring` color.
+See [Theming](/theming).
+
 ## Props
 
-| Prop         | Type      | Default | Description                                                                                    |
-| ------------ | --------- | ------- | ---------------------------------------------------------------------------------------------- |
-| `modelValue` | `boolean` | —       | The on/off state. Use with `v-model`. **Required.**                                            |
-| `id`         | `string`  | —       | The control's id, for pairing with a `Label`'s `for`. Provided automatically inside a `Field`. |
-| `disabled`   | `boolean` | `false` | Disables the switch. Inherited from a surrounding `Field`.                                     |
-| `ariaLabel`  | `string`  | —       | Accessible name when there's no associated `Label`. Set this _or_ pair with a `Label`.         |
-| `class`      | `string`  | —       | Classes merged onto the track.                                                                 |
+| Prop         | Type      | Default | Description                                                                                                                                                      |
+| ------------ | --------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `modelValue` | `boolean` | —       | The on/off state. Use with `v-model`. **Required.**                                                                                                              |
+| `id`         | `string`  | —       | The control's id, for pairing with a `Label`'s `for`. Provided automatically inside a `Field`; otherwise generated. Set it yourself to target it from a `Label`. |
+| `disabled`   | `boolean` | `false` | Disables the switch. Inherited from a surrounding `Field`.                                                                                                       |
+| `ariaLabel`  | `string`  | —       | Accessible name when there's no associated `Label`. Set this _or_ pair with a `Label`.                                                                           |
+| `class`      | `string`  | —       | Classes merged onto the track.                                                                                                                                   |
+
+**Events:** `update:modelValue` (`checked: boolean`), emitted when the user
+toggles the switch.
 
 ## Accessibility
 

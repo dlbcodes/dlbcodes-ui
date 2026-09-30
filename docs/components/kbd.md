@@ -5,8 +5,8 @@ keys into a combo (like ⌘K). Use them to document shortcuts in menus, tooltips
 help text, and command palettes.
 
 `Kbd` is slot-only — put the key's label (a letter, word, or symbol like ⌘ or ⇧)
-inside it. There are no variants; size and color come from your text styles, and
-you can adjust anything via the `class` prop.
+inside it. There are no variants: a key is a small muted chip, and you can adjust
+anything via the `class` prop.
 
 ## Usage
 
@@ -28,6 +28,24 @@ Both compose inline within text, so you can reference shortcuts naturally in
 help copy and tooltips.
 
 <preview path="../demos/kbd/kbd-inline.vue" title="Inline" description="Used within a sentence."></preview>
+
+## Appearance
+
+A key has a `--muted` background, `--muted-foreground` text, and corners that
+follow `--radius`, so it follows your theme, including dark mode. It is small
+(20px tall) and can't be selected or clicked, which keeps it from getting in the
+way of surrounding text.
+
+Because `--muted` is close to the page background in the light theme, a key can
+look faint on a tinted panel. Add a border there through `class`:
+
+<code-block lang="vue">
+
+```vue
+<Kbd class="border border-border">K</Kbd>
+```
+
+</code-block>
 
 ## Props
 

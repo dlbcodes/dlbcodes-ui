@@ -15,7 +15,9 @@ const props = withDefaults(defineProps<Props>(), {
 <template>
     <span role="status" class="inline-flex">
         <svg
-            :class="cn('size-6 animate-spin text-text-tertiary', props.class)"
+            :class="
+                cn('size-6 animate-spin text-muted-foreground/70', props.class)
+            "
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"

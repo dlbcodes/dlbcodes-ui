@@ -42,7 +42,7 @@ const onChange = (event: Event): void => {
 <template>
     <label
         class="relative inline-flex"
-        :class="resolved.disabled && 'opacity-60'"
+        :class="resolved.disabled && 'opacity-50'"
     >
         <input
             :id="resolved.id"
@@ -60,10 +60,10 @@ const onChange = (event: Event): void => {
         <div
             :class="
                 cn(
-                    'h-6 w-11 cursor-pointer rounded-full bg-bg-subtle transition-colors',
-                    'after:absolute after:inset-s-0.5 after:top-0.5 after:size-5 after:rounded-full after:border after:border-border-strong after:bg-bg-base after:transition-all after:content-[\'\']',
-                    'peer-checked:bg-bg-inverse peer-checked:after:translate-x-5 peer-checked:after:border-bg-inverse',
-                    'peer-focus-visible:ring-2 peer-focus-visible:ring-offset-2 peer-focus-visible:ring-border-strong',
+                    'h-6 w-11 cursor-pointer rounded-full bg-input transition-colors',
+                    'after:absolute after:inset-s-0.5 after:top-0.5 after:size-5 after:rounded-full after:border after:border-border-strong after:bg-background after:transition-all after:content-[\'\']',
+                    'peer-checked:bg-primary peer-checked:after:translate-x-5 peer-checked:after:border-primary rtl:peer-checked:after:-translate-x-5',
+                    'peer-focus-visible:ring-2 peer-focus-visible:ring-offset-2 peer-focus-visible:ring-ring peer-focus-visible:ring-offset-background',
                     'peer-disabled:cursor-not-allowed',
                     props.class,
                 )
