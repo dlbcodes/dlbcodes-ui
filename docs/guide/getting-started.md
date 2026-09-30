@@ -134,7 +134,7 @@ importing the tokens, with light values on `:root` and dark values on `.dark`:
 
 </code-block>
 
-Dark mode is a `dark` class on the `<html>` element. See [Theming](/theming) for
+Dark mode is a `dark` class on the `<html>` element. See [Theming](/guide/theming) for
 the full list of variables and how they fit together.
 
 ## Next steps

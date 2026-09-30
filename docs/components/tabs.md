@@ -66,7 +66,7 @@ soon as it's focused) — useful when switching tabs triggers expensive work.
 The bar is a `--muted` track with a `--border` outline, and the selected tab is
 lifted above it: white in the light theme, a lighter grey in dark mode. Unselected
 tabs use `--muted-foreground` and darken on hover. Keyboard focus shows a ring in
-the `--ring` color. See [Theming](/theming).
+the `--ring` color. See [Theming](/guide/theming).
 
 The corners follow the theme's `--radius`, so the bar and its tabs change shape
 with your radius setting: square at `0`, softly rounded at the default. The tab

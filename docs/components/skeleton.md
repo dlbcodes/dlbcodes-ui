@@ -43,7 +43,7 @@ A skeleton is filled with the theme's `--accent` color and pulses. It has the
 theme's medium corner radius by default, so it follows `--radius`. Pass your own
 radius to change it, such as `rounded-full` for an avatar placeholder. On a very
 light page the fill is subtle. If you need more contrast, pass `class="bg-border"`.
-See [Theming](/theming).
+See [Theming](/guide/theming).
 
 ## Props
 

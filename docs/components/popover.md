@@ -50,7 +50,7 @@ popover isn't matched to the trigger's width; it's sized for its content.
 The panel uses the theme's `--popover` surface with a `--border` outline and a
 shadow, and its corners follow `--radius`. It shares this look with Dropdown and
 Modal, so floating surfaces match, including in dark mode. See
-[Theming](/theming).
+[Theming](/guide/theming).
 
 ## Props
 

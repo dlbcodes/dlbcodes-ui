@@ -161,7 +161,7 @@ the rest of the UI:
 
 `--sidebar` is the panel background, `--sidebar-accent` is the active and hover
 highlight for items, and inactive items use `--sidebar-foreground` slightly
-faded. See [Theming](/theming) for the full list.
+faded. See [Theming](/guide/theming) for the full list.
 
 ## Props
 

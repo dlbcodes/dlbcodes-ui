@@ -47,7 +47,7 @@ larger icon or a custom illustration.
 The container's border uses the theme's `--border`, the icon background uses
 `--muted`, and the text uses `--foreground` and `--muted-foreground`. Corners
 follow `--radius`. So an empty state follows your theme, including dark mode. See
-[Theming](/theming).
+[Theming](/guide/theming).
 
 ## Props
 

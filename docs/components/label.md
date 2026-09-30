@@ -42,7 +42,7 @@ the control yourself and use the same value in the label's `for`.
 ## Appearance
 
 The label text uses the theme's `--foreground` color, so it follows your theme,
-including dark mode. See [Theming](/theming).
+including dark mode. See [Theming](/guide/theming).
 
 ## Props
 

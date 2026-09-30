@@ -33,7 +33,7 @@ The off track is the theme's `--input` color, the on track is `--primary`, and t
 thumb is `--background`, so a switch follows your theme, including dark mode. It
 is always fully rounded regardless of `--radius`, and the thumb moves the right
 way in right-to-left layouts. Keyboard focus shows a ring in the `--ring` color.
-See [Theming](/theming).
+See [Theming](/guide/theming).
 
 ## Props
 

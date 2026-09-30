@@ -62,7 +62,7 @@ instead, so the accessible name and the on-screen text stay in sync:
 
 The track is the theme's `--muted` color and the fill is `--brand`, so a
 progress bar follows your theme, including dark mode. Both ends are fully
-rounded regardless of `--radius`. See [Theming](/theming).
+rounded regardless of `--radius`. See [Theming](/guide/theming).
 
 ## Props
 

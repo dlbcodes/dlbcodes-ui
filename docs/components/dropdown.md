@@ -52,7 +52,7 @@ navigation and does not emit `select`.
 
 The menu panel uses the theme's `--popover` surface and `--border`, and the
 active item is highlighted with `--accent`, so a dropdown follows your theme,
-including dark mode. Its corners follow `--radius`. See [Theming](/theming).
+including dark mode. Its corners follow `--radius`. See [Theming](/guide/theming).
 
 ## Props
 

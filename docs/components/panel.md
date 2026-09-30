@@ -40,7 +40,7 @@ a navigation bar.
 `Panel` is a `--muted` frame with a `--border` outline, and `PanelContent` is a
 `--card` surface inside it. In the light theme the content is the brighter of the
 two; in dark mode it is a step darker than the frame, so it reads as inset. Both
-follow your theme. See [Theming](/theming).
+follow your theme. See [Theming](/guide/theming).
 
 ## Concentric corners
 

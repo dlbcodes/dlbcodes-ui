@@ -24,7 +24,7 @@ button per section — if everything is primary, nothing is.
 
 `primary` is filled with the theme's `--brand` color, and `destructive` with
 `--destructive`. The others use neutral tokens, so they follow your theme
-automatically. See [Theming](/theming).
+automatically. See [Theming](/guide/theming).
 
 ## Sizes
 

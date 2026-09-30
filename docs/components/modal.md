@@ -97,7 +97,7 @@ trapping them.
 
 The dialog uses the theme's `--popover` surface with a `--border-subtle` border,
 and its corners follow `--radius`. The backdrop is a translucent black in both
-light and dark mode. See [Theming](/theming).
+light and dark mode. See [Theming](/guide/theming).
 
 ## Props
 
