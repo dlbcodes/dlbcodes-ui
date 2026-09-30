@@ -5,11 +5,12 @@ export const alertVariants = cva(
 	{
 		variants: {
 			variant: {
-				neutral: "bg-bg-surface border-border-default text-text-primary",
-				info: "bg-info-surface border-info-border text-info-text",
-				success: "bg-success-surface border-success-border text-success-text",
-				warning: "bg-warning-surface border-warning-border text-warning-text",
-				danger: "bg-danger-surface border-danger-border text-danger-text",
+				neutral: "bg-muted border-border text-foreground",
+				info: "bg-info-subtle border-info-border text-info",
+				success: "bg-success-subtle border-success-border text-success",
+				warning: "bg-warning-subtle border-warning-border text-warning",
+				destructive:
+					"bg-destructive-subtle border-destructive-border text-destructive",
 			},
 		},
 		defaultVariants: {

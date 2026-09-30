@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, inject } from "vue";
+import { computed, inject, useId } from "vue";
 import type { HTMLAttributes } from "vue";
 import { cn } from "../../utils/cn";
 import { FieldKey } from "../../core/field-context";
@@ -31,23 +31,39 @@ const emit = defineEmits<{
 // Optionally enhanced by a surrounding Field. Own props win.
 const field = inject(FieldKey, null);
 
+// Precedence: explicit prop > Field context > own generated fallback, so a
+// <Label for="…"> can always target the input (same as Switch / Input).
+const fallbackId = useId();
+
 const resolved = computed(() => ({
-    id: props.id ?? field?.id.value,
+    id: props.id ?? field?.id.value ?? fallbackId,
     required: props.required || (field?.required.value ?? false),
     disabled: props.disabled || (field?.disabled.value ?? false),
     invalid: props.invalid || (field?.invalid.value ?? false),
     describedById: field?.describedById.value,
 }));
 
-const boxClass = computed(() =>
+// props.class is NOT included here: each template applies it last, so
+// consumer classes always win over internal ones.
+const boxBase = computed(() =>
     cn(
-        "flex size-4 shrink-0 items-center justify-center rounded border transition-colors",
+        // Radius follows --radius (4px at the default 0.625rem). A fixed
+        // `rounded` or the sm step would be too round on a 16px box.
+        "flex size-4 shrink-0 items-center justify-center rounded-[calc(var(--radius)*0.4)] border transition-colors",
         resolved.value.invalid
-            ? "border-danger-text bg-danger-text/10"
+            ? "border-destructive bg-destructive/10"
             : props.modelValue
-              ? "border-bg-inverse bg-bg-inverse"
-              : "border-border-strong bg-bg-base",
-        props.class,
+              ? "border-primary bg-primary"
+              : "border-border-strong bg-background",
+    ),
+);
+
+// The check must stay visible on the pale invalid tint, where the
+// primary-foreground colour would disappear.
+const checkClass = computed(() =>
+    cn(
+        "pointer-events-none size-3",
+        resolved.value.invalid ? "text-destructive" : "text-primary-foreground",
     ),
 );
 
@@ -58,7 +74,7 @@ const onChange = (event: Event): void => {
 
 <template>
     <!-- Visual-only: plain box, no interactive elements. -->
-    <div v-if="visual" :class="boxClass">
+    <div v-if="visual" :class="cn(boxBase, props.class)">
         <svg
             v-if="modelValue"
             xmlns="http://www.w3.org/2000/svg"
@@ -68,7 +84,7 @@ const onChange = (event: Event): void => {
             stroke-width="3"
             stroke-linecap="round"
             stroke-linejoin="round"
-            class="pointer-events-none size-3 text-text-inverse"
+            :class="checkClass"
         >
             <path d="M5 13l4 4L19 7" />
         </svg>
@@ -82,7 +98,7 @@ const onChange = (event: Event): void => {
     <label
         v-else
         class="inline-flex"
-        :class="resolved.disabled && 'opacity-60'"
+        :class="resolved.disabled && 'opacity-50'"
     >
         <input
             :id="resolved.id"
@@ -99,8 +115,9 @@ const onChange = (event: Event): void => {
         <div
             :class="
                 cn(
-                    boxClass,
-                    'cursor-pointer peer-focus-visible:ring-1 peer-focus-visible:ring-border-strong peer-disabled:cursor-not-allowed',
+                    boxBase,
+                    'cursor-pointer peer-focus-visible:ring-2 peer-focus-visible:ring-ring peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-background peer-disabled:cursor-not-allowed',
+                    props.class,
                 )
             "
         >
@@ -113,7 +130,7 @@ const onChange = (event: Event): void => {
                 stroke-width="3"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                class="pointer-events-none size-3 text-text-inverse"
+                :class="checkClass"
             >
                 <path d="M5 13l4 4L19 7" />
             </svg>

@@ -16,7 +16,7 @@ const field = inject(FieldKey, null);
     <p
         :id="field?.errorId.value"
         role="alert"
-        :class="cn('text-sm text-danger-text', props.class)"
+        :class="cn('text-sm text-destructive', props.class)"
     >
         <slot />
     </p>

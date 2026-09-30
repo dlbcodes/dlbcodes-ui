@@ -34,4 +34,4 @@ coverage/
 
 # VitePress build output & cache
 docs/.vitepress/dist/
-docs/.vitepress/cache/
+docs/.vitepress/cache/.npmrc

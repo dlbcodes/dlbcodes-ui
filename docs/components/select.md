@@ -13,11 +13,11 @@ value.
 ## Anatomy
 
 ```
-Select               ← root: holds v-model, provides context, sets placement
-├── SelectTrigger    ← the field-like button showing the current selection
-└── SelectContent    ← the floating panel (matches the trigger's width)
-    ├── SelectSearch  ← optional search input (needs`searchable` on the root)
-└── SelectItem ← one per option; its content is the label
+Select                 ← root: holds v-model, provides context, sets placement
+├── SelectTrigger      ← the field-like button showing the current selection
+└── SelectContent      ← the floating panel (matches the trigger's width)
+    ├── SelectSearch   ← optional search input (needs `searchable` on the root)
+    └── SelectItem     ← one per option; its content is the label
 ```
 
 Each option is a `SelectItem` with a `value` and a `label`. The `label` is the
@@ -80,12 +80,12 @@ just like the other form controls.
 
 ### SelectTrigger
 
-| Prop          | Type                      | Default              | Description                            |
-| ------------- | ------------------------- | -------------------- | -------------------------------------- |
-| `placeholder` | `string`                  | `"Select an option"` | Shown when nothing is selected.        |
-| `variant`     | `"primary" \| "contrast"` | `"primary"`          | Field style (shares Input's variants). |
-| `size`        | `"base" \| "sm"`          | `"base"`             | Field size.                            |
-| `class`       | `string`                  | none                 | Classes merged onto the trigger.       |
+| Prop          | Type                             | Default              | Description                                                                                       |
+| ------------- | -------------------------------- | -------------------- | ------------------------------------------------------------------------------------------------- |
+| `placeholder` | `string`                         | `"Select an option"` | Shown when nothing is selected.                                                                   |
+| `variant`     | `"primary" \| "contrast"`        | `"primary"`          | Field style (shares Input's variants).                                                            |
+| `size`        | `"sm" \| "base" \| "lg" \| "xl"` | `"base"`             | Field size (shares Input's sizes). Heights are 32, 40, 48 and 56px, the same as Button and Input. |
+| `class`       | `string`                         | none                 | Classes merged onto the trigger.                                                                  |
 
 `SelectTrigger` exposes `selected` (the value) and `label` (the display text) via
 its default slot, so you can render the selection however you like.

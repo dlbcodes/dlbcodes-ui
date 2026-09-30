@@ -20,9 +20,9 @@ const required = computed(() => field?.required.value ?? false);
         :for="forId"
         :class="
             cn(
-                'w-fit select-none text-sm font-medium text-text-secondary',
+                'w-fit select-none text-sm font-medium text-muted-foreground',
                 required &&
-                    `after:ml-0.5 after:text-danger-text after:content-['*']`,
+                    `after:ml-0.5 after:text-destructive after:content-['*']`,
                 props.class,
             )
         "

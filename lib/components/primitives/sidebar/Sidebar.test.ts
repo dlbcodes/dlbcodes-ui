@@ -1,22 +1,27 @@
-import { describe, it, expect, vi } from "vitest";
+import { describe, it, expect, vi, afterEach } from "vitest";
 import { mount, type VueWrapper } from "@vue/test-utils";
-import { defineComponent, h, ref, type Ref, markRaw } from "vue";
+import { defineComponent, h, ref, markRaw } from "vue";
 import Sidebar from "./Sidebar.vue";
 import SidebarGroup from "./SidebarGroup.vue";
 import SidebarItem from "./SidebarItem.vue";
 import SidebarTrigger from "./SidebarTrigger.vue";
 import { SidebarContextKey, type SidebarContext } from "./context";
 
-// Controllable mock context — lets us flip isMobile/mobileOpen/collapsed
-// without depending on window size or useMediaQuery.
-const makeCtx = (overrides: Partial<SidebarContext> = {}): SidebarContext => ({
-	isMobile: ref(false) as Ref<boolean>,
-	mobileOpen: ref(false) as Ref<boolean>,
-	collapsed: ref(false) as Ref<boolean>,
+// Controllable mock context: flip the state with plain booleans, without
+// depending on window size or useMediaQuery.
+type State = { isMobile?: boolean; mobileOpen?: boolean; collapsed?: boolean };
+
+const makeCtx = ({
+	isMobile = false,
+	mobileOpen = false,
+	collapsed = false,
+}: State = {}): SidebarContext => ({
+	isMobile: ref(isMobile),
+	mobileOpen: ref(mobileOpen),
+	collapsed: ref(collapsed),
 	open: vi.fn(),
 	close: vi.fn(),
 	toggle: vi.fn(),
-	...overrides,
 });
 
 // Mount with the mock sidebar context provided.
@@ -31,184 +36,149 @@ const withCtx = (
 	}) as VueWrapper;
 
 describe("SidebarGroup", () => {
-	it("renders a label when provided", () => {
-		const wrapper = mount(SidebarGroup, {
+	it("renders a heading only when a label is provided", () => {
+		const labelled = mount(SidebarGroup, {
 			props: { label: "Workspace" },
 			slots: { default: "items" },
 		});
-		expect(wrapper.text()).toContain("Workspace");
-		expect(wrapper.text()).toContain("items");
-	});
+		expect(labelled.find("p").text()).toBe("Workspace");
+		expect(labelled.text()).toContain("items");
 
-	it("renders no heading when label is omitted", () => {
-		const wrapper = mount(SidebarGroup, { slots: { default: "items" } });
-		expect(wrapper.find("p").exists()).toBe(false);
-		expect(wrapper.text()).toContain("items");
+		const plain = mount(SidebarGroup, { slots: { default: "items" } });
+		expect(plain.find("p").exists()).toBe(false);
+		expect(plain.text()).toContain("items");
 	});
 });
 
 describe("SidebarItem", () => {
-	it("renders as an <a> by default", () => {
-		const ctx = makeCtx();
-		const wrapper = withCtx(SidebarItem, ctx, { slots: { default: "Home" } });
-		expect(wrapper.element.tagName).toBe("A");
-		expect(wrapper.text()).toContain("Home");
+	const item = (options: Record<string, unknown> = {}, state: State = {}) => {
+		const ctx = makeCtx(state);
+		return {
+			ctx,
+			wrapper: withCtx(SidebarItem, ctx, {
+				slots: { default: "Home" },
+				...options,
+			}),
+		};
+	};
+
+	it.each([
+		[undefined, "A"],
+		["button", "BUTTON"],
+	])("as=%j renders a <%s>", (as, tag) => {
+		const { wrapper } = item({ props: { as } });
+		expect(wrapper.element.tagName).toBe(tag);
+		expect(wrapper.text()).toBe("Home");
 	});
 
-	it("renders as a button when as='button'", () => {
-		const ctx = makeCtx();
-		const wrapper = withCtx(SidebarItem, ctx, {
-			props: { as: "button" },
-			slots: { default: "Click" },
-		});
-		expect(wrapper.element.tagName).toBe("BUTTON");
-	});
-
-	it("renders as an arbitrary component passed to `as` and forwards attrs", () => {
-		const FakeLink = markRaw(defineComponent({
-			name: "FakeLink",
-			props: { to: { type: String, default: "" } },
-			setup(props, { slots }) {
-				return () => h("a", { "data-to": props.to, "data-fake-link": "" }, slots.default?.());
-			},
-		}));
-		const ctx = makeCtx();
-		const wrapper = withCtx(SidebarItem, ctx, {
-			props: { as: FakeLink, to: "/dashboard" },
-			slots: { default: "Dashboard" },
-		});
+	it("renders as a custom component passed to `as` and forwards attrs", () => {
+		const FakeLink = markRaw(
+			defineComponent({
+				name: "FakeLink",
+				props: { to: { type: String, default: "" } },
+				setup(props, { slots }) {
+					return () =>
+						h("a", { "data-to": props.to, "data-fake-link": "" }, slots.default?.());
+				},
+			}),
+		);
+		const { wrapper } = item({ props: { as: FakeLink, to: "/dashboard" } });
 		expect(wrapper.find("[data-fake-link]").exists()).toBe(true);
 		expect(wrapper.find("[data-to='/dashboard']").exists()).toBe(true);
-		expect(wrapper.text()).toContain("Dashboard");
 	});
 
-	it("applies inactive styling by default", () => {
-		const ctx = makeCtx();
-		const wrapper = withCtx(SidebarItem, ctx, { slots: { default: "x" } });
-		const cls = wrapper.classes();
-		expect(cls).toContain("text-text-secondary");
-		expect(cls).not.toContain("bg-bg-subtle");
+	// Active is the only state with a permanent (non-hover) accent background.
+	it.each([
+		[true, true],
+		[false, false],
+	])("active=%s -> accent background: %s", (active, hasBg) => {
+		const { wrapper } = item({ props: { active } });
+		expect(wrapper.classes().includes("bg-sidebar-accent")).toBe(hasBg);
 	});
 
-	it("applies active styling when active", () => {
-		const ctx = makeCtx();
-		const wrapper = withCtx(SidebarItem, ctx, {
-			props: { active: true },
-			slots: { default: "x" },
-		});
-		const cls = wrapper.classes();
-		expect(cls).toContain("bg-bg-subtle");
-		expect(cls).toContain("text-text-primary");
-	});
-
-	it("closes the drawer on click when mobile", async () => {
-		const ctx = makeCtx({ isMobile: ref(true) as Ref<boolean> });
-		const wrapper = withCtx(SidebarItem, ctx, {
-			props: { as: "button" },
-			slots: { default: "Go" },
-		});
+	// Tapping a link on mobile should dismiss the drawer; on desktop it must not.
+	it.each([
+		[true, 1],
+		[false, 0],
+	])("isMobile=%s -> close called %s time(s) on click", async (isMobile, calls) => {
+		const { wrapper, ctx } = item({ props: { as: "button" } }, { isMobile });
 		await wrapper.trigger("click");
-		expect(ctx.close).toHaveBeenCalledOnce();
-	});
-
-	it("does NOT close on click when desktop", async () => {
-		const ctx = makeCtx({ isMobile: ref(false) as Ref<boolean> });
-		const wrapper = withCtx(SidebarItem, ctx, {
-			props: { as: "button" },
-			slots: { default: "Go" },
-		});
-		await wrapper.trigger("click");
-		expect(ctx.close).not.toHaveBeenCalled();
+		expect(ctx.close).toHaveBeenCalledTimes(calls);
 	});
 
 	it("merges a custom class", () => {
-		const ctx = makeCtx();
-		const wrapper = withCtx(SidebarItem, ctx, {
-			props: { class: "font-bold" },
-			slots: { default: "x" },
-		});
+		const { wrapper } = item({ props: { class: "font-bold" } });
 		expect(wrapper.classes()).toContain("font-bold");
 	});
 });
 
 describe("SidebarTrigger", () => {
-	it("renders and toggles on mobile", async () => {
-		const ctx = makeCtx({ isMobile: ref(true) as Ref<boolean> });
+	it.each([true, false])("toggles on click (isMobile=%s)", async (isMobile) => {
+		const ctx = makeCtx({ isMobile });
 		const wrapper = withCtx(SidebarTrigger, ctx);
-		const btn = wrapper.find("button");
-		expect(btn.exists()).toBe(true);
-		await btn.trigger("click");
-		expect(ctx.toggle).toHaveBeenCalledOnce();
-	});
-
-	it("renders and toggles on desktop too", async () => {
-		// The trigger is now always rendered; on desktop it collapses the sidebar.
-		const ctx = makeCtx({ isMobile: ref(false) as Ref<boolean> });
-		const wrapper = withCtx(SidebarTrigger, ctx);
-		const btn = wrapper.find("button");
-		expect(btn.exists()).toBe(true);
-		await btn.trigger("click");
+		await wrapper.find("button").trigger("click");
 		expect(ctx.toggle).toHaveBeenCalledOnce();
 	});
 });
 
 describe("Sidebar", () => {
-	it("renders an inline aside on desktop when not collapsed", () => {
-		const ctx = makeCtx({ isMobile: ref(false) as Ref<boolean> });
-		const wrapper = withCtx(Sidebar, ctx, { slots: { default: "nav" } });
-		expect(wrapper.find("aside").exists()).toBe(true);
-		expect(wrapper.text()).toContain("nav");
-	});
-
-	it("hides the sidebar on desktop when collapsed", () => {
-		const ctx = makeCtx({
-			isMobile: ref(false) as Ref<boolean>,
-			collapsed: ref(true) as Ref<boolean>,
+	// [state, is the <aside> rendered?]
+	it.each([
+		[{ isMobile: false, collapsed: false }, true], // desktop, expanded
+		[{ isMobile: false, collapsed: true }, false], // desktop, collapsed
+		[{ isMobile: true, mobileOpen: false }, false], // mobile, drawer closed
+		[{ isMobile: true, mobileOpen: true }, true], // mobile, drawer open
+		[{ isMobile: true, mobileOpen: true, collapsed: true }, true], // collapsed is desktop-only
+	] as [State, boolean][])("state %j -> rendered: %s", (state, rendered) => {
+		const wrapper = withCtx(Sidebar, makeCtx(state), {
+			slots: { default: "nav" },
 		});
-		const wrapper = withCtx(Sidebar, ctx, { slots: { default: "nav" } });
-		expect(wrapper.find("aside").exists()).toBe(false);
-	});
-
-	it("does not show the drawer on mobile when closed", () => {
-		const ctx = makeCtx({
-			isMobile: ref(true) as Ref<boolean>,
-			mobileOpen: ref(false) as Ref<boolean>,
-		});
-		const wrapper = withCtx(Sidebar, ctx, { slots: { default: "nav" } });
-		expect(wrapper.find("aside").exists()).toBe(false);
-	});
-
-	it("shows the drawer on mobile when open", () => {
-		const ctx = makeCtx({
-			isMobile: ref(true) as Ref<boolean>,
-			mobileOpen: ref(true) as Ref<boolean>,
-		});
-		const wrapper = withCtx(Sidebar, ctx, { slots: { default: "nav" } });
-		expect(wrapper.find("aside").exists()).toBe(true);
-		expect(wrapper.text()).toContain("nav");
-	});
-
-	it("is not affected by collapsed state on mobile", () => {
-		// collapsed is a desktop concept; on mobile the drawer still works.
-		const ctx = makeCtx({
-			isMobile: ref(true) as Ref<boolean>,
-			mobileOpen: ref(true) as Ref<boolean>,
-			collapsed: ref(true) as Ref<boolean>,
-		});
-		const wrapper = withCtx(Sidebar, ctx, { slots: { default: "nav" } });
-		// drawer still shows because collapsed only governs desktop
-		expect(wrapper.find("aside").exists()).toBe(true);
+		expect(wrapper.find("aside").exists()).toBe(rendered);
+		expect(wrapper.text().includes("nav")).toBe(rendered);
 	});
 
 	it("closes the drawer when the backdrop is clicked", async () => {
-		const ctx = makeCtx({
-			isMobile: ref(true) as Ref<boolean>,
-			mobileOpen: ref(true) as Ref<boolean>,
-		});
+		const ctx = makeCtx({ isMobile: true, mobileOpen: true });
 		const wrapper = withCtx(Sidebar, ctx, { slots: { default: "nav" } });
-		const backdrop = wrapper.find(".fixed.inset-0");
-		expect(backdrop.exists()).toBe(true);
-		await backdrop.trigger("click");
+		await wrapper.find(".fixed.inset-0").trigger("click");
 		expect(ctx.close).toHaveBeenCalled();
+	});
+
+	// The key handler is global: focus usually stays on the trigger button
+	// when the drawer opens, so a handler on the <aside> would never fire.
+	describe("Escape", () => {
+		const pressEscape = () =>
+			window.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape" }));
+
+		it.each([
+			[{ isMobile: true, mobileOpen: true }, 1],
+			[{ isMobile: true, mobileOpen: false }, 0], // nothing to close
+			[{ isMobile: false, mobileOpen: true }, 0], // desktop ignores the drawer
+		] as [State, number][])("state %j -> close called %s time(s)", (state, calls) => {
+			const ctx = makeCtx(state);
+			const wrapper = withCtx(Sidebar, ctx, { slots: { default: "nav" } });
+			pressEscape();
+			expect(ctx.close).toHaveBeenCalledTimes(calls);
+			wrapper.unmount();
+		});
+	});
+
+	describe("scroll lock", () => {
+		afterEach(() => {
+			document.body.style.overflow = "";
+		});
+
+		it("locks body scroll while the mobile drawer is open and releases it on unmount", () => {
+			const wrapper = withCtx(Sidebar, makeCtx({ isMobile: true, mobileOpen: true }));
+			expect(document.body.style.overflow).toBe("hidden");
+
+			wrapper.unmount();
+			expect(document.body.style.overflow).not.toBe("hidden");
+		});
+
+		it("does not lock body scroll on desktop", () => {
+			withCtx(Sidebar, makeCtx({ isMobile: false, mobileOpen: true }));
+			expect(document.body.style.overflow).not.toBe("hidden");
+		});
 	});
 });

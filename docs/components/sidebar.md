@@ -87,6 +87,8 @@ bar to control it:
 - **Mobile (< 768px):** the sidebar is hidden and opens as an overlay drawer
   (sliding from the left) when `SidebarTrigger` is tapped. A backdrop appears,
   body scroll is locked, and tapping the backdrop or pressing Escape closes it.
+  The scroll lock is released when the drawer closes, when the sidebar is
+  removed, or when the window grows past the breakpoint.
 
 The same `SidebarTrigger` handles both — it collapses on desktop and opens the
 drawer on mobile, automatically.
@@ -97,7 +99,7 @@ Use `useSidebar()` to read or control the state yourself:
 
 ```vue
 <script setup lang="ts">
-import { useSidebar } from "@dlbcodes/my-design-system";
+import { useSidebar } from "@dlbcodes/ui";
 
 const { collapsed, isMobile, open, close, toggle } = useSidebar();
 </script>
@@ -131,6 +133,36 @@ const { collapsed, isMobile, open, close, toggle } = useSidebar();
 >Home</SidebarItem>
 ```
 
+## Theming
+
+The sidebar has its own set of theme variables, separate from the page, so you
+can give it a different look, such as a darker or tinted panel, without touching
+the rest of the UI:
+
+<code-block lang="css">
+
+```css
+:root {
+    --sidebar: oklch(96% 0.01 260);
+    --sidebar-foreground: oklch(25% 0.02 260);
+    --sidebar-accent: oklch(92% 0.02 260); /* active and hover item */
+    --sidebar-border: oklch(88% 0.01 260);
+}
+
+.dark {
+    --sidebar: oklch(22% 0.01 260);
+    --sidebar-foreground: oklch(95% 0.01 260);
+    --sidebar-accent: oklch(30% 0.02 260);
+    --sidebar-border: oklch(100% 0 0 / 10%);
+}
+```
+
+</code-block>
+
+`--sidebar` is the panel background, `--sidebar-accent` is the active and hover
+highlight for items, and inactive items use `--sidebar-foreground` slightly
+faded. See [Theming](/theming) for the full list.
+
 ## Props
 
 ### SidebarItem
@@ -163,3 +195,5 @@ automatically.
 - `SidebarProvider` must wrap the sidebar and trigger.
 - Server-side rendering (Nuxt): the breakpoint is detected on the client, so the
   desktop layout renders first and adjusts on hydration.
+- The mobile drawer does not trap keyboard focus yet: Tab can move to the page
+  behind it. Escape and the backdrop close it.

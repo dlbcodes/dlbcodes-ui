@@ -7,6 +7,9 @@
     "files": [
         "dist"
     ],
+    "sideEffects": [
+        "**/*.css"
+    ],
     "module": "./dist/index.js",
     "types": "./dist/lib/index.d.ts",
     "exports": {
@@ -64,10 +67,5 @@
         "vue": "^3.5.34",
         "vue-router": "^5.3.1",
         "vue-tsc": "^3.2.8"
-    },
-    "overrides": {
-        "@vercel/analytics": {
-            "vue-router": "$vue-router"
-        }
     }
 }

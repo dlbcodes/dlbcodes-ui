@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch, type HTMLAttributes } from "vue";
+import { onBeforeUnmount, ref, watch, type HTMLAttributes } from "vue";
 import { onKeyStroke, useScrollLock } from "@vueuse/core";
 import { useFocusTrap } from "@vueuse/integrations/useFocusTrap";
 import { cn } from "../../../utils/cn";
@@ -87,6 +87,9 @@ const { activate, deactivate } = useFocusTrap(dialogRef, {
     immediate: false,
     escapeDeactivates: false,
     allowOutsideClick: true,
+    // focus-trap throws if the dialog has no tabbable element (text-only
+    // modal, loading state). Fall back to the panel itself (tabindex="-1").
+    fallbackFocus: () => dialogRef.value as HTMLElement,
 });
 
 const labelId = ref<string | undefined>(undefined);
@@ -106,13 +109,22 @@ provideModalContext({
     },
 });
 
+// immediate: a modal that mounts already open must lock scroll too.
 watch(
     () => props.modelValue,
     (isOpen) => {
         isScrollLocked.value = isOpen;
         if (!isOpen) deactivate();
     },
+    { immediate: true },
 );
+
+// If the parent unmounts the modal while it's open (route change, v-if on the
+// component itself), release the scroll lock and focus trap.
+onBeforeUnmount(() => {
+    isScrollLocked.value = false;
+    deactivate();
+});
 </script>
 
 <template>
@@ -127,7 +139,7 @@ watch(
         >
             <div
                 v-if="modelValue"
-                class="fixed inset-0 z-50 flex items-end justify-center bg-bg-inverse/50 md:items-center"
+                class="fixed inset-0 z-50 flex items-end justify-center bg-black/50 backdrop-blur-xs md:items-center"
                 @click.self="handleBackdropClick"
             >
                 <Transition
@@ -142,7 +154,14 @@ watch(
                 >
                     <div
                         ref="dialogRef"
-                        :class="cn(modalVariants({ size }), props.class)"
+                        tabindex="-1"
+                        :class="
+                            cn(
+                                modalVariants({ size }),
+                                'focus:outline-none',
+                                props.class,
+                            )
+                        "
                         role="dialog"
                         aria-modal="true"
                         :aria-labelledby="labelId"

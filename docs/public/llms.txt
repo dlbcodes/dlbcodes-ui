@@ -3,7 +3,8 @@
 > An accessible, tokenized Vue 3 component library built on Tailwind CSS v4,
 > class-variance-authority, and Headless UI. Components are compound and
 > composable (Trigger/Content patterns), themed entirely through semantic
-> design tokens. Published on npm as @dlbcodes/ui.
+> design tokens (shadcn-style names, plus a user-changeable corner radius).
+> Published on npm as @dlbcodes/ui.
 
 ## Getting Started
 
@@ -24,46 +25,91 @@ Tailwind v4 setup (in your main CSS):
 
 ### Primitives
 
-- [Button](https://ui.dlbcodes.com/components/button): Button with variants (primary, secondary, destructive, outline, ghost, link) and sizes (sm, base, lg, xl, icon, icon-sm). Supports loading, disabled, and rendering as a link via `to`/`as`.
-- [Badge](https://ui.dlbcodes.com/components/badge): Status/label badge with variants.
-- [Avatar](https://ui.dlbcodes.com/components/avatar): User avatar with name/src, sizes sm/base/lg.
-- [Spinner](https://ui.dlbcodes.com/components/spinner): Loading spinner.
+- [Button](https://ui.dlbcodes.com/components/button): Button. Variants: primary (brand color), secondary, destructive, outline, ghost, link, icon. Sizes: sm, base, lg, xl, icon, icon-sm (use icon/icon-sm for square icon-only buttons). Heights sm/base/lg/xl are 32/40/48/56px, the same as Input. Props: loading (+loadingText, announced to screen readers only), disabled. Renders as a link when `to` is set; `as` overrides the element (defaults to RouterLink, use as="a" for a plain anchor).
+- [Badge](https://ui.dlbcodes.com/components/badge): Status/label badge. Variants: neutral, primary, success, warning, info, destructive, outline.
+- [Avatar](https://ui.dlbcodes.com/components/avatar): User avatar. Props: name, src, size (xs, sm, base, lg, xl, 2xl, then 3xl to 10xl for large profile images). Shows the image when src loads, else (including when the image fails to load) falls back to the first character of name, or "?" with no name; name is also used as alt text.
+- [Spinner](https://ui.dlbcodes.com/components/spinner): Loading spinner. Props: label (screen-reader text, default "Loading"). Size and color via utility classes on class (e.g. class="size-6 text-brand"), not a size prop.
 - [Kbd](https://ui.dlbcodes.com/components/kbd): Keyboard shortcut display (Kbd, KbdGroup).
 - [Label](https://ui.dlbcodes.com/components/label): Form label.
 - [Separator](https://ui.dlbcodes.com/components/separator): Visual divider.
 - [Skeleton](https://ui.dlbcodes.com/components/skeleton): Loading placeholder.
-- [Progress](https://ui.dlbcodes.com/components/progress): Progress bar.
-- [Alert](https://ui.dlbcodes.com/components/alert): Message/notification callout (Alert, AlertTitle, AlertDescription).
+- [Progress](https://ui.dlbcodes.com/components/progress): Progress bar. Props: value, max, label. Omit value for an animated indeterminate bar.
+- [Alert](https://ui.dlbcodes.com/components/alert): Message/notification callout (Alert, AlertTitle, AlertDescription). Variants: neutral, info, success, warning, destructive.
 - [Tabs](https://ui.dlbcodes.com/components/tabs): Tabbed interface (Tabs, TabsList, TabsTrigger, TabsPanels, TabsContent); Headless UI, position-paired.
 - [Disclosure](https://ui.dlbcodes.com/components/disclosure): Collapsible section (Disclosure, DisclosureTrigger, DisclosureContent).
 - [Empty](https://ui.dlbcodes.com/components/empty): Empty-state placeholder (Empty, EmptyHeader, EmptyMedia, EmptyTitle, EmptyDescription, EmptyContent). EmptyMedia has variant "default" | "icon".
-- [Sidebar](https://ui.dlbcodes.com/components/sidebar): Responsive app navigation (SidebarProvider, Sidebar, SidebarTrigger, SidebarHeader, SidebarContent, SidebarFooter, SidebarGroup, SidebarItem). Inline panel on desktop (collapsible to hidden via SidebarTrigger), overlay drawer on mobile (<768px). SidebarProvider is required; useSidebar() exposes { collapsed, isMobile, open, close, toggle }. SidebarItem is framework-agnostic via an `as` prop ("a", RouterLink, NuxtLink, "button") with consumer-controlled `active`, and supports `disabled`.
+- [Sidebar](https://ui.dlbcodes.com/components/sidebar): Responsive app navigation (SidebarProvider, Sidebar, SidebarTrigger, SidebarHeader, SidebarContent, SidebarFooter, SidebarGroup, SidebarItem). Inline panel on desktop (collapsible to hidden via SidebarTrigger), overlay drawer on mobile (<768px; closes on Escape or backdrop). SidebarProvider is required; useSidebar() exposes { collapsed, isMobile, open, close, toggle }. SidebarItem is framework-agnostic via an `as` prop ("a", RouterLink, NuxtLink, "button") with consumer-controlled `active`, and supports `disabled`. Themed by its own --sidebar-* variables.
 - [Panel](https://ui.dlbcodes.com/components/panel): Surface container for grouping content (cards, sidebars, sections); compound parts PanelHeader, PanelContent, PanelFooter with concentric corner radii.
 
 ### Form
 
 - [Field](https://ui.dlbcodes.com/components/field): Wires label/description/error and ARIA for a control (Field, FieldLabel, FieldContent, FieldDescription, FieldError). Generates a shared id and cascades disabled/required/invalid. Supports orientation="horizontal" for toggle rows.
-- [Input](https://ui.dlbcodes.com/components/input): Text input. Variants primary | contrast.
-- [Textarea](https://ui.dlbcodes.com/components/textarea): Multi-line text input (autosize).
+- [Input](https://ui.dlbcodes.com/components/input): Text input. Variants primary | contrast. Sizes sm, base, lg, xl (32/40/48/56px, matching Button).
+- [Textarea](https://ui.dlbcodes.com/components/textarea): Multi-line text input (autosize). Shares Input's variants and sizes; height comes from `rows`.
 - [Checkbox](https://ui.dlbcodes.com/components/checkbox): Checkbox input.
 - [Switch](https://ui.dlbcodes.com/components/switch): Toggle switch.
 - [Select](https://ui.dlbcodes.com/components/select): Single-select dropdown (Select, SelectTrigger, SelectContent, SelectSearch, SelectItem). Item label is slot content; optional `searchable`.
+- [Combobox](https://ui.dlbcodes.com/components/combobox): Filterable single-select with a text input (Combobox, ComboboxInput, ComboboxContent, ComboboxItem, ComboboxEmpty). Each ComboboxItem takes `value` and `label`; the input filters by label.
 - [MultiSelect](https://ui.dlbcodes.com/components/multiselect): Multi-select with summary (MultiSelect, MultiSelectTrigger, MultiSelectContent, MultiSelectItem, MultiSelectSearch). Root exposes slot props (label, count, empty, allSelected, toggleAll, clear).
 - [Dropdown](https://ui.dlbcodes.com/components/dropdown): Action menu (Dropdown, DropdownTrigger, DropdownContent, DropdownItem).
 
 ### Overlays
 
-- [Modal](https://ui.dlbcodes.com/components/modal): Dialog with v-model open state (Modal, ModalHeader, ModalTitle, ModalDescription, ModalContent, ModalFooter, ModalClose). Teleports to body.
+- [Modal](https://ui.dlbcodes.com/components/modal): Dialog with v-model open state (Modal, ModalHeader, ModalTitle, ModalDescription, ModalContent, ModalFooter, ModalClose). Teleports to body. Bottom sheet on small screens.
 - [Popover](https://ui.dlbcodes.com/components/popover): Floating panel (Popover, PopoverTrigger, PopoverContent). PopoverContent exposes `close` via its default slot.
 
 ## Conventions
 
 - Compound components: compose parts (e.g. Field + FieldLabel + Input) rather than one prop-heavy component.
-- All styling via semantic CSS-variable tokens (see tokens.css), which reference an internal primitive palette. Override the semantic tokens to retheme; a [data-theme] block of overrides can switch the whole look at runtime.
-- Light mode only (no dark mode).
+- All styling via semantic CSS-variable tokens in the shadcn naming (see tokens.css). Override the variables to retheme: set light values on :root and dark values on .dark (set both, or a :root-only override also wins in dark mode). A [data-theme] block of overrides can switch the whole look at runtime.
+- Corner radius is a token: `--radius` drives every component's corners (rounded-sm to rounded-3xl are multiples of it). Use the rounded-* scale, never fixed values like rounded-[8px].
+- Dark mode is a `dark` class on the <html> element.
+- Controls share one height scale (sm 32, base 40, lg 48, xl 56px), so a Button and an Input of the same size line up in a row.
 - Built on Headless UI for accessible overlays/menus/tabs/disclosure; Sidebar and Popover positioning use Headless UI Float.
+
+## Tokens
+
+Use these Tailwind classes in your own markup so it matches the components; do not hardcode colors:
+
+- Surfaces: bg-background / text-foreground (page), bg-card / text-card-foreground, bg-popover / text-popover-foreground.
+- Actions: bg-primary / text-primary-foreground, bg-secondary / text-secondary-foreground, bg-brand / text-brand-foreground, bg-pro / text-pro-foreground.
+- Quiet UI: bg-muted / text-muted-foreground (labels, metadata), bg-accent / text-accent-foreground (hover, selected).
+- Lines and focus: border-border, border-border-subtle, border-border-strong, border-input, ring-ring.
+- Status (destructive, success, warning, info): text-{status} or bg-{status} with text-{status}-foreground; bg-{status}-subtle with border-{status}-border for tinted surfaces.
+- Sidebar: bg-sidebar, text-sidebar-foreground, bg-sidebar-accent, border-sidebar-border.
 
 ## Notes
 
 - Select and MultiSelect triggers integrate with Field: inside a `<Field>`, the trigger adopts the field's id, aria-describedby, and aria-invalid.
 - Panel (Panel, PanelHeader, PanelContent, PanelFooter) is a general content container used throughout the showcase.
+
+## Usage
+
+Basic:
+import { Button } from "@dlbcodes/ui";
+<Button variant="primary" size="base">Save</Button>
+
+Compound (Field + Input):
+<Field required :invalid="!!error">
+  <FieldLabel>Email</FieldLabel>
+  <FieldContent><Input v-model="email" type="email" /></FieldContent>
+  <FieldError v-if="error">{{ error }}</FieldError>
+</Field>
+
+Overlay (Modal with v-model):
+<Modal v-model="open">
+  <ModalHeader><ModalTitle>Title</ModalTitle><ModalClose /></ModalHeader>
+  <ModalContent>…</ModalContent>
+  <ModalFooter><Button @click="open = false">Close</Button></ModalFooter>
+</Modal>
+
+Trigger/Content (Select):
+<Select v-model="value" searchable>
+  <SelectTrigger>{{ value ?? "Choose" }}</SelectTrigger>
+  <SelectContent>
+    <SelectSearch />
+    <SelectItem value="a">Option A</SelectItem>
+  </SelectContent>
+</Select>
+
+- Not included: DatePicker, DataTable, Toast, Pagination. Don't reference components not listed above.

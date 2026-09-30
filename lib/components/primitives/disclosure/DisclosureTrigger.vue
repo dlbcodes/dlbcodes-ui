@@ -16,15 +16,15 @@ const props = defineProps<Props>();
         v-slot="{ open }"
         :class="
             cn(
-                'flex w-full items-center justify-between gap-2 py-4 text-left text-sm font-medium text-text-primary transition-colors',
-                'focus-visible:outline-none hover:text-text-secondary focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-border-strong focus-visible:ring-offset-bg-base rounded-lg',
+                'flex w-full items-center justify-between gap-2 py-4 text-left text-sm font-medium text-foreground transition-colors',
+                'focus-visible:outline-none hover:text-muted-foreground focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring focus-visible:ring-offset-background rounded-lg',
                 props.class,
             )
         "
     >
         <span class="flex-1 outline-none"><slot :open="open" /></span>
         <PhCaretDown
-            class="size-4 shrink-0 text-text-tertiary transition-transform duration-200"
+            class="size-4 shrink-0 text-muted-foreground/70 transition-transform duration-200"
             :class="open && 'rotate-180'"
             aria-hidden="true"
         />

@@ -15,7 +15,7 @@ const field = inject(FieldKey, null);
 <template>
     <p
         :id="field?.descriptionId.value"
-        :class="cn('text-xs text-text-secondary', props.class)"
+        :class="cn('text-xs text-muted-foreground', props.class)"
     >
         <slot />
     </p>

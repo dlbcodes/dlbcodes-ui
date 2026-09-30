@@ -29,7 +29,7 @@ A title and a description. The default `neutral` variant suits general messages.
 Each variant maps to a semantic status color — use the one that matches the
 message's meaning.
 
-<preview path="../demos/alert/alert-variants.vue" title="Variants" description="info, success, warning, and danger."></preview>
+<preview path="../demos/alert/alert-variants.vue" title="Variants" description="info, success, warning, and destructive."></preview>
 
 ## With an icon, no title
 
@@ -47,10 +47,10 @@ Use the `action` slot for a button — a dismiss, a retry, or a call to action.
 
 ### Alert
 
-| Prop      | Type                                                        | Default     | Description                         |
-| --------- | ----------------------------------------------------------- | ----------- | ----------------------------------- |
-| `variant` | `"neutral" \| "info" \| "success" \| "warning" \| "danger"` | `"neutral"` | Semantic status color of the alert. |
-| `class`   | `string`                                                    | —           | Classes merged onto the container.  |
+| Prop      | Type                                                             | Default     | Description                         |
+| --------- | ---------------------------------------------------------------- | ----------- | ----------------------------------- |
+| `variant` | `"neutral" \| "info" \| "success" \| "warning" \| "destructive"` | `"neutral"` | Semantic status color of the alert. |
+| `class`   | `string`                                                         | —           | Classes merged onto the container.  |
 
 **Slots:** `default` (the title and description), `icon` (optional leading icon),
 `action` (optional top-right action).

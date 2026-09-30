@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { watch, type HTMLAttributes } from "vue";
-import { useScrollLock } from "@vueuse/core";
+import { onBeforeUnmount, watch, type HTMLAttributes } from "vue";
+import { onKeyStroke, useScrollLock } from "@vueuse/core";
 import { cn } from "../../../utils/cn";
 import { useSidebar } from "./context";
 
@@ -13,13 +13,28 @@ const { isMobile, mobileOpen, collapsed, close } = useSidebar();
 const locked = useScrollLock(
     typeof document !== "undefined" ? document.body : null,
 );
-watch(mobileOpen, (isOpen) => {
-    locked.value = isOpen && isMobile.value;
+
+// Lock body scroll only while the mobile drawer is actually open. Watching
+// isMobile too releases the lock if the viewport grows past the breakpoint
+// while the drawer is open, and `immediate` covers an initially-open drawer.
+watch(
+    [mobileOpen, isMobile],
+    ([open, mobile]) => {
+        locked.value = open && mobile;
+    },
+    { immediate: true },
+);
+
+// Release the lock if the sidebar is unmounted while the drawer is open.
+onBeforeUnmount(() => {
+    locked.value = false;
 });
 
-const onKeydown = (e: KeyboardEvent) => {
-    if (e.key === "Escape") close();
-};
+// Global (not @keydown on the <aside>): when the drawer opens, focus usually
+// stays on the trigger button, so a keydown handler on the drawer never fires.
+onKeyStroke("Escape", () => {
+    if (isMobile.value && mobileOpen.value) close();
+});
 </script>
 
 <template>
@@ -29,7 +44,7 @@ const onKeydown = (e: KeyboardEvent) => {
             v-if="!collapsed"
             :class="
                 cn(
-                    'flex h-full w-64 flex-col border-r border-border-subtle bg-bg-surface',
+                    'flex h-full w-64 flex-col border-r border-sidebar-border bg-sidebar text-sidebar-foreground',
                     props.class,
                 )
             "
@@ -38,7 +53,7 @@ const onKeydown = (e: KeyboardEvent) => {
         </aside>
     </template>
 
-    <!-- Mobile: overlay drawer (unchanged) -->
+    <!-- Mobile: overlay drawer -->
     <template v-else>
         <Transition
             enter-active-class="transition-opacity duration-200"
@@ -63,12 +78,11 @@ const onKeydown = (e: KeyboardEvent) => {
                 v-if="mobileOpen"
                 :class="
                     cn(
-                        'fixed inset-y-0 left-0 z-50 flex h-full w-64 flex-col border-r border-border-subtle bg-bg-surface',
+                        'fixed inset-y-0 left-0 z-50 flex h-full w-64 flex-col border-r border-sidebar-border bg-sidebar text-sidebar-foreground',
                         props.class,
                     )
                 "
                 tabindex="-1"
-                @keydown="onKeydown"
             >
                 <slot />
             </aside>

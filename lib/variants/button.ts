@@ -16,12 +16,19 @@ const baseStyles = [
 	// Subtle tactile press: nudge down 1px on click. Excluded for menu triggers
 	// (aria-haspopup), which shouldn't bounce when opening their menu.
 	"active:not-aria-[haspopup]:translate-y-px",
+	// Covers native :disabled AND aria-disabled (used by <Button> for links,
+	// loading state and non-button roots), so the component no longer needs
+	// its own "pointer-events-none opacity-60" class.
 	"disabled:pointer-events-none",
 	"disabled:opacity-50",
+	"aria-disabled:pointer-events-none",
+	"aria-disabled:opacity-50",
 	"focus-visible:outline-none",
 	"focus-visible:ring-2",
 	"focus-visible:ring-offset-2",
-	"focus-visible:ring-border-strong",
+	"focus-visible:ring-ring",
+	// Without this the offset gap is white in dark mode.
+	"focus-visible:ring-offset-background",
 	// Auto-size icons inside the button to size-4 unless an explicit size-* is set,
 	// and make them non-interactive so clicks always hit the button.
 	"[&_svg]:pointer-events-none",
@@ -33,27 +40,30 @@ export const buttonVariants = cva(baseStyles, {
 	variants: {
 		variant: {
 			// Brand-filled primary action.
-			primary: "border border-brand-200 bg-brand-200 text-text-inverse hover:brightness-110",
+			// (Uses --brand, not --primary: --primary is the neutral shadcn role.)
+			primary:
+				"border border-brand bg-brand text-brand-foreground hover:brightness-110",
 
 			// Neutral surface action. aria-expanded keeps it "active" while its menu is open.
 			secondary:
-				"border border-border-default bg-bg-base text-text-primary hover:bg-bg-subtle aria-expanded:bg-bg-subtle",
+				"border border-border bg-background text-foreground hover:bg-accent aria-expanded:bg-accent",
 
 			// Destructive action.
-			destructive: "border border-danger-text bg-danger-text text-text-inverse hover:brightness-110",
+			destructive:
+				"border border-destructive bg-destructive text-destructive-foreground hover:brightness-110",
 
 			// Bordered, transparent fill. Active-while-open via aria-expanded.
 			outline:
-				"border border-border-default bg-transparent text-text-secondary hover:bg-bg-subtle hover:text-text-primary aria-expanded:bg-bg-subtle aria-expanded:text-text-primary",
+				"border border-border bg-transparent text-muted-foreground hover:bg-accent hover:text-accent-foreground aria-expanded:bg-accent aria-expanded:text-accent-foreground",
 
 			// No border/fill until hover. Active-while-open via aria-expanded.
-			ghost: "text-text-primary hover:bg-bg-subtle aria-expanded:bg-bg-subtle",
+			ghost: "text-foreground hover:bg-accent aria-expanded:bg-accent",
 
 			// Inline text link.
-			link: "inline-flex text-brand-200 hover:underline",
+			link: "inline-flex text-brand underline-offset-4 hover:underline",
 
 			// Square icon button. Active-while-open via aria-expanded (kebab menus etc.).
-			icon: "relative inline-grid place-items-center text-text-secondary hover:bg-bg-subtle aria-expanded:bg-bg-subtle aria-expanded:text-text-primary",
+			icon: "relative inline-grid place-items-center text-muted-foreground hover:bg-accent hover:text-accent-foreground aria-expanded:bg-accent aria-expanded:text-accent-foreground",
 		},
 
 		size: {

@@ -85,7 +85,10 @@ const onInput = (event: Event): void => {
         :data-invalid="resolvedInvalid || undefined"
         @click="focusInput"
     >
-        <span class="flex items-center gap-1 text-text-secondary">
+        <span
+            v-if="$slots.default"
+            class="flex items-center gap-1 text-muted-foreground"
+        >
             <slot />
         </span>
 
@@ -102,7 +105,7 @@ const onInput = (event: Event): void => {
             :aria-required="resolvedRequired || undefined"
             :aria-describedby="describedById"
             :data-invalid="resolvedInvalid || undefined"
-            class="h-full w-full bg-transparent text-text-primary/70 outline-none transition-colors group-hover:text-text-primary focus:text-text-primary disabled:cursor-not-allowed"
+            class="h-full w-full bg-transparent text-foreground/70 outline-none transition-colors group-hover:text-foreground focus:text-foreground disabled:cursor-not-allowed"
             @input="onInput"
         />
     </div>

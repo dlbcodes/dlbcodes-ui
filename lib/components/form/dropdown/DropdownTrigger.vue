@@ -21,7 +21,7 @@ const props = defineProps<Props>();
                 asChild
                     ? undefined
                     : cn(
-                          'cursor-pointer rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-border-strong',
+                          'cursor-pointer rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring focus-visible:ring-offset-background',
                           props.class,
                       )
             "

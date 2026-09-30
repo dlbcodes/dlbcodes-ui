@@ -13,7 +13,7 @@ const props = defineProps<Props>();
     <div
         :class="
             cn(
-                'flex flex-col shrink-0 w-full p-1 bg-bg-surface border border-border-default rounded-3xl shadow-xs overflow-hidden',
+                'flex flex-col shrink-0 w-full p-1 bg-muted border border-border rounded-3xl shadow-xs overflow-hidden',
                 props.class,
             )
         "

@@ -10,12 +10,12 @@ required; everything inside is optional.
 ## Anatomy
 
 ```
-Empty ← the dashed container; centers its content
-├── EmptyHeader ← groups the media, title, and description
-│ ├── EmptyMedia ← the icon or illustration (variant: icon | default)
-│ ├── EmptyTitle ← the headline
-│ └── EmptyDescription ← supporting text
-└── EmptyContent ← optional area for actions (buttons, links)
+Empty                    ← the dashed container; centers its content
+├── EmptyHeader          ← groups the media, title, and description
+│   ├── EmptyMedia       ← the icon or illustration (variant: icon | default)
+│   ├── EmptyTitle       ← the headline
+│   └── EmptyDescription ← supporting text
+└── EmptyContent         ← optional area for actions (buttons, links)
 ```
 
 ## Usage
@@ -42,6 +42,13 @@ larger icon or a custom illustration.
 
 <preview path="../demos/empty/empty-default-media.vue" title="Default media" description="A larger icon with no background."></preview>
 
+## Appearance
+
+The container's border uses the theme's `--border`, the icon background uses
+`--muted`, and the text uses `--foreground` and `--muted-foreground`. Corners
+follow `--radius`. So an empty state follows your theme, including dark mode. See
+[Theming](/theming).
+
 ## Props
 
 ### EmptyMedia
@@ -58,7 +65,8 @@ Each takes only `class`. Their slot content is what's rendered:
 - `Empty` — the dashed container; centers everything.
 - `EmptyHeader` — groups media, title, and description.
 - `EmptyTitle` — the headline text.
-- `EmptyDescription` — supporting text. Links inside it are underlined.
+- `EmptyDescription` — supporting text. Links inside it are underlined and take
+  the brand color on hover.
 - `EmptyContent` — an area for actions, below the header.
 
 ## Composition

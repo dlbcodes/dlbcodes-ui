@@ -13,7 +13,9 @@ so it has an accessible name.
 
 ## Usage
 
-On its own, `Label` is just styled, selectable label text.
+On its own, `Label` is just styled label text. It shows a pointer cursor and
+isn't text-selectable, so clicking or double-clicking it to toggle a control
+doesn't highlight the words.
 
 <preview path="../demos/label/label-basic.vue" title="Basic" description="A standalone label."></preview>
 
@@ -30,6 +32,17 @@ accessible association.
 The same `for`/`id` pairing works with any control.
 
 <preview path="../demos/label/label-switch.vue" title="With Switch" description="Clicking the label toggles the switch."></preview>
+
+::: tip Pass your own `id`
+`Checkbox`, `Switch` and `Input` generate an `id` for themselves when you don't
+pass one, but you can't point a `Label` at an id you don't know. Set the `id` on
+the control yourself and use the same value in the label's `for`.
+:::
+
+## Appearance
+
+The label text uses the theme's `--foreground` color, so it follows your theme,
+including dark mode. See [Theming](/theming).
 
 ## Props
 

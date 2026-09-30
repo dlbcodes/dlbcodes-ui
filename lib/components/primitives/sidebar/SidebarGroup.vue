@@ -15,7 +15,7 @@ const props = defineProps<Props>();
     <div :class="cn('flex flex-col gap-0.5 py-2', props.class)">
         <p
             v-if="label"
-            class="px-3 pb-1 text-xs font-medium uppercase tracking-wider text-text-tertiary"
+            class="px-3 pb-1 text-xs font-medium uppercase tracking-wider text-sidebar-foreground/60"
         >
             {{ label }}
         </p>

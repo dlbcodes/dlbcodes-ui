@@ -15,6 +15,8 @@ const props = withDefaults(defineProps<Props>(), {
     max: 100,
 });
 
+const indeterminate = computed(() => props.value === undefined);
+
 // Clamp to 0–max and compute the fill percentage.
 const percent = computed(() => {
     if (props.value === undefined) return 0;
@@ -32,13 +34,19 @@ const percent = computed(() => {
         :aria-label="label"
         :class="
             cn(
-                'relative h-1 w-full overflow-hidden rounded-full bg-bg-surface',
+                'relative h-1 w-full overflow-hidden rounded-full bg-muted',
                 props.class,
             )
         "
     >
+        <!-- Indeterminate: a 40% bar sliding across the track (see tokens.css). -->
         <div
-            class="size-full flex-1 rounded-full bg-brand-200 transition-transform duration-300"
+            v-if="indeterminate"
+            class="h-full w-2/5 rounded-full bg-brand animate-progress-indeterminate motion-reduce:w-full motion-reduce:animate-pulse"
+        />
+        <div
+            v-else
+            class="size-full rounded-full bg-brand transition-transform duration-300"
             :style="{ transform: `translateX(-${100 - percent}%)` }"
         />
     </div>

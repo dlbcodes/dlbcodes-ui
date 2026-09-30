@@ -11,7 +11,7 @@ const props = defineProps<Props>();
 
 <template>
     <div
-        :class="cn('animate-pulse rounded-md bg-bg-surface', props.class)"
+        :class="cn('animate-pulse rounded-md bg-accent', props.class)"
         aria-hidden="true"
     />
 </template>

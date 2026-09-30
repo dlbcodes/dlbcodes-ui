@@ -13,7 +13,7 @@ const props = defineProps<Props>();
     <p
         :class="
             cn(
-                'text-base font-medium tracking-tight text-text-primary',
+                'text-base font-medium tracking-tight text-foreground',
                 props.class,
             )
         "

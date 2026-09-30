@@ -12,7 +12,7 @@ const props = defineProps<Props>();
 
 <template>
     <HuiDisclosurePanel
-        :class="cn('pb-4 text-sm text-text-secondary', props.class)"
+        :class="cn('pb-4 text-sm text-muted-foreground', props.class)"
     >
         <slot />
     </HuiDisclosurePanel>

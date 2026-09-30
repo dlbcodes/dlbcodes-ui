@@ -10,7 +10,7 @@ const props = defineProps<Props>();
 </script>
 
 <template>
-    <div :class="cn('px-6 py-2 text-text-primary', props.class)">
+    <div :class="cn('px-6 py-2 text-foreground', props.class)">
         <slot />
     </div>
 </template>

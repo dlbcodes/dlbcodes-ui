@@ -1,107 +1,213 @@
-@theme {
-    /* ═══════════════════════════════════════════════════════════════
-       1 · PRIMITIVES — the raw palette (internal)
-       Source colors. You normally DON'T override these; theme via the
-       semantic tokens in section 2. Override a primitive only to shift
-       every semantic token that references it at once.
-       ═══════════════════════════════════════════════════════════════ */
-
-    /* Neutrals — text ramp (light → dark) */
-    --color-text-100: oklch(94.5% 0.009 96);
-    --color-text-300: oklch(87% 0.0155 96);
-    --color-text-500: oklch(76% 0.0155 97);
-    --color-text-700: oklch(55.11% 0.0092 99);
-    --color-text-900: oklch(19.08% 0.002 106.6);
-
-    /* Neutrals — background ramp (light → dark) */
-    --color-bg-0: oklch(100% 0 0);
-    --color-bg-100: oklch(98.18% 0.0054 95.1);
-    --color-bg-200: oklch(96.6% 0.0093 100);
-    --color-bg-300: oklch(94.85% 0.0109 95.2);
-    --color-bg-400: oklch(92.37% 0.0135 97.5);
-    --color-bg-600: oklch(84.5% 0.018 97);
-    --color-bg-900: oklch(0% 0 0);
-
-    /* Brand */
-    --color-brand-100: oklch(60.78% 0.1379 39.01);
-    --color-brand-200: oklch(67.24% 0.1308 38.76);
-
-    /* Accent */
-    --color-accent-pro-200: oklch(45.78% 0.143 287.89);
-
-    /* Status — success (green) */
-    --color-success-100: oklch(52% 0.13 152); /* text */
-    --color-success-200: oklch(90% 0.06 152); /* border */
-    --color-success-300: oklch(96.5% 0.03 152); /* surface */
-
-    /* Status — warning (amber) */
-    --color-warning-100: oklch(55% 0.12 75); /* text */
-    --color-warning-200: oklch(90% 0.08 85); /* border */
-    --color-warning-300: oklch(96.5% 0.04 85); /* surface */
-
-    /* Status — info (blue) */
-    --color-info-100: oklch(52% 0.15 250); /* text */
-    --color-info-200: oklch(90% 0.06 245); /* border */
-    --color-info-300: oklch(96.5% 0.03 245); /* surface */
-
-    /* Status — danger (red) */
-    --color-danger-100: oklch(52% 0.17 25); /* text */
-    --color-danger-200: oklch(90% 0.06 18); /* border */
-    --color-danger-300: oklch(96% 0.03 18); /* surface */
-
-    /* ═══════════════════════════════════════════════════════════════
-       2 · SEMANTIC TOKENS — the public theming API
-       Maps roles onto the primitives above. THIS is the layer to
-       override: set a semantic token to any value to retarget that role.
-       ═══════════════════════════════════════════════════════════════ */
-
-    /* Text */
-    --color-text-primary: var(--color-text-900); /* body copy, headings */
-    --color-text-secondary: var(--color-text-700); /* labels, metadata */
-    --color-text-tertiary: var(--color-text-500); /* placeholders, hints */
-    --color-text-disabled: var(--color-text-300); /* disabled state */
-    --color-text-inverse: var(--color-text-100); /* text on dark surfaces */
-
-    /* Background */
-    --color-bg-base: var(--color-bg-100); /* page background */
-    --color-bg-surface: var(--color-bg-200); /* cards, panels */
-    --color-bg-raised: var(--color-bg-0); /* floating/selected surface */
-    --color-bg-elevated: var(--color-bg-300); /* dropdowns, tooltips */
-    --color-bg-subtle: var(--color-bg-400); /* hover states, tags */
-    --color-bg-strong: var(--color-bg-600); /* separators, badges */
-    --color-bg-inverse: var(--color-bg-900); /* dark surfaces, banners */
-
-    /* Border */
-    --color-border-subtle: var(--color-bg-300); /* soft dividers */
-    --color-border-default: var(--color-bg-400); /* inputs, cards */
-    --color-border-strong: var(--color-bg-600); /* focus, emphasis */
-    --color-border-dark: var(--color-bg-900); /* strong outline */
-
-    /* Status — success */
-    --color-success-surface: var(--color-success-300);
-    --color-success-border: var(--color-success-200);
-    --color-success-text: var(--color-success-100);
-
-    /* Status — warning */
-    --color-warning-surface: var(--color-warning-300);
-    --color-warning-border: var(--color-warning-200);
-    --color-warning-text: var(--color-warning-100);
-
-    /* Status — info */
-    --color-info-surface: var(--color-info-300);
-    --color-info-border: var(--color-info-200);
-    --color-info-text: var(--color-info-100);
-
-    /* Status — danger */
-    --color-danger-surface: var(--color-danger-300);
-    --color-danger-border: var(--color-danger-200);
-    --color-danger-text: var(--color-danger-100);
-}
-
 /* ═══════════════════════════════════════════════════════════════════
-   3 · UTILITIES
+   @dlbcodes/ui — theme.css (exact shadcn defaults + extras)
+
+   Core tokens (background … ring, chart, sidebar, radius) are the stock
+   shadcn values. Everything under "EXTRAS" is dlbcodes-specific.
+   Override any variable on :root, .dark or a wrapper element.
    ═══════════════════════════════════════════════════════════════════ */
 
+@custom-variant dark (&:is(.dark, .dark *));
+
+@theme inline {
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --color-card: var(--card);
+    --color-card-foreground: var(--card-foreground);
+    --color-popover: var(--popover);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-secondary: var(--secondary);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-muted: var(--muted);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-accent: var(--accent);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-destructive: var(--destructive);
+    --color-border: var(--border);
+    --color-input: var(--input);
+    --color-ring: var(--ring);
+    --color-chart-1: var(--chart-1);
+    --color-chart-2: var(--chart-2);
+    --color-chart-3: var(--chart-3);
+    --color-chart-4: var(--chart-4);
+    --color-chart-5: var(--chart-5);
+    --color-sidebar: var(--sidebar);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar-primary: var(--sidebar-primary);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --color-sidebar-border: var(--sidebar-border);
+    --color-sidebar-ring: var(--sidebar-ring);
+
+    /* Radius scale — all derived from --radius (user-changeable) */
+    --radius-sm: calc(var(--radius) * 0.6);
+    --radius-md: calc(var(--radius) * 0.8);
+    --radius-lg: var(--radius);
+    --radius-xl: calc(var(--radius) * 1.4);
+    --radius-2xl: calc(var(--radius) * 1.8);
+    --radius-3xl: calc(var(--radius) * 2.2);
+    --radius-4xl: calc(var(--radius) * 2.6);
+
+    /* ── EXTRAS ─────────────────────────────────────────────────── */
+    --color-border-subtle: var(--border-subtle);
+    --color-border-strong: var(--border-strong);
+
+    --color-brand: var(--brand);
+    --color-brand-foreground: var(--brand-foreground);
+    --color-pro: var(--pro);
+    --color-pro-foreground: var(--pro-foreground);
+
+    --color-destructive-foreground: var(--destructive-foreground);
+    --color-destructive-subtle: var(--destructive-subtle);
+    --color-destructive-border: var(--destructive-border);
+
+    --color-success: var(--success);
+    --color-success-foreground: var(--success-foreground);
+    --color-success-subtle: var(--success-subtle);
+    --color-success-border: var(--success-border);
+
+    --color-warning: var(--warning);
+    --color-warning-foreground: var(--warning-foreground);
+    --color-warning-subtle: var(--warning-subtle);
+    --color-warning-border: var(--warning-border);
+
+    --color-info: var(--info);
+    --color-info-foreground: var(--info-foreground);
+    --color-info-subtle: var(--info-subtle);
+    --color-info-border: var(--info-border);
+}
+
+:root {
+    --radius: 0.625rem;
+    /* --radius: 0.125rem; */
+    --background: oklch(1 0 0);
+    --foreground: oklch(0.145 0 0);
+    --card: oklch(1 0 0);
+    --card-foreground: oklch(0.145 0 0);
+    --popover: oklch(1 0 0);
+    --popover-foreground: oklch(0.145 0 0);
+    --primary: oklch(0.205 0 0);
+    --primary-foreground: oklch(0.985 0 0);
+    --secondary: oklch(0.97 0 0);
+    --secondary-foreground: oklch(0.205 0 0);
+    --muted: oklch(0.97 0 0);
+    --muted-foreground: oklch(0.556 0 0);
+    --accent: oklch(0.97 0 0);
+    --accent-foreground: oklch(0.205 0 0);
+    --destructive: oklch(0.577 0.245 27.325);
+    --border: oklch(0.922 0 0);
+    --input: oklch(0.922 0 0);
+    --ring: oklch(0.708 0 0);
+    --chart-1: oklch(0.646 0.222 41.116);
+    --chart-2: oklch(0.6 0.118 184.704);
+    --chart-3: oklch(0.398 0.07 227.392);
+    --chart-4: oklch(0.828 0.189 84.429);
+    --chart-5: oklch(0.769 0.188 70.08);
+    --sidebar: oklch(0.985 0 0);
+    --sidebar-foreground: oklch(0.145 0 0);
+    --sidebar-primary: oklch(0.205 0 0);
+    --sidebar-primary-foreground: oklch(0.985 0 0);
+    --sidebar-accent: oklch(0.97 0 0);
+    --sidebar-accent-foreground: oklch(0.205 0 0);
+    --sidebar-border: oklch(0.922 0 0);
+    --sidebar-ring: oklch(0.708 0 0);
+
+    /* ── EXTRAS ─────────────────────────────────────────────────── */
+    --border-subtle: oklch(0.955 0 0);
+    --border-strong: oklch(0.87 0 0);
+
+    --brand: oklch(0.6078 0.1379 39.01);
+    --brand-foreground: oklch(1 0 0);
+    --pro: oklch(0.4578 0.143 287.89);
+    --pro-foreground: oklch(1 0 0);
+
+    --destructive-foreground: oklch(1 0 0);
+    --destructive-subtle: oklch(0.96 0.03 18);
+    --destructive-border: oklch(0.9 0.06 18);
+
+    --success: oklch(0.52 0.13 152);
+    --success-foreground: oklch(1 0 0);
+    --success-subtle: oklch(0.965 0.03 152);
+    --success-border: oklch(0.9 0.06 152);
+
+    --warning: oklch(0.55 0.12 75);
+    --warning-foreground: oklch(1 0 0);
+    --warning-subtle: oklch(0.965 0.04 85);
+    --warning-border: oklch(0.9 0.08 85);
+
+    --info: oklch(0.52 0.15 250);
+    --info-foreground: oklch(1 0 0);
+    --info-subtle: oklch(0.965 0.03 245);
+    --info-border: oklch(0.9 0.06 245);
+}
+
+.dark {
+    --background: oklch(0.145 0 0);
+    --foreground: oklch(0.985 0 0);
+    --card: oklch(0.205 0 0);
+    --card-foreground: oklch(0.985 0 0);
+    --popover: oklch(0.205 0 0);
+    --popover-foreground: oklch(0.985 0 0);
+    --primary: oklch(0.922 0 0);
+    --primary-foreground: oklch(0.205 0 0);
+    --secondary: oklch(0.269 0 0);
+    --secondary-foreground: oklch(0.985 0 0);
+    --muted: oklch(0.269 0 0);
+    --muted-foreground: oklch(0.708 0 0);
+    --accent: oklch(0.269 0 0);
+    --accent-foreground: oklch(0.985 0 0);
+    --destructive: oklch(0.704 0.191 22.216);
+    --border: oklch(1 0 0 / 10%);
+    --input: oklch(1 0 0 / 15%);
+    --ring: oklch(0.556 0 0);
+    --chart-1: oklch(0.488 0.243 264.376);
+    --chart-2: oklch(0.696 0.17 162.48);
+    --chart-3: oklch(0.769 0.188 70.08);
+    --chart-4: oklch(0.627 0.265 303.9);
+    --chart-5: oklch(0.645 0.246 16.439);
+    --sidebar: oklch(0.205 0 0);
+    --sidebar-foreground: oklch(0.985 0 0);
+    --sidebar-primary: oklch(0.488 0.243 264.376);
+    --sidebar-primary-foreground: oklch(0.985 0 0);
+    --sidebar-accent: oklch(0.269 0 0);
+    --sidebar-accent-foreground: oklch(0.985 0 0);
+    --sidebar-border: oklch(1 0 0 / 10%);
+    --sidebar-ring: oklch(0.556 0 0);
+
+    /* ── EXTRAS ─────────────────────────────────────────────────── */
+    --border-subtle: oklch(1 0 0 / 6%);
+    --border-strong: oklch(1 0 0 / 20%);
+
+    --brand: oklch(0.6724 0.1308 38.76);
+    --brand-foreground: oklch(0 0 0);
+    --pro: oklch(0.7 0.14 288);
+    --pro-foreground: oklch(0 0 0);
+
+    --destructive-foreground: oklch(0 0 0);
+    --destructive-subtle: oklch(0.25 0.05 20);
+    --destructive-border: oklch(0.36 0.09 20);
+
+    --success: oklch(0.78 0.14 152);
+    --success-foreground: oklch(0 0 0);
+    --success-subtle: oklch(0.25 0.04 152);
+    --success-border: oklch(0.35 0.07 152);
+
+    --warning: oklch(0.8 0.13 85);
+    --warning-foreground: oklch(0 0 0);
+    --warning-subtle: oklch(0.26 0.04 85);
+    --warning-border: oklch(0.37 0.08 85);
+
+    --info: oklch(0.75 0.13 245);
+    --info-foreground: oklch(0 0 0);
+    --info-subtle: oklch(0.25 0.04 245);
+    --info-border: oklch(0.36 0.08 245);
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   UTILITIES
+   ─────────────────────────────────────────────────────────────────── */
 @utility no-scrollbar {
     scrollbar-width: none;
     &::-webkit-scrollbar {
@@ -111,15 +217,28 @@
 
 @utility scrollbar-thin {
     scrollbar-width: thin;
-    scrollbar-color: var(--color-bg-strong) transparent;
+    scrollbar-color: var(--border-strong) transparent;
     &::-webkit-scrollbar {
         width: 6px;
     }
     &::-webkit-scrollbar-thumb {
-        background-color: var(--color-bg-strong);
+        background-color: var(--border-strong);
         border-radius: 3px;
     }
     &::-webkit-scrollbar-track {
         background: transparent;
     }
 }
+
+/* Optional global defaults — put these in your docs/app stylesheet, not
+   in the published library:
+
+@layer base {
+    * {
+        @apply border-border outline-ring/50;
+    }
+    body {
+        @apply bg-background text-foreground;
+    }
+}
+*/

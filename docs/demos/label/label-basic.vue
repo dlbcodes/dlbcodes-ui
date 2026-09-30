@@ -40,7 +40,7 @@ const options = [
                         <Label :for="opt.id" class="block">
                             {{ opt.title }}
                         </Label>
-                        <div class="text-xs text-text-tertiary">
+                        <div class="text-xs text-muted-foreground">
                             {{ opt.desc }}
                         </div>
                     </div>
