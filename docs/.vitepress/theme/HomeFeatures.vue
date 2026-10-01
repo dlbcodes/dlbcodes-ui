@@ -50,12 +50,12 @@ const features = [
         <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             <Panel v-for="feature in features" :key="feature.title">
                 <PanelContent
-                    class="flex flex-col gap-2 rounded-2xl border border-border-subtle bg-bg-raised p-6"
+                    class="flex flex-col gap-2 rounded-2xl border border-border-subtle p-6"
                 >
                     <h3 class="text-base font-medium text-text-primary">
                         {{ feature.title }}
                     </h3>
-                    <p class="text-sm leading-relaxed text-text-secondary">
+                    <p class="text-sm leading-relaxed text-muted-foreground">
                         {{ feature.details }}
                     </p>
                 </PanelContent>

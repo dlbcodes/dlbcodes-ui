@@ -8,11 +8,11 @@ import { Button } from "@dlbcodes/ui";
             class="mx-auto flex max-w-3xl flex-col items-center gap-5 px-6 py-20 text-center md:py-28"
         >
             <h1
-                class="text-3xl font-semibold tracking-tight text-balance text-text-primary md:text-4xl lg:text-5xl lg:leading-[1.05]"
+                class="text-3xl font-semibold tracking-tight text-balance text-foreground md:text-4xl lg:text-5xl lg:leading-[1.05]"
             >
                 A Vue 3 component library you theme with your own tokens
             </h1>
-            <p class="max-w-2xl text-lg text-balance text-text-secondary">
+            <p class="max-w-2xl text-lg text-balance text-muted-foreground">
                 A composable component library built on Tailwind v4,
                 class-variance-authority, and Headless UI — designed to be
                 styled with your tokens, not fought against.
